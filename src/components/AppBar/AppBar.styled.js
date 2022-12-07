@@ -6,6 +6,8 @@ export const Header = styled.header`
   align-items: center;
   background: #242A37;
   box-shadow: 0px 4px 4px rgba(36, 42, 55, 0.1);
+  position: relative;
+  z-index: -1;
 `
 
 export const Container = styled.div`
