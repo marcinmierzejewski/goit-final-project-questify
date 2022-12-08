@@ -13,8 +13,11 @@ export const Main = styled.main`
     bottom: 30px;
     right: 30px;
     :hover {
-      background-color: #b36b00;
-      transition: 0.7s;
+      background-color: #00d7ff;
+      transition: 0.2s;
+    }
+    :active {
+      background-color: #47aad5;
     }
   }
 `;
