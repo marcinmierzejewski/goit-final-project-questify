@@ -2,7 +2,7 @@ import { UserDiv, UserInitial, UserText } from "./UserName.styled";
 
 export const UserName = () => {
 
-  const user = {name: "John"} // user from authorization
+  const user = {name: "John"} // user getting from authorization
   
   return (
     <UserDiv>
