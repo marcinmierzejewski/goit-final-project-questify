@@ -9,9 +9,20 @@ export const UserDiv = styled.div`
   font-weight: 400;
   font-size: 17px;
   line-height: 17px;
-  /* identical to box height */
-
   letter-spacing: 0.02em;
-
   color: #7B8AA4;
+`
+export const UserInitial = styled.p`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  background: #3E4E6C;
+  font-weight: 900;
+  font-size: 17px;
+  line-height: 16px;
+  margin-right: 10px;
+  color: #FFFFFF;
 `

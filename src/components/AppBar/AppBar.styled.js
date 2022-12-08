@@ -7,7 +7,8 @@ export const Header = styled.header`
   background: #242A37;
   box-shadow: 0px 4px 4px rgba(36, 42, 55, 0.1);
   position: relative;
-  z-index: -1;
+  z-index: 0;
+  padding: 0 50px;
 `
 
 export const Container = styled.div`

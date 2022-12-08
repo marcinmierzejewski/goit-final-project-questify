@@ -1,9 +1,13 @@
-import { UserDiv } from "./UserName.styled";
+import { UserDiv, UserInitial } from "./UserName.styled";
 
 export const UserName = () => {
+
+  const user = {name: "John"} // user from authorization
+  
   return (
     <UserDiv>
-      <p>John's Quest Log</p>
+      <UserInitial>{user.name[0]}</UserInitial>
+      <p>{user.name} Quest Log</p>
     </UserDiv>
   );
 };
