@@ -10,6 +10,7 @@ import './index.scss';
 const Dashboard = React.lazy(() => import("./pages/Dashboard/Dashboard"));
 const Landing = React.lazy(() => import("./pages/Landing/Landing"));
 
+
 const container = document.getElementById('root');
 const root = createRoot(container);
 
