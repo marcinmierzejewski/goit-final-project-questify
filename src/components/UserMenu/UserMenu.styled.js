@@ -18,8 +18,8 @@ export const TrophyCircle = styled.p`
   position: relative;
   fill: "#242A37";
 
-  &:hover > svg {
-    fill: white;
+  @media screen and (max-width: 500px) {
+    margin-right: 10px;
   }
 
   &::after {

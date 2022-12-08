@@ -12,5 +12,14 @@ export const HomeLogo = styled.p`
   color: #00D7FF;
   padding: 0;
   margin: 0;
-  height: 70px;
+  height: 100%;
+
+  @media screen and (max-width: 480px) {
+    margin-right: 30%;
+  }
+
+  @media screen and (max-width: 768px) {
+    font-size: 18px;
+    line-height: 18px;
+  }
 `;

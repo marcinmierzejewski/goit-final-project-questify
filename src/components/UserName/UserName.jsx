@@ -1,4 +1,4 @@
-import { UserDiv, UserInitial } from "./UserName.styled";
+import { UserDiv, UserInitial, UserText } from "./UserName.styled";
 
 export const UserName = () => {
 
@@ -7,7 +7,7 @@ export const UserName = () => {
   return (
     <UserDiv>
       <UserInitial>{user.name[0]}</UserInitial>
-      <p>{user.name} Quest Log</p>
+      <UserText>{user.name} Quest Log</UserText>
     </UserDiv>
   );
 };
