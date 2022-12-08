@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { Suspense } from 'react';
+import { Outlet } from 'react-router-dom';
+import PageLoader from './components/PageLoader/PageLoader';
 
-function App() {
+const App = () => {
   return (
-    <>
-      Tu będzie aplikacja Questify!
-    </>
+    <Suspense fallback={<PageLoader />}>
+      <Outlet />
+    </Suspense>
   );
 }
 
