@@ -1,8 +1,7 @@
 
-import React from 'react';
+import React, { Suspense } from 'react';
 import { AppBar } from './components/AppBar/AppBar'
 
-import React, { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 import PageLoader from './components/PageLoader/PageLoader';
 
@@ -10,14 +9,14 @@ import PageLoader from './components/PageLoader/PageLoader';
 const App = () => {
   return (
 
-    <>
-     
+    <>     
       <AppBar/>
+       <Suspense fallback={<PageLoader />}>
+          <Outlet />
+        </Suspense>
     </>
 
-    <Suspense fallback={<PageLoader />}>
-      <Outlet />
-    </Suspense>
+   
 
   );
 }
