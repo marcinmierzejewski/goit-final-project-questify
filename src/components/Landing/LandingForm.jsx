@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useLoginMutation } from "../../redux/slices/questifyAPI";
 import { useFormik } from "formik";
 import Button from "@mui/material/Button";
@@ -9,11 +10,13 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { addToken } from "../../redux/slices/tokenSlice";
 import { addUser } from "../../redux/slices/userSlice";
+import LandingModal from "./LandingModal/LandingModal";
 
 const LandingForm = () => {
 	const [login] = useLoginMutation();
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
+	const [isOpen, setIsOpen] = useState(false);
 
 	const { handleSubmit, values, handleChange, touched, errors, resetForm } =
 		useFormik({
@@ -47,7 +50,10 @@ const LandingForm = () => {
 	return (
 		<div>
 			<form onSubmit={handleSubmit}>
-				<p>Choose your name to sign up or log in</p>
+				<p>
+					Choose your name to
+					<span onClick={() => setIsOpen(true)}> sing up</span> or log in
+				</p>
 				<TextField
 					fullWidth
 					id="email"
@@ -73,6 +79,7 @@ const LandingForm = () => {
 					go!
 				</Button>
 			</form>
+			{isOpen && <LandingModal setIsOpen={setIsOpen} />}
 		</div>
 	);
 };
