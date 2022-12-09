@@ -1,6 +1,5 @@
 import LandingWelcome from "./LandingWelcome";
 import LandingForm from "./LandingForm";
-import LandingBg from "./LandingBg";
 
 const Landing = () => {
 	return (
@@ -9,7 +8,6 @@ const Landing = () => {
 				<LandingWelcome />
 				<LandingForm />
 			</div>
-			{/* <LandingBg /> */}
 		</>
 	);
 };
