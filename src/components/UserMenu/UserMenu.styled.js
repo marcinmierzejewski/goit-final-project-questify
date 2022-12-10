@@ -8,7 +8,7 @@ export const UserMenuWrapper = styled.div`
 
 export const TrophyActive = styled.p`
   background-color: ${(props) =>
-    props.isActive === true ? "#00d7ff" : "#3E4E6C"};
+    props.isActive ? "#00d7ff" : "#3E4E6C"};
   height: 30px;
   width: 30px;
   border-radius: 50%;
@@ -18,7 +18,7 @@ export const TrophyActive = styled.p`
   margin-right: 38px;
   position: relative;
     & > svg {
-      fill: ${(props) => (props.isActive === true ? "#242A37" : "#7B8AA4")};
+      fill: ${(props) => (props.isActive ? "#242A37" : "#7B8AA4")};
     }
   
 
