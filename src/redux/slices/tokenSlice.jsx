@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MzkzNmY1Y2E4YWYyYTBiYWQ5YjkxMDkiLCJzaWQiOiI2MzkzZjJhN2E4YWYyYTBiYWQ5YjkxMWEiLCJpYXQiOjE2NzA2NDAyOTYsImV4cCI6MTY3MDY0Mzg5Nn0.tEfyVsks7TmqYM42Nj49W0wLo_8-KADC-pJCLQjp9Mc";
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MzkzNmY1Y2E4YWYyYTBiYWQ5YjkxMDkiLCJzaWQiOiI2Mzk0MDBlYmE4YWYyYTBiYWQ5YjkxMWMiLCJpYXQiOjE2NzA2NDM5NDcsImV4cCI6MTY3MDY0NzU0N30.-Z4SUmFqSqjWwbtxx0Cxp3yOSiwc-e6dHXhoj_mhvNI";
 
 const tokenSlice = createSlice({
   name: "token",

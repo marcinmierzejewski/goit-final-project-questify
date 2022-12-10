@@ -4,7 +4,7 @@ import { UserName } from "../UserName/UserName";
 import { UserMenu } from "../UserMenu/UserMenu";
 import { AuthMenu } from "../AuthMenu/AuthMenu";
 
-export const AppBar = () => {
+const AppBar = () => {
   const isLoggedIn = true; // do podciągnięcia bool z auth
 
   return (
@@ -12,8 +12,10 @@ export const AppBar = () => {
       <Container>
         <Home />
         {isLoggedIn && <UserName />}
-        {isLoggedIn ? <UserMenu /> : <AuthMenu/>}
-      </Container>      
+        {isLoggedIn ? <UserMenu /> : <AuthMenu />}
+      </Container>
     </Header>
   );
 };
+
+export default AppBar;

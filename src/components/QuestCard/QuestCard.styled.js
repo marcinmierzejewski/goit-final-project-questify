@@ -23,10 +23,10 @@ const categoryBgColor = (category) => {
 
     case "FAMILY":
       return "#FFE6D3";
-    
+
     case "HEALTH":
       return "#CDF7FF";
-  
+
     case "LEARNING":
       return "#FFF6C0";
 
@@ -36,7 +36,7 @@ const categoryBgColor = (category) => {
     default:
       return "transparent";
   }
-}
+};
 
 export const Card = styled.li`
   padding: 18px 21px 33px 0;
@@ -53,6 +53,7 @@ export const Card = styled.li`
 
   & > h3 {
     margin-top: 69px;
+    padding-left: 21px;
     font-size: 20px;
     font-weight: 700;
     text-align: center;
@@ -78,7 +79,7 @@ export const DifficultyBar = styled.div`
     display: flex;
     align-items: center;
     font-size: 16px;
-    color: #B9C3C8;
+    color: #b9c3c8;
 
     &::before {
       display: block;
@@ -113,6 +114,7 @@ export const DatetimeBar = styled.div`
   justify-content: center;
   align-items: center;
   margin-top: 8px;
+  padding-left: 21px;
 
   & > p {
     display: inline-block;
@@ -132,7 +134,7 @@ export const DatetimeBar = styled.div`
 export const Category = styled.p`
   max-width: 120px;
   width: 100%;
-  margin-top: 38px; 
+  margin-top: 38px;
   padding: 10px 0 11px 21px;
   border-radius: 0px 25px 25px 0px;
   font-size: 14px;
@@ -144,6 +146,6 @@ export const Category = styled.p`
     margin-top: 36px;
     padding: 8px 0 6px 21px;
     border-radius: 0px 15px 15px 0px;
-    font-size: 11px; 
+    font-size: 11px;
   }
 `;
