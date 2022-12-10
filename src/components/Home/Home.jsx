@@ -1,11 +1,11 @@
-import { HomeLogo } from "./Home.styled";
+import { HomeLink, HomeLogo } from "./Home.styled";
 
 export const Home = () => {
   return (
     <HomeLogo>
-      {/* <LinkHome to="/"> */}
-      Questify
-      {/* </LinkHome> */}
+      <HomeLink to="/">
+        Questify
+      </HomeLink>
     </HomeLogo>
   );
 };
