@@ -1,12 +1,14 @@
 import { UserDiv, UserInitial, UserText } from "./UserName.styled";
+import { useSelector } from 'react-redux';
 
 export const UserName = () => {
-  const user = { name: "John" }; // user getting from authorization
+  const user = useSelector(state => state.user);
+  const userDisplay = user.email || "Guest"
 
   return (
     <UserDiv>
-      <UserInitial>{user.name[0]}</UserInitial>
-      <UserText>{user.name} Quest Log</UserText>
+      <UserInitial>{userDisplay[0]}</UserInitial>
+      <UserText>{userDisplay} Quest Log</UserText>
     </UserDiv>
   );
 };

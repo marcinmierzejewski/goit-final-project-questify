@@ -13,6 +13,10 @@ export const Header = styled.header`
   @media screen and (max-width: 320px) {
     padding: 0 15px;
   }
+
+  @media screen and (min-width: 1280px) {
+    padding: 0 72px 0 71px;
+  }
 `;
 
 export const Container = styled.div`
@@ -24,5 +28,9 @@ export const Container = styled.div`
 
   @media screen and (max-width: 320px) {
     height: 60px;
+  }
+
+  @media screen and (min-width: 1200px) {
+    width: 100%;
   }
 `;
