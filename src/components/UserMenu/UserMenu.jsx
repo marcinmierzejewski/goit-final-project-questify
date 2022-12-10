@@ -7,9 +7,11 @@ import { useLogoutMutation } from "../../redux/slices/questifyAPI";
 import { TrophyActive, UserMenuWrapper, LogOutBtn } from "./UserMenu.styled";
 import { ReactComponent as LogoutIcon } from "./images/logout.svg";
 import { ReactComponent as TrophyIcon } from "./images/trophy.svg";
+import { useState } from "react";
 
 export const UserMenu = () => {
-  let isActive = true; // add logic from backend
+  const [isActive, setIsActive] = useState(false);
+  const toggle = () => setIsActive(isActive => !isActive);
 
   const user = useSelector((state) => state.user);
   const [logout] = useLogoutMutation();
@@ -27,7 +29,7 @@ export const UserMenu = () => {
 
   return (
     <UserMenuWrapper>
-      <TrophyActive isActive={isActive}>
+      <TrophyActive onClick={toggle} isActive={isActive}>
         <TrophyIcon />
       </TrophyActive>
       {user.email && (
@@ -35,7 +37,6 @@ export const UserMenu = () => {
           <LogoutIcon />
         </LogOutBtn>
       )}
-      ;
     </UserMenuWrapper>
   );
 };
