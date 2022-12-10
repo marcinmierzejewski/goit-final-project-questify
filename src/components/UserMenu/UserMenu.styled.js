@@ -17,7 +17,10 @@ export const TrophyActive = styled.p`
   justify-content: center;
   margin-right: 38px;
   position: relative;
-  fill: ${(props) => (props.isActive === true ? "#242A37" : "#7B8AA4")};
+    & > svg {
+      fill: ${(props) => (props.isActive === true ? "#242A37" : "#7B8AA4")};
+    }
+  
 
   @media screen and (max-width: 500px) {
     margin-right: 10px;
