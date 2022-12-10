@@ -1,29 +1,11 @@
-// THE BUTTON IS NOT FUNCIONAL YET, BECOUSE THERE IS NO AUTHORIZATION
 
 import React from "react";
 import { Main } from "./NewTaskBtn.styled";
-// import { useCreateCardMutation, useGetAllUserCardQuery } from "../../redux/slices/questifyAPI"
 
-// const arr = {
-//     title: "take out the trash",
-//     difficulty: "Easy",
-//     category: "Stuff",
-//     date: "21-01-2123",
-//     time: "20:32",
-//     type: "Task"
-// }
-
-const NewTaskBtn = () => {
-  // const data = useCreateCardMutation(arr);
-  // const getAll = useGetAllUserCardQuery();
-  // console.log(getAll)
-  // const btnClick = () => {
-  //  return data
-  // }
-  console.log("Bottom button not functional");
+const NewTaskBtn = ({onClick}) => {
   return (
     <Main>
-      <button>
+      <button onClick={onClick}>
         <svg
           width="16"
           height="16"
