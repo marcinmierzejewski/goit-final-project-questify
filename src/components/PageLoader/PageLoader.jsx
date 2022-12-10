@@ -31,7 +31,13 @@ const PageLoader = ({
 };
 
 PageLoader.propTypes = {
-  horizontalAlignment: PropTypes.oneOf(["start", "end", "left", "right", "center"]),
+  horizontalAlignment: PropTypes.oneOf([
+    "start",
+    "end",
+    "left",
+    "right",
+    "center",
+  ]),
   verticalAlignment: PropTypes.oneOf(["start", "end", "center", "stretch"]),
 };
 

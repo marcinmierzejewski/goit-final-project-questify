@@ -1,9 +1,8 @@
 import { UserDiv, UserInitial, UserText } from "./UserName.styled";
 
 export const UserName = () => {
+  const user = { name: "John" }; // user getting from authorization
 
-  const user = {name: "John"} // user getting from authorization
-  
   return (
     <UserDiv>
       <UserInitial>{user.name[0]}</UserInitial>
