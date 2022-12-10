@@ -5,7 +5,7 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Cookies from "js-cookie";
 import { toast } from "react-toastify";
-import validationSchema from "../../schemas";
+import validationSchema from "../../schemas/formValidation";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { addToken } from "../../redux/slices/tokenSlice";

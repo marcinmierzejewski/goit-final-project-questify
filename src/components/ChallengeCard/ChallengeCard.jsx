@@ -3,24 +3,10 @@ import { useTimeout } from "../../hooks/useTimeout";
 import { ReactComponent as StarIcon } from "./images/star.svg";
 import { ReactComponent as FireIcon } from "./images/fire.svg";
 import { Card, Category, DatetimeBar, DifficultyBar } from "./QuestCard.styled";
-import { currentDate, tomorrowDate } from "../../utils/datetime";
 
 const QuestCard = (props) => {
-  const questDatetime = new Date(props.date + "T" + props.time).getTime();
+  let questDatetime = new Date(props.date + "T" + props.time).getTime();
   const isTimeout = useTimeout(questDatetime);
-
-  const date = ((date) => {
-    switch (date) {
-      case currentDate:
-        return "Today";
-      
-      case tomorrowDate:
-        return "Tomorrow";
-
-      default:
-        return date;
-    }
-  })(props.date);
 
   return (
     <Card id={props.id}>
@@ -31,7 +17,7 @@ const QuestCard = (props) => {
       <h3>{props.title}</h3>
       <DatetimeBar>
         <p>
-          <span>{date}</span>, <span>{props.time}</span>
+          <span>{props.date}</span>, <span>{props.time}</span>
         </p>
         {isTimeout && <FireIcon />}
       </DatetimeBar>

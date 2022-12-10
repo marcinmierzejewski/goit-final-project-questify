@@ -5,7 +5,7 @@ import { useFormik } from "formik";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import { toast } from "react-toastify";
-import validationSchema from "../../../schemas";
+import validationSchema from "../../../schemas/formValidation";
 
 const LandingModal = ({ setIsOpen }) => {
 	const [register] = useRegisterMutation();
