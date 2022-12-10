@@ -1,10 +1,10 @@
-import { Link } from './AuthMenu.styled';
+import { Link, NoUserText } from "./AuthMenu.styled";
 
 export const AuthMenu = () => {
   return (
     <div>
-      <Link to="/landing">Log In</Link>
-      <p>LogIn</p>
+      <NoUserText>User are not authorization</NoUserText>{" "}
+      {<Link to="/landing">Login</Link>}
     </div>
   );
 };

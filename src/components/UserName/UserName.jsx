@@ -1,9 +1,9 @@
 import { UserDiv, UserInitial, UserText } from "./UserName.styled";
-import { useSelector } from 'react-redux';
+import { useSelector } from "react-redux";
 
 export const UserName = () => {
-  const user = useSelector(state => state.user);
-  const userDisplay = user.email || "Guest"
+  const user = useSelector((state) => state.user);
+  const userDisplay = user.email || "Guest";
 
   return (
     <UserDiv>

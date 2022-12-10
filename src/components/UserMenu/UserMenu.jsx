@@ -10,13 +10,13 @@ import logoutIcon from "./images/logout.svg";
 
 export const UserMenu = () => {
   let isActive = true; // add logic from backend
-  const user = useSelector((state) => state.user);
 
+  const user = useSelector((state) => state.user);
   const [logout] = useLogoutMutation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const logoutHandler = async () => {
+  const logoutUser = async () => {
     await Cookies.remove("token");
     await logout().then(() => {
       dispatch(deleteToken());
@@ -33,10 +33,11 @@ export const UserMenu = () => {
         </svg>
       </TrophyActive>
       {user.email && (
-        <LogOutBtn onClick={logoutHandler}>
+        <LogOutBtn onClick={logoutUser}>
           <img src={logoutIcon} alt="Log Out" width="21.58"></img>
         </LogOutBtn>
       )}
+      ;
     </UserMenuWrapper>
   );
 };
