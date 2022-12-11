@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const HomeLogo = styled.p`
   display: flex;
   align-items: center;
-  font-family: "HelveticaNeueCyr";
   font-style: normal;
   font-weight: 700;
   font-size: 21px;
