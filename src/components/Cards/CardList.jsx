@@ -1,12 +1,13 @@
 import React from "react";
 import { useGetAllUserCardQuery } from "../../redux/slices/questifyAPI";
 import PageLoader from "../PageLoader/PageLoader";
-import QuestCard from "../QuestCard/QuestCard";
+import Card from "./Card";
 import NewQuestCard from "../NewQuestCard/NewQuestCard";
 import NewTaskBtn from "../NewTaskBtn/NewTaskBtn";
-import { List } from "./QuestList.styled";
 import { useState } from "react";
-const QuestList = () => {
+import { List } from "./CardList.styled";
+
+const CardList = () => {
   const {
     data: { cards } = [],
     isLoading,
@@ -14,18 +15,20 @@ const QuestList = () => {
     isError,
     error,
   } = useGetAllUserCardQuery();
+
   const [createNew, setCreateNew] = useState(false);
 
   const handleClick = () => setCreateNew(true);
 
-  return (
-    <>
-      {isLoading && <PageLoader>Loading...</PageLoader>}
-      {isSuccess && (
+  const checkContent = () => {
+    if (isLoading) {
+      <PageLoader>Loading...</PageLoader>;
+    } else if (isSuccess) {
+      return (
         <List>
           {createNew && <NewQuestCard />}
           {cards.map((c) => (
-            <QuestCard
+            <Card
               key={c._id}
               id={c._id}
               title={c.title}
@@ -37,12 +40,22 @@ const QuestList = () => {
             />
           ))}
         </List>
-      ) }
-      {!isSuccess && <p>No quests on the board.</p>}
-      {isError && <p>{error.toString()}</p>}
-      <NewTaskBtn onClick={handleClick} />
-    </>
+      );
+    } else if (!isSuccess) {
+      return <p>No quests on the board.</p>;
+    } else if (isError) {
+      return isError && <p>Error: {error}</p>;
+    }
+  };
+
+  let questListContent = checkContent();
+
+  return (
+  <>
+    {questListContent}
+    <NewTaskBtn onClick={handleClick} />
+  </>
   );
 };
 
-export default QuestList;
+export default CardList;
