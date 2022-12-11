@@ -1,12 +1,13 @@
 import React from "react";
 import { useGetAllUserCardQuery } from "../../redux/slices/questifyAPI";
 import PageLoader from "../PageLoader/PageLoader";
-import QuestCard from "../Cards/Card";
+import Card from "./Card";
 import NewQuestCard from "../NewQuestCard/NewQuestCard";
 import NewTaskBtn from "../NewTaskBtn/NewTaskBtn";
-import { List } from "./CardList.styled";
 import { useState } from "react";
-const QuestList = () => {
+import { List } from "./CardList.styled";
+
+const CardList = () => {
   const {
     data: { cards } = [],
     isLoading,
@@ -14,6 +15,7 @@ const QuestList = () => {
     isError,
     error,
   } = useGetAllUserCardQuery();
+
   const [createNew, setCreateNew] = useState(false);
 
   const handleClick = () => setCreateNew(true);
@@ -26,7 +28,7 @@ const QuestList = () => {
         <List>
           {createNew && <NewQuestCard />}
           {cards.map((c) => (
-            <QuestCard
+            <Card
               key={c._id}
               id={c._id}
               title={c.title}
@@ -48,9 +50,12 @@ const QuestList = () => {
 
   let questListContent = checkContent();
 
-  return <>{questListContent}
-  <NewTaskBtn onClick={handleClick} />
-  </>;
+  return (
+    <>
+      {questListContent}
+      <NewTaskBtn onClick={handleClick} />
+    </>
+  );
 };
 
-export default QuestList;
+export default CardList;
