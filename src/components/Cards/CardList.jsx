@@ -1,8 +1,8 @@
 import React from "react";
 import { useGetAllUserCardQuery } from "../../redux/slices/questifyAPI";
 import PageLoader from "../PageLoader/PageLoader";
-import QuestCard from "../QuestCard/QuestCard";
-import { List } from "./QuestList.styled";
+import QuestCard from "./Card";
+import { List } from "./CardList.styled";
 
 const QuestList = () => {
   const {
@@ -13,10 +13,11 @@ const QuestList = () => {
     error,
   } = useGetAllUserCardQuery();
 
-  return (
-    <>
-      {isLoading && <PageLoader>Loading...</PageLoader>}
-      {isSuccess && (
+  const checkContent = () => {
+    if (isLoading) {
+      <PageLoader>Loading...</PageLoader>;
+    } else if (isSuccess) {
+      return (
         <List>
           {cards.map((c) => (
             <QuestCard
@@ -31,11 +32,17 @@ const QuestList = () => {
             />
           ))}
         </List>
-      )}
-      {!isSuccess && <p>No quests on the board.</p>}
-      {isError && <p>{error.toString()}</p>}
-    </>
-  );
+      );
+    } else if (!isSuccess) {
+      return <p>No quests on the board.</p>;
+    } else if (isError) {
+      return isError && <p>Error: {error}</p>;
+    }
+  };
+
+  let questListContent = checkContent();
+
+  return <>{questListContent}</>;
 };
 
 export default QuestList;

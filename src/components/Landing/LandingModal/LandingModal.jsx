@@ -11,7 +11,7 @@ import { IoMdClose } from "react-icons/io";
 import { useRegisterMutation } from "../../../redux/slices/questifyAPI";
 import { useFormik } from "formik";
 import { toast } from "react-toastify";
-import validationSchema from "../../../schemas";
+import validationSchema from "../../../schemas/formValidation";
 
 const LandingModal = ({ setIsOpen }) => {
 	const [register] = useRegisterMutation();

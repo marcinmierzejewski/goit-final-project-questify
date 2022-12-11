@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import { Header, Container } from "./AppBar.styled";
 import { Home } from "../Home/Home";
 import { UserName } from "../UserName/UserName";
@@ -5,7 +6,8 @@ import { UserMenu } from "../UserMenu/UserMenu";
 import { AuthMenu } from "../AuthMenu/AuthMenu";
 
 const AppBar = () => {
-  const isLoggedIn = true; // do podciągnięcia bool z auth
+  const user = useSelector((state) => state.user);
+  const isLoggedIn = user.email;
 
   return (
     <Header>
