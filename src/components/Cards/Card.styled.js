@@ -34,16 +34,18 @@ const categoryBgColor = (category) => {
       return "#F8D2FF";
 
     default:
-      return "transparent";
+      return "#B9C3C8";
   }
 };
 
-export const Card = styled.li`
-  padding: 18px 21px 33px 0;
+export const CardItem = styled.li`
+  display: flex;
+  flex-direction: column;
+  padding: 19px 21px 33px 0;
   border-radius: 10px;
   line-height: 1;
   color: #282828;
-  background-color: #fff;
+  background-color: ${props => props.cardType === "Task" ? "#FFF" : "#15395A"};
   box-shadow: -3px -4px 4px rgba(21, 57, 90, 0.03),
     3px 4px 4px rgba(21, 57, 90, 0.03);
 
@@ -52,18 +54,19 @@ export const Card = styled.li`
   }
 
   & > h3 {
-    margin-top: 69px;
+    margin-top: ${props => props.cardType === "Task" ? "69px" : "10px"};
     padding-left: 21px;
     font-size: 20px;
     font-weight: 700;
     text-align: center;
+    color: ${props => props.cardType === "Challenge" && "#FFF"};
   }
 
   @media screen and (min-width: 768px) {
     padding-bottom: 21px;
 
     & > h3 {
-      margin-top: 42px;
+      margin-top: ${props => props.cardType === "Task" ? "42px" : "10px"};
       font-size: 16px;
     }
   }
@@ -94,7 +97,8 @@ export const DifficultyBar = styled.div`
 
   & svg {
     width: 19px;
-    height: 19px;
+    height: ${props => props.type === "Task" ? "18px" : "19px"};
+    padding-right: ${props => props.type === "Challenge" && "3px"};
   }
 
   @media screen and (min-width: 768px) {
@@ -106,6 +110,19 @@ export const DifficultyBar = styled.div`
       width: 15px;
       height: 15px;
     }
+  }
+`;
+
+export const CardType = styled.p`
+  margin-top: 25px;
+  padding-left: 21px;
+  font-size: 14px;
+  text-align: center;
+  text-transform: uppercase;
+  color: #B9C3C8;
+
+  @media screen and (min-width: 768px) {
+    margin-top: 20px;
   }
 `;
 
@@ -134,7 +151,7 @@ export const DatetimeBar = styled.div`
 export const Category = styled.p`
   max-width: 120px;
   width: 100%;
-  margin-top: 38px;
+  margin-top: auto;
   padding: 10px 0 11px 21px;
   border-radius: 0px 25px 25px 0px;
   font-size: 14px;
@@ -143,7 +160,6 @@ export const Category = styled.p`
 
   @media screen and (min-width: 768px) {
     max-width: 88px;
-    margin-top: 36px;
     padding: 8px 0 6px 21px;
     border-radius: 0px 15px 15px 0px;
     font-size: 11px;

@@ -1,11 +1,20 @@
-const currentDay = new Date().getDate();
-const currentMonth = (new Date().getMonth()) + 1;
-const currentYear = new Date().getFullYear();
+const date = new Date();
+export const today = date.toLocaleDateString("en-CA"); // YYYY-MM-DD
+export const todayDate = new Date(today).getTime(); // in milliseconds
 
-export const currentDate = `${currentYear}-${currentMonth}-${currentDay}`;
-export const tomorrowDate = `${currentYear}-${currentMonth}-${currentDay + 1}`;
+export const tomorrowDate = new Date(today).setDate(
+  // in milliseconds
+  new Date(today).getDate() + 1
+);
+export const tomorrow = new Date(tomorrowDate).toLocaleDateString("en-CA"); // YYYY-MM-DD
 
-const currentHours = new Date().getHours();
-const currentMinutes = new Date().getMinutes();
+export const weekAheadDate = new Date(today).setDate(
+  // in milliseconds
+  new Date(today).getDate() + 7
+);
+export const weekAhead = new Date(weekAheadDate).toLocaleDateString("en-CA"); // YYYY-MM-DD
 
-export const currentTime = `${currentHours}:${currentMinutes}`;
+const currentHours = date.getHours();
+const currentMinutes = date.getMinutes();
+
+export const currentTime = `${currentHours}:${currentMinutes}`; // HH:MM
