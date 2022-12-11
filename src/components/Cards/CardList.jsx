@@ -48,7 +48,9 @@ const QuestList = () => {
 
   let questListContent = checkContent();
 
-  return <>{questListContent}</>;
+  return <>{questListContent}
+  <NewTaskBtn onClick={handleClick} />
+  </>;
 };
 
 export default QuestList;
