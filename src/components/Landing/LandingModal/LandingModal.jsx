@@ -1,9 +1,15 @@
-import { DarkBg, Wrapper, Modal, CloseBtn } from "./LandingModal.styled";
+import {
+	DarkBg,
+	Wrapper,
+	Modal,
+	CloseBtn,
+	LandingButton,
+	TextFieldStyled,
+	Paragraph,
+} from "./LandingModal.styled";
 import { IoMdClose } from "react-icons/io";
 import { useRegisterMutation } from "../../../redux/slices/questifyAPI";
 import { useFormik } from "formik";
-import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
 import { toast } from "react-toastify";
 import validationSchema from "../../../schemas";
 
@@ -38,9 +44,12 @@ const LandingModal = ({ setIsOpen }) => {
 					<CloseBtn onClick={() => setIsOpen(false)}>
 						<IoMdClose />
 					</CloseBtn>
+					<Paragraph>Registration</Paragraph>
 					<form onSubmit={handleSubmit}>
-						<TextField
+						<TextFieldStyled
 							fullWidth
+							variant="standard"
+							margin="dense"
 							id="email"
 							name="email"
 							label="Email"
@@ -49,8 +58,10 @@ const LandingModal = ({ setIsOpen }) => {
 							error={touched.email && Boolean(errors.email)}
 							helperText={touched.email && errors.email}
 						/>
-						<TextField
+						<TextFieldStyled
 							fullWidth
+							variant="standard"
+							margin="dense"
 							id="password"
 							name="password"
 							label="Password"
@@ -60,9 +71,13 @@ const LandingModal = ({ setIsOpen }) => {
 							error={touched.password && Boolean(errors.password)}
 							helperText={touched.password && errors.password}
 						/>
-						<Button color="primary" variant="contained" fullWidth type="submit">
-							Register!
-						</Button>
+						<LandingButton
+							color="primary"
+							variant="contained"
+							fullWidth
+							type="submit">
+							go!
+						</LandingButton>
 					</form>
 				</Modal>
 			</Wrapper>
