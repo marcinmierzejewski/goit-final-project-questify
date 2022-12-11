@@ -18,10 +18,11 @@ const QuestList = () => {
 
   const handleClick = () => setCreateNew(true);
 
-  return (
-    <>
-      {isLoading && <PageLoader>Loading...</PageLoader>}
-      {isSuccess && (
+  const checkContent = () => {
+    if (isLoading) {
+      <PageLoader>Loading...</PageLoader>;
+    } else if (isSuccess) {
+      return (
         <List>
           {createNew && <NewQuestCard />}
           {cards.map((c) => (
@@ -37,12 +38,17 @@ const QuestList = () => {
             />
           ))}
         </List>
-      ) }
-      {!isSuccess && <p>No quests on the board.</p>}
-      {isError && <p>{error.toString()}</p>}
-      <NewTaskBtn onClick={handleClick} />
-    </>
-  );
+      );
+    } else if (!isSuccess) {
+      return <p>No quests on the board.</p>;
+    } else if (isError) {
+      return isError && <p>Error: {error}</p>;
+    }
+  };
+
+  let questListContent = checkContent();
+
+  return <>{questListContent}</>;
 };
 
 export default QuestList;

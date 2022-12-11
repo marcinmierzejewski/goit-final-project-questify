@@ -1,14 +1,17 @@
-import LandingWelcome from "./LandingWelcome";
-import LandingForm from "./LandingForm";
+import LandingWelcome from "./LandingWelcome/LandingWelcome";
+import LandingForm from "./LandingForm/LandingForm";
+import LandingBg from "./LandingBg/LandingBg";
+import { Container, Wrapper } from "./Landing.styled";
 
 const Landing = () => {
 	return (
-		<>
-			<div>
+		<Wrapper>
+			<Container>
 				<LandingWelcome />
 				<LandingForm />
-			</div>
-		</>
+			</Container>
+			<LandingBg />
+		</Wrapper>
 	);
 };
 
