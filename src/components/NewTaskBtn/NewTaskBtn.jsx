@@ -1,7 +1,7 @@
 // THE BUTTON IS NOT FUNCIONAL YET, BECOUSE THERE IS NO AUTHORIZATION
 
 import React from "react";
-import { Main } from "./NewTaskBtn.styled";
+import { Div } from "./NewTaskBtn.styled";
 // import { useCreateCardMutation, useGetAllUserCardQuery } from "../../redux/slices/questifyAPI"
 
 // const arr = {
@@ -22,7 +22,7 @@ const NewTaskBtn = () => {
   // }
   console.log("Bottom button not functional");
   return (
-    <Main>
+    <Div>
       <button>
         <svg
           width="16"
@@ -37,7 +37,7 @@ const NewTaskBtn = () => {
           />
         </svg>
       </button>
-    </Main>
+    </Div>
   );
 };
 
