@@ -10,7 +10,7 @@ const validationSchema = yup.object({
 		.required("Email is required"),
 	password: yup
 		.string("Enter your password")
-		.min(8, "Password should be of minimum 8 characters length")
+		.min(8, "Password should be at least 8 characters")
 		.matches(passwordRules, { message: "Please create a stronger password" })
 		.required("Password is required"),
 });

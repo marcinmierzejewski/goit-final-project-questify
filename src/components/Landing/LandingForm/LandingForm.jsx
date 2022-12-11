@@ -1,16 +1,21 @@
 import { useState } from "react";
-import { useLoginMutation } from "../../redux/slices/questifyAPI";
+import { useLoginMutation } from "../../../redux/slices/questifyAPI";
 import { useFormik } from "formik";
-import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
 import Cookies from "js-cookie";
 import { toast } from "react-toastify";
-import validationSchema from "../../schemas/formValidation";
+import validationSchema from "../../../schemas/formValidation";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { addToken } from "../../redux/slices/tokenSlice";
-import { addUser } from "../../redux/slices/userSlice";
-import LandingModal from "./LandingModal/LandingModal";
+import { addToken } from "../../../redux/slices/tokenSlice";
+import { addUser } from "../../../redux/slices/userSlice";
+import LandingModal from "../LandingModal/LandingModal";
+import {
+	Wrapper,
+	TextFieldStyled,
+	RegistrationLInk,
+	FormButton,
+	Paragraph,
+} from "./LandingForm.styled";
 
 const LandingForm = () => {
 	const [login] = useLoginMutation();
@@ -48,14 +53,20 @@ const LandingForm = () => {
 		});
 
 	return (
-		<div>
+		<Wrapper>
 			<form onSubmit={handleSubmit}>
-				<p>
+				<Paragraph>
 					Choose your name to
-					<span onClick={() => setIsOpen(true)}> sing up</span> or log in
-				</p>
-				<TextField
+					<RegistrationLInk onClick={() => setIsOpen(true)}>
+						{" "}
+						sing up{" "}
+					</RegistrationLInk>
+					or log in
+				</Paragraph>
+				<TextFieldStyled
 					fullWidth
+					variant="standard"
+					margin="dense"
 					id="email"
 					name="email"
 					label="Email"
@@ -64,8 +75,10 @@ const LandingForm = () => {
 					error={touched.email && Boolean(errors.email)}
 					helperText={touched.email && errors.email}
 				/>
-				<TextField
+				<TextFieldStyled
 					fullWidth
+					variant="standard"
+					margin="dense"
 					id="password"
 					name="password"
 					label="Password"
@@ -75,12 +88,12 @@ const LandingForm = () => {
 					error={touched.password && Boolean(errors.password)}
 					helperText={touched.password && errors.password}
 				/>
-				<Button color="primary" variant="contained" fullWidth type="submit">
+				<FormButton color="primary" variant="contained" fullWidth type="submit">
 					go!
-				</Button>
+				</FormButton>
 			</form>
 			{isOpen && <LandingModal setIsOpen={setIsOpen} />}
-		</div>
+		</Wrapper>
 	);
 };
 
