@@ -51,10 +51,10 @@ const CardList = () => {
   let questListContent = checkContent();
 
   return (
-  <>
-    {questListContent}
-    <NewTaskBtn onClick={handleClick} />
-  </>
+    <>
+      {questListContent}
+      <NewTaskBtn onClick={handleClick} />
+    </>
   );
 };
 

@@ -1,24 +1,21 @@
-
 import React from "react";
 import { Div } from "./NewTaskBtn.styled";
-import { useCreateCardMutation} from "../../redux/slices/questifyAPI";
+import { useCreateCardMutation } from "../../redux/slices/questifyAPI";
 import { tomorrow } from "../../utils/datetime";
 
-
-
 const NewTaskBtn = () => {
-
   const [addTask] = useCreateCardMutation();
+
   const btnClick = () => {
     addTask({
-      title: "tsake out the trash",
+      title: "Take out the trash",
       difficulty: "Easy",
       category: "Stuff",
       date: tomorrow,
       time: "20:32",
-      type: "Task"
-    })
-  }
+      type: "Task",
+    });
+  };
 
   return (
     <Div>
