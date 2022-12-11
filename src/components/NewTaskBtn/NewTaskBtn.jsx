@@ -2,28 +2,28 @@
 
 import React from "react";
 import { Div } from "./NewTaskBtn.styled";
-// import { useCreateCardMutation, useGetAllUserCardQuery } from "../../redux/slices/questifyAPI"
+import { useCreateCardMutation} from "../../redux/slices/questifyAPI";
+import { tomorrow } from "../../utils/datetime";
 
-// const arr = {
-//     title: "take out the trash",
-//     difficulty: "Easy",
-//     category: "Stuff",
-//     date: "21-01-2123",
-//     time: "20:32",
-//     type: "Task"
-// }
+
 
 const NewTaskBtn = () => {
-  // const data = useCreateCardMutation(arr);
-  // const getAll = useGetAllUserCardQuery();
-  // console.log(getAll)
-  // const btnClick = () => {
-  //  return data
-  // }
-  console.log("Bottom button not functional");
+
+  const [addTask] = useCreateCardMutation();
+  const btnClick = () => {
+    addTask({
+      title: "tsake out the trash",
+      difficulty: "Easy",
+      category: "Stuff",
+      date: tomorrow,
+      time: "20:32",
+      type: "Task"
+    })
+  }
+
   return (
     <Div>
-      <button>
+      <button onClick={btnClick}>
         <svg
           width="16"
           height="16"
