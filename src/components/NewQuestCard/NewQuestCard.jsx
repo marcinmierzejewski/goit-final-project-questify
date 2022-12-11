@@ -24,15 +24,18 @@ import {
 } from "./NewQuestCard.styled";
 import { nanoid } from "@reduxjs/toolkit";
 import { useCreateCardMutation } from "../../redux/slices/questifyAPI";
+import { separateDate, separateTime } from "../../utils/dateSepareteFunctions";
+import { capitalizeFirstLetter } from "../../utils/expressionFunction";
 
 const NewQuestCard = () => {
-  const [dateTimePickerValue, setDateTimePickerValue] = useState("");
+  const [dateTimePickerValue, setDateTimePickerValue] = useState(dayjs());
   const [anchorDifficulty, setAnchorDifficulty] = useState(null);
   const [anchorCategory, setAnchorCategory] = useState(null);
   const [difficult, setDifficult] = useState("Normal");
-  const [category, setCategory] = useState("stuff");
+  const [category, setCategory] = useState("Stuff");
   const [title, setTitle] = useState("");
   const [error, setError] = useState("");
+  const [createCard] = useCreateCardMutation();
 
   const openDifficultiesMenu = Boolean(anchorDifficulty);
   const openCategoriesMenu = Boolean(anchorCategory);
@@ -61,27 +64,32 @@ const NewQuestCard = () => {
 
     setAnchorCategory(null);
   };
-  console.log(dateTimePickerValue);
+
   const handelPostNewQuest = () => {
+    const time = separateTime(dateTimePickerValue);
+    const date = separateDate(dateTimePickerValue);
+    const cardCategory = capitalizeFirstLetter(category.toLowerCase());
+    const cardTitle = capitalizeFirstLetter(title);
     const body = {
-      title: title,
+      title: cardTitle,
       difficulty: difficult,
-      category: category,
-      date: dateTimePickerValue,
-      time: dateTimePickerValue,
+      category: cardCategory,
+      date: date,
+      time: time,
       type: "Task",
     };
-    title ? useCreateCardMutation(body) : setError("Titile missing");
+    console.log(body);
+    title ? createCard(body) : setError("Titile missing");
   };
 
   const difficulties = ["Easy", "Normal", "Hard"];
   const categories = [
-    "stuff",
-    "family",
-    "health",
-    "learning",
-    "leisure",
-    "work",
+    "Stuff",
+    "Family",
+    "Health",
+    "Learning",
+    "Leisure",
+    "Work",
   ];
   return (
     <Card>
@@ -138,6 +146,7 @@ const NewQuestCard = () => {
       <DatetimeBar>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <DateTimePicker
+            value={dateTimePickerValue}
             onChange={(newValue) => {
               setDateTimePickerValue(newValue);
             }}
