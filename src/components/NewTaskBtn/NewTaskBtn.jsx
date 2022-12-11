@@ -1,4 +1,3 @@
-// THE BUTTON IS NOT FUNCIONAL YET, BECOUSE THERE IS NO AUTHORIZATION
 
 import React from "react";
 import { Div } from "./NewTaskBtn.styled";
