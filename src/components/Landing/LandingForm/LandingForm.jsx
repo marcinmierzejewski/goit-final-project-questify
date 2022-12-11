@@ -3,7 +3,7 @@ import { useLoginMutation } from "../../../redux/slices/questifyAPI";
 import { useFormik } from "formik";
 import Cookies from "js-cookie";
 import { toast } from "react-toastify";
-import validationSchema from "../../../schemas";
+import validationSchema from "../../../schemas/formValidation";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { addToken } from "../../../redux/slices/tokenSlice";
