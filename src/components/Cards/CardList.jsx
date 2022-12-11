@@ -4,7 +4,7 @@ import PageLoader from "../PageLoader/PageLoader";
 import QuestCard from "../QuestCard/QuestCard";
 import NewQuestCard from "../NewQuestCard/NewQuestCard";
 import NewTaskBtn from "../NewTaskBtn/NewTaskBtn";
-import { List } from "./QuestList.styled";
+import { List } from "./CardList.styled";
 import { useState } from "react";
 const QuestList = () => {
   const {
