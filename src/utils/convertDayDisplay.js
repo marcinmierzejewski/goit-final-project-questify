@@ -1,13 +1,13 @@
 import { today, tomorrow, tomorrowDate, weekAheadDate } from "./datetime";
 
-export const convertDayDisplay = (date) =>
+export const convertDayDisplay = (date, type = "Task") =>
   ((date) => {
     switch (date) {
       case today:
-        return "Today";
+        return type === "Task" ? "Today" : "until Today";
 
       case tomorrow:
-        return "Tomorrow";
+        return type === "Task" ? "Tomorrow" : "by Tomorrow";
 
       default:
         break;
@@ -16,9 +16,12 @@ export const convertDayDisplay = (date) =>
     const dateMs = new Date(date).getTime();
 
     if (dateMs > tomorrowDate && dateMs < weekAheadDate) {
-      return `by ${new Date(dateMs).toLocaleString("en-US", {
+      const weekday = new Date(dateMs).toLocaleString("en-US", {
         weekday: "long",
-      })}`;
+      });
+
+      return type === "Task" ? weekday : `by ${weekday}`;
     }
+
     return date;
   })(date);
