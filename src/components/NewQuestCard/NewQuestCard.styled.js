@@ -277,5 +277,6 @@ export const StartWrapper = styled.div`
     line-height: 1;
     letter-spacing: 0.02em;
     color: #00d7ff;
+    cursor: pointer;
   }
 `;

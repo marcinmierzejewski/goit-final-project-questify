@@ -48,7 +48,6 @@ const NewQuestCard = () => {
   };
   const handleOnChange = (event) => {
     setTitle(event.currentTarget.value);
-    console.log(title);
   };
   const handleSelectedDifficulty = (e) => {
     e.currentTarget.innerText === ""
@@ -79,7 +78,12 @@ const NewQuestCard = () => {
       type: "Task",
     };
     console.log(body);
-    title ? createCard(body) : setError("Titile missing");
+
+    const validPost = (body) => {
+      createCard(body);
+      setTitle("");
+    };
+    title ? validPost(body) : setError("Titile missing");
   };
 
   const difficulties = ["Easy", "Normal", "Hard"];
@@ -136,6 +140,7 @@ const NewQuestCard = () => {
       <InputWrapper>
         <label htmlFor="create-new-quest">CREATE NEW QUEST</label>
         <input
+          value={title}
           id="create-new-quest"
           type="text"
           autoFocus
