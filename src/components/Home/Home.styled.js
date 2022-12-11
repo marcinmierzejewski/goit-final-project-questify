@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const HomeLogo = styled.p`
   display: flex;
@@ -21,4 +22,9 @@ export const HomeLogo = styled.p`
     font-size: 18px;
     line-height: 18px;
   }
+`;
+
+export const HomeLink = styled(Link)`
+  color: inherit;
+  text-decoration: none;
 `;

@@ -13,10 +13,11 @@ const QuestList = () => {
     error,
   } = useGetAllUserCardQuery();
 
-  return (
-    <>
-      {isLoading && <PageLoader>Loading...</PageLoader>}
-      {isSuccess && (
+  const checkContent = () => {
+    if (isLoading) {
+      <PageLoader>Loading...</PageLoader>;
+    } else if (isSuccess) {
+      return (
         <List>
           {cards.map((c) => (
             <QuestCard
@@ -31,11 +32,17 @@ const QuestList = () => {
             />
           ))}
         </List>
-      )}
-      {!isSuccess && <p>No quests on the board.</p>}
-      {isError && <p>{error.toString()}</p>}
-    </>
-  );
+      );
+    } else if (!isSuccess) {
+      return <p>No quests on the board.</p>;
+    } else if (isError) {
+      return isError && <p>Error: {error}</p>;
+    }
+  };
+
+  let questListContent = checkContent();
+
+  return <>{questListContent}</>;
 };
 
 export default QuestList;
