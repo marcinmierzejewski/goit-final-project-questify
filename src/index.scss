@@ -6,6 +6,7 @@ body {
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #F2F3F7;
 }
 
 code {
@@ -24,4 +25,8 @@ h6 {
 
 p {
   margin: 0;
+}
+
+button {
+  padding: 0;
 }
