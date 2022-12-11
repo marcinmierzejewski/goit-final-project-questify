@@ -39,7 +39,7 @@ const categoryBgColor = (category) => {
 
     case "LEISURE":
       return "#F8D2FF";
-    
+
     case "STUFF":
       return "#B9C3C8";
 
@@ -50,8 +50,8 @@ const categoryBgColor = (category) => {
 
 export const InputWrapper = styled.div`
   margin-left: 21px;
-  padding-top: 20px;
   text-align: center;
+  margin-bottom: 8px;
   & label {
     width: 128px;
     font-weight: 700;
@@ -62,13 +62,17 @@ export const InputWrapper = styled.div`
     color: #b9c3c8;
   }
   & input {
-    margin-top: 10px;
+    margin: 0;
     width: 100%;
     border: none;
     border-bottom: 2px solid #00d7ff;
     outline: transparent;
     padding: 2px 4px;
     caret-color: #00d7ff;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 16px;
+    color: #282828;
   }
 `;
 
@@ -108,6 +112,7 @@ export const DifficultyBar = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 21px;
   & svg {
     width: 19px;
     height: 19px;
@@ -160,32 +165,40 @@ export const DatetimeBar = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 8px;
+  margin: 0 auto 36px;
   padding-left: 21px;
 
-  & > p {
-    display: inline-block;
-    margin-right: 7px;
-    font-size: 18px;
-    color: #b9c3c8;
-  }
-
-  @media screen and (min-width: 768px) {
-    & > p {
-      margin-right: 5px;
-      font-size: 14px;
+  & input {
+    width: 120px;
+    border: none;
+    outline: none;
+    padding: 0;
+    font-size: 14px;
+    color: #282828;
+    text-align: center;
+    &::placeholder {
+      color: #282828;
     }
   }
+  & fieldset {
+    border: none;
+    outline: transparent;
+  }
+  & button {
+    padding: 0;
+  }
+  & svg {
+    width: 12px;
+    height: 14px;
+    fill: #00d7ff;
+  }
 `;
 
-export const Category = styled.p`
-`;
 export const CategorySelect = styled.div`
   display: flex;
   align-items: center;
-  max-width: 120px;
+  max-width: ${(props) => (props.category === "LEARNING" ? "130px" : "120px")};
   width: 100%;
-  margin-top: 38px;
   padding: 10px 0 11px 21px;
   border-radius: 0px 25px 25px 0px;
   font-size: 14px;
@@ -200,8 +213,7 @@ export const CategorySelect = styled.div`
   }
 
   @media screen and (min-width: 768px) {
-    max-width: 88px;
-    margin-top: 36px;
+    max-width: ${(props) => (props.category === "LEARNING" ? "100px" : "88px")};
     padding: 8px 0 6px 21px;
     border-radius: 0px 15px 15px 0px;
     font-size: 11px;
@@ -229,21 +241,41 @@ export const MenuItem = styled.li`
 export const MenuCategoryItem = styled.li`
   display: flex;
   align-items: center;
-  font-size: 14px;
-  line-height: 14px;
-  /* color: ${(props) =>
-    selectedColorText(props.itemDifficulty, props.selectedDifficulty)}; */
+  font-size: 11px;
+  line-height: 1;
+  color: ${(props) =>
+    props.category.toLowerCase() === props.selectedCategory.toLowerCase()
+      ? "#B9C3C8"
+      : "#282828"};
   cursor: pointer;
 `;
 
 export const MenuStyled = styled(Menu)`
   & .css-6hp17o-MuiList-root-MuiMenu-list {
     display: grid;
-    padding: 14px 12px;
+    padding: 9px 21px 10px 12px;
     background: #ffffff;
     box-shadow: -3px -4px 4px rgba(21, 57, 90, 0.05),
       3px 4px 4px rgba(21, 57, 90, 0.05);
     border-radius: 10px;
     row-gap: 5px;
+  }
+`;
+export const FooterCardBar = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+export const StartWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  & svg {
+    margin-right: 7px;
+  }
+  & span {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1;
+    letter-spacing: 0.02em;
+    color: #00d7ff;
   }
 `;
