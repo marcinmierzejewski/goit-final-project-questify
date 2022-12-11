@@ -1,7 +1,7 @@
 import React from "react";
 import { useGetAllUserCardQuery } from "../../redux/slices/questifyAPI";
 import PageLoader from "../PageLoader/PageLoader";
-import QuestCard from "../QuestCard/QuestCard";
+import QuestCard from "../Cards/Card";
 import NewQuestCard from "../NewQuestCard/NewQuestCard";
 import NewTaskBtn from "../NewTaskBtn/NewTaskBtn";
 import { List } from "./CardList.styled";
