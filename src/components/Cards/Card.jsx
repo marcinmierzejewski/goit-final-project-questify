@@ -17,6 +17,7 @@ const Card = (props) => {
   const isTimeout = useTimeout(questDatetime);
 
   const date = convertDayDisplay(props.date, props.type);
+  
 
   const iconType = (() => {
     if (props.type === "Challenge") {

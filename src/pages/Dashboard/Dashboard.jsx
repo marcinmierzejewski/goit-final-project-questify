@@ -8,7 +8,6 @@ const Dashboard = () => {
     <div>
       <AppBar />
       <MainSection>
-        <p>Today</p>
         <CardList />
       </MainSection>
     </div>
