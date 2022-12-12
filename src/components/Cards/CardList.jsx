@@ -25,35 +25,42 @@ const CardList = () => {
       <PageLoader>Loading...</PageLoader>;
     } else if (isSuccess) {
       return (
-        <List>
-          {createNew && <NewQuestCard />}
-          {cards.map((c) => (
-            <Card
-              key={c._id}
-              id={c._id}
-              title={c.title}
-              difficulty={c.difficulty}
-              category={c.category}
-              date={c.date}
-              time={c.time}
-              type={c.type}
-            />
-          ))}
-        </List>
+        <>
+          <List>
+            {createNew && <NewQuestCard />}
+            {cards.map((c) => (
+              <Card
+                key={c._id}
+                id={c._id}
+                title={c.title}
+                difficulty={c.difficulty}
+                category={c.category}
+                date={c.date}
+                time={c.time}
+                type={c.type}
+              />
+            ))}
+          </List>
+          <NewTaskBtn onClick={handleClick} />
+        </>
       );
     } else if (!isSuccess) {
-      return <p>No quests on the board.</p>;
+      return (
+        <>
+          {createNew ? <NewQuestCard /> : <p>No quests on the board.</p>}
+          <NewTaskBtn onClick={handleClick} />
+        </>
+      );
     } else if (isError) {
       return isError && <p>Error: {error}</p>;
     }
   };
 
-  let questListContent = checkContent();
+  let cardListContent = checkContent();
 
   return (
     <>
-      {questListContent}
-      <NewTaskBtn onClick={handleClick} />
+      {cardListContent}
     </>
   );
 };
