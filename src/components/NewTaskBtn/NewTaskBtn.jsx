@@ -1,25 +1,10 @@
 import React from "react";
 import { Div } from "./NewTaskBtn.styled";
-import { useCreateCardMutation } from "../../redux/slices/questifyAPI";
-import { tomorrow } from "../../utils/datetime";
 
-const NewTaskBtn = () => {
-  const [addTask] = useCreateCardMutation();
-
-  const btnClick = () => {
-    addTask({
-      title: "Take out the trash",
-      difficulty: "Easy",
-      category: "Stuff",
-      date: tomorrow,
-      time: "20:32",
-      type: "Task",
-    });
-  };
-
+const NewTaskBtn = ({ onClick }) => {
   return (
     <Div>
-      <button onClick={btnClick}>
+      <button onClick={onClick}>
         <svg
           width="16"
           height="16"
