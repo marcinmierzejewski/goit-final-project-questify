@@ -56,12 +56,11 @@ const LandingForm = () => {
 		<Wrapper>
 			<form onSubmit={handleSubmit}>
 				<Paragraph>
-					Choose your name to
+					Choose your name to{" "}
 					<RegistrationLInk onClick={() => setIsOpen(true)}>
-						{" "}
-						sing up{" "}
+						sing up
 					</RegistrationLInk>
-					or log in
+					{" "}or log in
 				</Paragraph>
 				<TextFieldStyled
 					fullWidth

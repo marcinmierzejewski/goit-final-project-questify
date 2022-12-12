@@ -1,14 +1,14 @@
 import React from "react";
 import AppBar from "../../components/AppBar/AppBar";
 import MainSection from "../../components/MainSection/MainSection";
-import CardList from "../../components/Cards/CardList";
+import CardGroupContainer from "../../components/Cards/CardGroupContainer";
 
 const Dashboard = () => {
   return (
     <div>
       <AppBar />
       <MainSection>
-        <CardList />
+        <CardGroupContainer />
       </MainSection>
     </div>
   );
