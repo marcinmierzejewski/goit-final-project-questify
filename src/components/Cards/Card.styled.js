@@ -39,6 +39,8 @@ const categoryBgColor = (category) => {
 };
 
 export const CardItem = styled.li`
+  height: 300px
+  cursor: pointer;
   display: flex;
   flex-direction: column;
   padding: 19px 21px 33px 0;
@@ -46,7 +48,8 @@ export const CardItem = styled.li`
   line-height: 1;
   color: #282828;
   position: relative;
-  background-color: ${props => props.cardType === "Task" ? "#FFF" : "#15395A"};
+  background-color: ${(props) =>
+    props.cardType === "Task" ? "#FFF" : "#15395A"};
   box-shadow: -3px -4px 4px rgba(21, 57, 90, 0.03),
     3px 4px 4px rgba(21, 57, 90, 0.03);
 
@@ -55,19 +58,19 @@ export const CardItem = styled.li`
   }
 
   & > h3 {
-    margin-top: ${props => props.cardType === "Task" ? "69px" : "10px"};
+    margin-top: ${(props) => (props.cardType === "Task" ? "69px" : "10px")};
     padding-left: 21px;
     font-size: 20px;
     font-weight: 700;
     text-align: center;
-    color: ${props => props.cardType === "Challenge" && "#FFF"};
+    color: ${(props) => props.cardType === "Challenge" && "#FFF"};
   }
 
   @media screen and (min-width: 768px) {
     padding-bottom: 21px;
 
     & > h3 {
-      margin-top: ${props => props.cardType === "Task" ? "42px" : "10px"};
+      margin-top: ${(props) => (props.cardType === "Task" ? "42px" : "10px")};
       font-size: 16px;
     }
   }
@@ -165,4 +168,13 @@ export const Category = styled.p`
     border-radius: 0px 15px 15px 0px;
     font-size: 11px;
   }
+`;
+
+//FLIPED CARD CSS
+
+export const FlippedCard = styled.div`
+  background-color: white;
+  box-shadow: -3px -4px 4px rgba(21, 57, 90, 0.03),
+    3px 4px 4px rgba(21, 57, 90, 0.03);
+  border-radius: 10px;
 `;

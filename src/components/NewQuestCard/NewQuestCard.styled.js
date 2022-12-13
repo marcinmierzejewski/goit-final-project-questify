@@ -262,6 +262,7 @@ export const MenuStyled = styled(Menu)`
   }
 `;
 export const FooterCardBar = styled.div`
+  margin-top: 500px;
   display: flex;
   justify-content: space-between;
 `;
@@ -278,4 +279,8 @@ export const StartWrapper = styled.div`
     letter-spacing: 0.02em;
     color: #00d7ff;
   }
+`;
+
+export const StartSpan = styled.div`
+  cursor: pointer;
 `;
