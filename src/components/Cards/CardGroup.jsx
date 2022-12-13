@@ -7,8 +7,15 @@ const CardGroup = ({ cards, groupName, cardPreparation }) => {
   const isToday = (date) => date === todayDateInMs;
   const isTomorrow = (date) => date === tomorrowDateInMs;
 
-  const assignTerm = (date) => {
+  const isComplete = (status) => status === "Complete";
+
+  const assignGroup = (cardData) => {
+    const {date, status} = cardData;
     const checkedDate = new Date(date).getTime();
+
+    if (isComplete(status)) {
+      return "done";
+    }
 
     if (checkedDate < todayDateInMs) {
       return "previous";
@@ -25,8 +32,8 @@ const CardGroup = ({ cards, groupName, cardPreparation }) => {
     return "next";
   };
 
-  const filterCardsByGroup = (name) =>
-    cards.filter((c) => assignTerm(c.date) === groupName);
+  const filterCardsByGroup = (groupName) =>
+    cards.filter((c) => assignGroup(c) === groupName);
 
   return (
     <div>

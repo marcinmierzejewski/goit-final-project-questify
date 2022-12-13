@@ -80,6 +80,7 @@ const NewQuestCard = ({onCancel}) => {
       date: date,
       time: time,
       type: "Task",
+      complete: "Incomplete",
     };
 
     const validPost = (body) => {

@@ -39,6 +39,7 @@ const CardGroupContainer = () => {
           />
           <CardGroup cards={cards} groupName="tomorrow" />
           <CardGroup cards={cards} groupName="next" />
+          <CardGroup cards={cards} groupName="done" />
 
           <NewTaskBtn onClick={preparingCardToCreate} />
         </>
