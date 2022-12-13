@@ -48,7 +48,7 @@ const Card = ({ _id: id, title, difficulty, category, date, time, type }) => {
   
 
   return (
-  
+    <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
     <CardItem data-id={id} cardType={type} onClick={toggleDeleteModal}>
       <DifficultyBar difficulty={difficulty}>
         <p>{difficulty}</p>
@@ -65,7 +65,15 @@ const Card = ({ _id: id, title, difficulty, category, date, time, type }) => {
       <Category category={category}>{category}</Category>
       <CardDelete cardType={type} cardId={id} isOpen={isDeleteModalOpen} />
       </CardItem>
-  
+      <FlippedCard  onClick={toggleIsFlippedAgain}>
+        <p>COMPLETED: {title}...</p>
+        <AwardIcon />
+        <div>
+          <p>Continue</p>
+          <ArrowIcon/>
+        </div>
+      </FlippedCard>
+    </ReactCardFlip>
   );
 };
 
