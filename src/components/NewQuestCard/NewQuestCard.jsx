@@ -27,7 +27,7 @@ import { useCreateCardMutation } from "../../redux/slices/questifyAPI";
 import { separateDate, separateTime } from "../../utils/dateSepareteFunctions";
 import { capitalizeFirstLetter } from "../../utils/expressionFunction";
 
-const NewQuestCard = ({onCancel}) => {
+const NewQuestCard = ({ onCancel }) => {
   const [dateTimePickerValue, setDateTimePickerValue] = useState(dayjs());
   const [anchorDifficulty, setAnchorDifficulty] = useState(null);
   const [anchorCategory, setAnchorCategory] = useState(null);
@@ -80,6 +80,7 @@ const NewQuestCard = ({onCancel}) => {
       date: date,
       time: time,
       type: "Task",
+      status: "Incomplete",
     };
 
     const validPost = (body) => {
