@@ -15,7 +15,7 @@ const CardGroupContainer = () => {
     error,
   } = useGetAllUserCardQuery();
 
-  const { isCardInPreparation, preparingCardToCreate } = useCardPreparing();
+  const { isCardInPreparation, preparingCardToCreate } = useCardPreparing(false);
 
   const renderView = () => {
     if (isLoading) {

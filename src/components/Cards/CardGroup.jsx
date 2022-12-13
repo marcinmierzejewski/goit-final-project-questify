@@ -31,7 +31,7 @@ const CardGroup = ({cards, groupName, children}) => {
 
   return (
     <div>
-      {filterCardsByGroup(groupName).length > 0 && <TimeTitle>Today</TimeTitle>}
+      {filterCardsByGroup(groupName).length > 0 && <TimeTitle>{groupName}</TimeTitle>}
       <List>
         {children}
         {filterCardsByGroup(groupName).map((c) => (
