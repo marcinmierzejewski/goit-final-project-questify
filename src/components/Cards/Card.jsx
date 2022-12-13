@@ -12,35 +12,30 @@ import {
   DifficultyBar,
 } from "./Card.styled";
 
-const Card = (props) => {
-  const questDatetime = new Date(props.date + "T" + props.time).getTime();
+const Card = ({_id: id, title, difficulty, category, date, time, type}) => {
+  const questDatetime = new Date(`${date}T${time}`).getTime();
   const isTimeout = useTimeout(questDatetime);
-
-  const date = convertDayDisplay(props.date, props.type);
   
+  const convertedDate = convertDayDisplay(date, type);
 
-  const iconType = (() => {
-    if (props.type === "Challenge") {
-      return <TrophyIcon />;
-    }
-    return <StarIcon />;
-  })(props.type);
+  const isChallenge = (type) => type === "Challenge";
+  const TypeIcon = isChallenge(type) ? <TrophyIcon /> : <StarIcon />;
 
   return (
-    <CardItem data-id={props.id} cardType={props.type}>
-      <DifficultyBar difficulty={props.difficulty}>
-        <p>{props.difficulty}</p>
-        {iconType}
+    <CardItem data-id={id} cardType={type}>
+      <DifficultyBar difficulty={difficulty}>
+        <p>{difficulty}</p>
+        {TypeIcon}
       </DifficultyBar>
-      {props.type === "Challenge" && <CardType>{props.type}</CardType>}
-      <h3>{props.title}</h3>
+      {isChallenge(type) && <CardType>{type}</CardType>}
+      <h3>{title}</h3>
       <DatetimeBar>
         <p>
-          <span>{date}</span>, <span>{props.time}</span>
+          <span>{convertedDate}</span>, <span>{time}</span>
         </p>
         {isTimeout && <FireIcon />}
       </DatetimeBar>
-      <Category category={props.category}>{props.category}</Category>
+      <Category category={category}>{category}</Category>
     </CardItem>
   );
 };

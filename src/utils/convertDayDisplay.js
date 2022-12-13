@@ -1,13 +1,15 @@
-import { today, tomorrow, tomorrowDate, weekAheadDate } from "./datetime";
+import { todayDate, tomorrowDate, todayDateInMs, weekAheadDateInMs } from "./datetime";
+
+const isTask = (type) => type === "Task";
 
 export const convertDayDisplay = (date, type = "Task") =>
   ((date) => {
     switch (date) {
-      case today:
-        return type === "Task" ? "Today" : "until Today";
+      case todayDate:
+        return isTask(type) ? "Today" : "until Today";
 
-      case tomorrow:
-        return type === "Task" ? "Tomorrow" : "by Tomorrow";
+      case tomorrowDate:
+        return isTask(type) ? "Tomorrow" : "by Tomorrow";
 
       default:
         break;
@@ -15,12 +17,12 @@ export const convertDayDisplay = (date, type = "Task") =>
 
     const dateMs = new Date(date).getTime();
 
-    if (dateMs > tomorrowDate && dateMs < weekAheadDate) {
+    if (dateMs > todayDateInMs && dateMs < weekAheadDateInMs) {
       const weekday = new Date(dateMs).toLocaleString("en-US", {
         weekday: "long",
       });
 
-      return type === "Task" ? weekday : `by ${weekday}`;
+      return isTask(type) ? weekday : `by ${weekday}`;
     }
 
     return date;
