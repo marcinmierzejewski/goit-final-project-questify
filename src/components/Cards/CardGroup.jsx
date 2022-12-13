@@ -1,10 +1,9 @@
-import React from 'react'
-import { todayDateInMs, tomorrowDateInMs } from '../../utils/datetime';
-import Card from './Card';
-import { List, TimeTitle } from "./CardGroup.styled";
+import React from "react";
+import { todayDateInMs, tomorrowDateInMs } from "../../utils/datetime";
+import { TimeTitle } from "./CardGroup.styled";
+import CardList from "./CardList";
 
-const CardGroup = ({cards, groupName, children}) => {
-
+const CardGroup = ({ cards, groupName, cardPreparation }) => {
   const isToday = (date) => date === todayDateInMs;
   const isTomorrow = (date) => date === tomorrowDateInMs;
 
@@ -31,15 +30,16 @@ const CardGroup = ({cards, groupName, children}) => {
 
   return (
     <div>
-      {filterCardsByGroup(groupName).length > 0 && <TimeTitle>{groupName}</TimeTitle>}
-      <List>
-        {children}
-        {filterCardsByGroup(groupName).map((c) => (
-            <Card key={c._id} {...c} />
-        ))}
-      </List>
+      {filterCardsByGroup(groupName).length > 0 && (
+        <TimeTitle>{groupName}</TimeTitle>
+      )}
+      <CardList
+        groupName={groupName}
+        filterCardsByGroup={filterCardsByGroup}
+        cardPreparation={cardPreparation}
+      />
     </div>
-  )
-}
+  );
+};
 
-export default CardGroup
+export default CardGroup;
