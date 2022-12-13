@@ -279,3 +279,7 @@ export const StartWrapper = styled.div`
     color: #00d7ff;
   }
 `;
+
+export const StartSpan = styled.div`
+  cursor: pointer;
+`;
