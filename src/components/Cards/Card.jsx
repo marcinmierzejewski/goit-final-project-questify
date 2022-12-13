@@ -13,20 +13,21 @@ import {
 } from "./Card.styled";
 import CardDelete from "../CardDelete/CardDelete";
 
-const Card = ({_id: id, title, difficulty, category, date, time, type}) => {
+const Card = ({ _id: id, title, difficulty, category, date, time, type }) => {
   const questDatetime = new Date(`${date}T${time}`).getTime();
   const isTimeout = useTimeout(questDatetime);
-  
+
   const convertedDate = convertDayDisplay(date, type);
 
   const isChallenge = (type) => type === "Challenge";
   const TypeIcon = isChallenge(type) ? <TrophyIcon /> : <StarIcon />;
 
   const [isDeleteModalOpen, setIsDeleteModalOpen] = React.useState(false);
-  const toggleDeleteModal = () => setIsDeleteModalOpen(isDeleteModalOpen => !isDeleteModalOpen);
+  const toggleDeleteModal = () =>
+    setIsDeleteModalOpen((isDeleteModalOpen) => !isDeleteModalOpen);
 
   return (
-    <CardItem data-id={id} cardType={type} onClick={toggleDeleteModal} >
+    <CardItem data-id={id} cardType={type} onClick={toggleDeleteModal}>
       <DifficultyBar difficulty={difficulty}>
         <p>{difficulty}</p>
         {TypeIcon}
@@ -40,7 +41,7 @@ const Card = ({_id: id, title, difficulty, category, date, time, type}) => {
         {isTimeout && <FireIcon />}
       </DatetimeBar>
       <Category category={category}>{category}</Category>
-      <CardDelete cardType={type} cardId={id} isOpen={isDeleteModalOpen}/>
+      <CardDelete cardType={type} cardId={id} isOpen={isDeleteModalOpen} />
     </CardItem>
   );
 };
