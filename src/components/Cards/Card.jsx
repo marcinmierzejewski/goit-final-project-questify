@@ -14,23 +14,20 @@ import {
   DatetimeBar,
   DifficultyBar,
   FlippedCard,
+  ContinueBox,
 } from "./Card.styled";
+import { useCompleteCardMutation } from "../../redux/slices/questifyAPI"
 import CardDelete from "../CardDelete/CardDelete";
+
 
 const Card = ({ _id: id, title, difficulty, category, date, time, type }) => {
 
+  const [completeCard] = useCompleteCardMutation()
   const [isFlipped, setIsFlipped] = useState(false);
   const toggleIsFlipped = () => {
     setIsFlipped((current) => !current);
-    console.log("FLIPED");
     toggleDeleteModal();
   };
-
-  const toggleIsFlippedAgain = () => {
-    setIsFlipped((current) => !current);
-    console.log("FLIPED");
-  };
-
 
   const questDatetime = new Date(`${date}T${time}`).getTime();
   const isTimeout = useTimeout(questDatetime);
@@ -65,13 +62,13 @@ const Card = ({ _id: id, title, difficulty, category, date, time, type }) => {
       <Category category={category}>{category}</Category>
       <CardDelete cardType={type} cardId={id} isOpen={isDeleteModalOpen} />
       </CardItem>
-      <FlippedCard  onClick={toggleIsFlippedAgain}>
-        <p>COMPLETED: {title}...</p>
-        <AwardIcon />
-        <div>
+      <FlippedCard >
+        <p>COMPLETED: <span> {title}...</span></p>
+          <AwardIcon />
+        <ContinueBox onClick={() => completeCard(id)}>
           <p>Continue</p>
           <ArrowIcon/>
-        </div>
+        </ContinueBox>
       </FlippedCard>
     </ReactCardFlip>
   );

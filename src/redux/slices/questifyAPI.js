@@ -75,7 +75,7 @@ export const questifyApi = createApi({
     }),
     completeCard: builder.mutation({
       query: (id, cardData) => ({
-        url: "/card/complete",
+        url: `/card/complete/${id}`,
         method: "PATCH",
         body: cardData,
       }),

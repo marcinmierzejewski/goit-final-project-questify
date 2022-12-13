@@ -262,7 +262,6 @@ export const MenuStyled = styled(Menu)`
   }
 `;
 export const FooterCardBar = styled.div`
-  margin-top: 500px;
   display: flex;
   justify-content: space-between;
 `;
