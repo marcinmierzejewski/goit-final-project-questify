@@ -45,6 +45,7 @@ export const CardItem = styled.li`
   border-radius: 10px;
   line-height: 1;
   color: #282828;
+  position: relative;
   background-color: ${props => props.cardType === "Task" ? "#FFF" : "#15395A"};
   box-shadow: -3px -4px 4px rgba(21, 57, 90, 0.03),
     3px 4px 4px rgba(21, 57, 90, 0.03);
