@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-export const useCardPreparing = () => {
-  const [isCardInPreparation, setIsCardInPreparation] = useState(false);
+export const useCardPreparing = (initialValue = false) => {
+  const [isCardInPreparation, setIsCardInPreparation] = useState(initialValue);
   const preparingCardToCreate = () => setIsCardInPreparation(true);
   const cancelingCardToPreparing = () => setIsCardInPreparation(false);
 

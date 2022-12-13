@@ -27,7 +27,7 @@ import { useCreateCardMutation } from "../../redux/slices/questifyAPI";
 import { separateDate, separateTime } from "../../utils/dateSepareteFunctions";
 import { capitalizeFirstLetter } from "../../utils/expressionFunction";
 
-const NewQuestCard = () => {
+const NewQuestCard = ({onCancel}) => {
   const [dateTimePickerValue, setDateTimePickerValue] = useState(dayjs());
   const [anchorDifficulty, setAnchorDifficulty] = useState(null);
   const [anchorCategory, setAnchorCategory] = useState(null);
@@ -68,7 +68,7 @@ const NewQuestCard = () => {
     setAnchorCategory(null);
   };
 
-  const handelPostNewQuest = () => {
+  const handlePostNewQuest = () => {
     const time = separateTime(dateTimePickerValue);
     const date = separateDate(dateTimePickerValue);
     const cardCategory = capitalizeFirstLetter(category.toLowerCase());
@@ -85,6 +85,7 @@ const NewQuestCard = () => {
     const validPost = (body) => {
       createCard(body);
       setTitle("");
+      onCancel();
     };
 
     title ? validPost(body) : setError("Titile missing");
@@ -181,7 +182,7 @@ const NewQuestCard = () => {
         <StartWrapper>
           <ClearIcon />
           <LineIcon />
-          <span onClick={handelPostNewQuest}>START</span>
+          <span onClick={handlePostNewQuest}>START</span>
         </StartWrapper>
         <MenuStyled
           id="demo-positioned-menu"

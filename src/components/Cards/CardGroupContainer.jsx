@@ -15,7 +15,7 @@ const CardGroupContainer = () => {
     error,
   } = useGetAllUserCardQuery();
 
-  const { isCardInPreparation, preparingCardToCreate } = useCardPreparing(false);
+  const { isCardInPreparation, preparingCardToCreate, cancelingCardToPreparing } = useCardPreparing();
 
   const renderView = () => {
     if (isLoading) {
@@ -25,7 +25,7 @@ const CardGroupContainer = () => {
         <>
           <CardGroup cards={cards} groupName="previous" />
           <CardGroup cards={cards} groupName="today">
-            {isCardInPreparation && <NewQuestCard/>}
+            {isCardInPreparation && <NewQuestCard onCancel={cancelingCardToPreparing} />}
           </CardGroup>
           <CardGroup cards={cards} groupName="tomorrow" />
           <CardGroup cards={cards} groupName="next" />
@@ -37,7 +37,7 @@ const CardGroupContainer = () => {
       return (
         <>
           {isCardInPreparation ? (
-            <NewQuestCard />
+            <NewQuestCard onCancel={cancelingCardToPreparing} />
           ) : (
             <p>No quests on the board.</p>
           )}
