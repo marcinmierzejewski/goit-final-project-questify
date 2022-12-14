@@ -15,6 +15,8 @@ export const TimeTitle = styled.div`
   }
 
   & svg {
+    position: absolute;
+    top: 6px;
     margin-left: 4px;
   }
 
