@@ -101,8 +101,15 @@ export const DifficultyBar = styled.div`
 
   & svg {
     width: 19px;
-    height: ${(props) => (props.type === "Task" ? "18px" : "19px")};
-    padding-right: ${(props) => props.type === "Challenge" && "3px"};
+    height: ${(props) => (props.cardType === "Task" ? "18px" : "19px")};
+    margin-right: ${(props) => props.cardType === "Challenge" && "3px"};
+
+    &:hover {
+      filter: ${(props) =>
+        props.cardType === "Task"
+          ? "drop-shadow(0px 3px 4px rgba(0, 215, 255, 0.25))"
+          : "drop-shadow(0px 4px 4px rgba(0, 215, 255, 0.25))"};
+    }
   }
 
   @media screen and (min-width: 768px) {
@@ -111,8 +118,8 @@ export const DifficultyBar = styled.div`
     }
 
     & svg {
-      width: 15px;
-      height: 15px;
+      width: ${(props) => (props.cardType === "Task" ? "15px" : "14px")};
+      height: ${(props) => (props.cardType === "Task" ? "15px" : "14px")};
     }
   }
 `;
@@ -176,34 +183,35 @@ export const FlippedCard = styled.div`
   height: 201px;
   background-color: white;
   text-align: center;
-  padding-left: 30px
   box-shadow: -3px -4px 4px rgba(21, 57, 90, 0.03),
     3px 4px 4px rgba(21, 57, 90, 0.03);
   border-radius: 10px;
 
   & p {
     padding-top: 18px;
-      padding-bottom: 10px;
-font-style: normal;
-font-weight: 400;
-font-size: 11px;
-line-height: 11px;
-text-transform: uppercase;
-color: #000000;
+    padding-bottom: 10px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 11px;
+    text-transform: uppercase;
+    color: #000000;
   }
 
   & span {
     font-style: normal;
-font-weight: 400;
-font-size: 12px;
-line-height: 12px;
-text-decoration-line: underline;
-color: #00D7FF;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 12px;
+    text-decoration-line: underline;
+    text-transform: none;
+    color: #00d7ff;
+    cursor: pointer;
   }
 `;
 
 export const ContinueBox = styled.div`
-cursor: pointer;
+  cursor: pointer;
   width: 70px;
   display: flex;
   justify-content: space-between;
@@ -218,4 +226,3 @@ cursor: pointer;
     left: 65px;
   }
 `;
-
