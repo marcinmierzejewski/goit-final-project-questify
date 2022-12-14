@@ -99,7 +99,7 @@ const EditCard = ({ tytu, dif, cat, dat, isEdit, func, onCancel, id, cardType}) 
       console.log("patch");
       console.log(id)
       console.log(body)
-      // onCancel();
+      onCancel();
     };
 
     title ? validPost(body) : setError("Titile missing");

@@ -105,6 +105,7 @@ const Card = ({ _id: id, title, difficulty, category, date, time, type }) => {
         dat={convertedDate}
         id= {id}
         cardType={type}
+        onCancel={editClose}
         />
       }
 
