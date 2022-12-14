@@ -1,7 +1,7 @@
 import { CardDeleteWrapper, DeleteMenu } from "./CardDelete.styled";
 import { useDeleteCardMutation } from "../../redux/slices/questifyAPI";
 
-const CardDelete = ({ cardType, cardId, isOpen }) => {
+const CardDelete = ({ cardType, cardId, isOpen, func }) => {
   const [deleteCart] = useDeleteCardMutation();
 
   return (
@@ -9,7 +9,7 @@ const CardDelete = ({ cardType, cardId, isOpen }) => {
       <DeleteMenu>
         <p>Delete this {cardType === "Task" ? "Quest" : cardType}?</p>
         <div>
-          <button onClick={() => console.log("cancel")} type="button">
+          <button onClick={func} type="button">
             cancel
           </button>
           |

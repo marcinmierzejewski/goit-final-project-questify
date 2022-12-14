@@ -226,3 +226,7 @@ export const ContinueBox = styled.div`
     left: 65px;
   }
 `;
+
+export const CardContainer = styled.div`
+position:relative
+`

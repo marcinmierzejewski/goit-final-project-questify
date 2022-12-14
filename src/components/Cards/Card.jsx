@@ -16,9 +16,11 @@ import {
   DifficultyBar,
   FlippedCard,
   ContinueBox,
+  CardContainer,
 } from "./Card.styled";
 import { useCompleteCardMutation } from "../../redux/slices/questifyAPI";
 import CardDelete from "../CardDelete/CardDelete";
+import EditCard from "../EditCard/EditCard";
 
 const Card = ({ _id: id, title, difficulty, category, date, time, type }) => {
   const [completeCard] = useCompleteCardMutation();
@@ -58,9 +60,16 @@ const Card = ({ _id: id, title, difficulty, category, date, time, type }) => {
     return title;
   })();
 
+  const [isEditModalOpen, setIsEditModalOpen] = React.useState(false);
+  const editOpen = () =>
+  setIsEditModalOpen(true);
+  const editClose = ()=> setIsEditModalOpen(false);
+
+
   return (
+    <CardContainer>
     <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
-      <CardItem cardType={type} onClick={toggleDeleteModal}>
+      <CardItem cardType={type} onClick={editOpen}>
         <DifficultyBar cardType={type} difficulty={difficulty}>
           <p>{difficulty}</p>
           {typeIcon}
@@ -74,7 +83,7 @@ const Card = ({ _id: id, title, difficulty, category, date, time, type }) => {
           {isTimeout && <FireIcon />}
         </DatetimeBar>
         <Category category={category}>{category}</Category>
-        <CardDelete cardType={type} cardId={id} isOpen={isDeleteModalOpen} />
+        {/* <CardDelete cardType={type} cardId={id} isOpen={isDeleteModalOpen} /> */}
       </CardItem>
       <FlippedCard>
         <p>
@@ -87,6 +96,18 @@ const Card = ({ _id: id, title, difficulty, category, date, time, type }) => {
         </ContinueBox>
       </FlippedCard>
     </ReactCardFlip>
+    {isEditModalOpen && 
+        <EditCard 
+        isEdit={isEditModalOpen} 
+        func={editClose}
+        tytu={title} 
+        dif={difficulty}
+        cat={category}
+        dat={convertedDate}
+        />
+      }
+
+    </CardContainer>
   );
 };
 
