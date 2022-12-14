@@ -93,7 +93,7 @@ const Card = ({ _id: id, title, difficulty, category, date, time, type }) => {
         </ContinueBox>
         <ConfirmCancelModal
           isOpen={isModalOpen}
-          modalContent="Are you sure?"
+          modalContent="Are you sure you want to check this card as done?"
           nameOfConfirm="Yes"
           cancelingModalAction={toggleModal}
           confirmingModalAction={() => completeCard(id)}
