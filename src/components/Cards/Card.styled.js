@@ -53,6 +53,10 @@ export const CardItem = styled.li`
   box-shadow: -3px -4px 4px rgba(21, 57, 90, 0.03),
     3px 4px 4px rgba(21, 57, 90, 0.03);
 
+  @media screen and (max-width: 768px) {
+    box-sizing: unset;
+  }
+
   & p {
     letter-spacing: 0.02em;
   }
@@ -192,6 +196,10 @@ export const FlippedCard = styled.div`
     3px 4px 4px rgba(21, 57, 90, 0.03);
   border-radius: 10px;
 
+  @media screen and (max-width: 768px) {
+    height: 251px;
+  }
+
   & p {
     padding-top: 18px;
     padding-bottom: 10px;
@@ -224,6 +232,11 @@ export const ContinueBox = styled.div`
   left: 74px;
   bottom: 3px;
   position: absolute;
+
+  @media screen and (max-width: 768px) {
+    bottom: 22px;
+    left: 111px;
+  }
 
   & svg {
     position: absolute;

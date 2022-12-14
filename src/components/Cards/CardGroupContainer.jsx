@@ -6,6 +6,7 @@ import NewTaskBtn from "../NewTaskBtn/NewTaskBtn";
 import CardGroup from "./CardGroup";
 import { useCardPreparing } from "../../hooks/useCardPreparing";
 
+
 const CardGroupContainer = () => {
   const {
     data: { cards } = [],
@@ -39,6 +40,7 @@ const CardGroupContainer = () => {
           />
           <CardGroup cards={cards} groupName="tomorrow" />
           <CardGroup cards={cards} groupName="next" />
+          
           <CardGroup cards={cards} groupName="done" />
 
           <NewTaskBtn onClick={preparingCardToCreate} />
