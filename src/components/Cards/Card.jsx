@@ -43,13 +43,13 @@ const Card = ({ _id: id, title, difficulty, category, date, time, type }) => {
   const toggleDeleteModal = () =>
     setIsDeleteModalOpen((isDeleteModalOpen) => !isDeleteModalOpen);
   
-  const shortenTitle = () => {
+  const shortenTitle = (() => {
     if (title.length > 18) {
       return `${title.slice(0, 17)}...`;
     }
 
     return title;
-  };
+  })();
 
   return (
     <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
@@ -70,7 +70,7 @@ const Card = ({ _id: id, title, difficulty, category, date, time, type }) => {
       <CardDelete cardType={type} cardId={id} isOpen={isDeleteModalOpen} />
       </CardItem>
       <FlippedCard >
-        <p>COMPLETED: <span onClick={toggleIsFlipped}>{shortenTitle()}</span></p>
+        <p>COMPLETED: <span onClick={toggleIsFlipped}>{shortenTitle}</span></p>
           {awardIcon}
         <ContinueBox onClick={() => completeCard(id)}>
           <p>Continue</p>
