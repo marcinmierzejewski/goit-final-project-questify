@@ -48,8 +48,10 @@ const Card = ({ _id: id, title, difficulty, category, date, time, type }) => {
 
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
-  const toggleDeleteModal = () =>
+  const toggleDeleteModal = () => {
+    console.log(isDeleteModalOpen)
     setIsDeleteModalOpen((isDeleteModalOpen) => !isDeleteModalOpen);
+  }   
 
   const shortenTitle = (() => {
     if (title.length > 18) {
@@ -63,7 +65,6 @@ const Card = ({ _id: id, title, difficulty, category, date, time, type }) => {
   const editOpen = () =>
   setIsEditModalOpen(true);
   const editClose = ()=> setIsEditModalOpen(false);
-
 
   return (
     <CardContainer>

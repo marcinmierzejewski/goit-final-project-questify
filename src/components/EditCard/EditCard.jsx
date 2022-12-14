@@ -28,7 +28,6 @@ import { nanoid } from "@reduxjs/toolkit";
 import { useEditCardMutation, useDeleteCardMutation } from "../../redux/slices/questifyAPI";
 import { separateDate, separateTime } from "../../utils/dateSepareteFunctions";
 import { capitalizeFirstLetter } from "../../utils/expressionFunction";
-import CardDelete from "../CardDelete/CardDelete";
 import ConfirmCancelModal from "../ConfirmCancelModal/ConfirmCancelModal";
 
 const EditCard = ({ cardTitle, cardDifficulty, cardCategory, isEdit, onCancel, cardId, cardType}) => {
@@ -43,12 +42,11 @@ const EditCard = ({ cardTitle, cardDifficulty, cardCategory, isEdit, onCancel, c
   const [deleteCart] = useDeleteCardMutation();
 
   const [isDeleteModalOpen, setIsDeleteModalOpen] = React.useState(false);
-  const open = () =>
+  const openDeleteModal = () =>
     setIsDeleteModalOpen(true);
-    const toggle = () => setIsDeleteModalOpen(isDeleteModalOpen => !isDeleteModalOpen)
-    const closeModal = () =>
+    
+  const closeModal = () =>
     setIsDeleteModalOpen(false);
-
 
   const openDifficultiesMenu = Boolean(anchorDifficulty);
   const openCategoriesMenu = Boolean(anchorCategory);
@@ -198,7 +196,7 @@ const EditCard = ({ cardTitle, cardDifficulty, cardCategory, isEdit, onCancel, c
         <StartWrapper>
           <SaveIcon />
           <LineIcon />
-          <ClearIcon onClick={open} />
+          <ClearIcon onClick={openDeleteModal} />
           <LineIcon />
           <DoneIcon onClick={handlePostNewQuest}/>
         </StartWrapper>
@@ -234,7 +232,7 @@ const EditCard = ({ cardTitle, cardDifficulty, cardCategory, isEdit, onCancel, c
       <ConfirmCancelModal
         isOpen={isDeleteModalOpen}
         modalContent={`Delete this ${cardType === "Task" ? "Quest" : cardType}`}
-        nameOfConfirm="Yes"
+        nameOfConfirm="Delete"
         cancelingModalAction={closeModal}
         confirmingModalAction={() => deleteCart(cardId)}
       />
