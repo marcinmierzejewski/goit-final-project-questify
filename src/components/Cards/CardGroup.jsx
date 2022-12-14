@@ -1,5 +1,6 @@
 import React from "react";
-import { ReactComponent as ListBtnIcon } from "./images/listBtn.svg";
+import { ReactComponent as ListBtnIconUp } from "./images/listBtnUp.svg";
+import { ReactComponent as ListBtnIconDown } from "./images/listBtnDown.svg";
 import { todayDateInMs, tomorrowDateInMs } from "../../utils/datetime";
 import { TimeTitle } from "./CardGroup.styled";
 import CardList from "./CardList";
@@ -55,12 +56,12 @@ const CardGroup = ({ cards, groupName, cardPreparation }) => {
 
   return (
     <div>
-      <TimeTitle>
+      <TimeTitle onClick={toggleisDoneClicked}>
       {filterCardsByGroup(groupName).length > 0 && (
           <p>{groupName}
             {groupName === "done" &&
               <>
-              <ListBtnIcon onClick={toggleisDoneClicked} />
+              {isDoneClicked ? <ListBtnIconUp /> : <ListBtnIconDown/>}
               <span></span>
             </>
             }

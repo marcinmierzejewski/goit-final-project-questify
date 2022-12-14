@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 export const TimeTitle = styled.div`
-position: relative;
+  position: relative;
+  cursor: pointer;
   & p {
     margin-bottom: 25px;
     margin-top: 30px;
@@ -14,7 +15,7 @@ position: relative;
   }
 
   & svg {
-    cursor: pointer;
+    margin-left: 4px;
   }
 
   & span {
@@ -24,8 +25,6 @@ position: relative;
     border-top: 3px dashed #b9c3c8;
     width: 100%;
     margin-left: 60px;
-
-   
   }
 `;
 
