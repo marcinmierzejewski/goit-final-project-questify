@@ -225,8 +225,7 @@ export const MenuItem = styled.li`
   align-items: center;
   font-size: 14px;
   line-height: 14px;
-  color: ${(props) =>
-    selectedColorText(props.itemDifficulty, props.selectedDifficulty)};
+  color: ${(props) => selectedColorText(props.itemDifficulty, props.selectedDifficulty)};
   cursor: pointer;
   &::before {
     display: block;

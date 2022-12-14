@@ -5,7 +5,8 @@ import { convertDayDisplay } from "../../utils/convertDayDisplay";
 import { ReactComponent as FireIcon } from "./images/fire.svg";
 import { ReactComponent as StarIcon } from "./images/star.svg";
 import { ReactComponent as TrophyIcon } from "./images/trophy.svg";
-import { ReactComponent as AwardIcon } from "./images/award.svg";
+import { ReactComponent as QuestAwardIcon } from "./images/quest-award.svg";
+import { ReactComponent as ChallengeAwardIcon } from "./images/challenge-award.svg";
 import { ReactComponent as ArrowIcon } from "./images/arrow.svg";
 import {
   CardItem,
@@ -16,17 +17,15 @@ import {
   FlippedCard,
   ContinueBox,
 } from "./Card.styled";
-import { useCompleteCardMutation } from "../../redux/slices/questifyAPI"
+import { useCompleteCardMutation } from "../../redux/slices/questifyAPI";
 import CardDelete from "../CardDelete/CardDelete";
 
-
 const Card = ({ _id: id, title, difficulty, category, date, time, type }) => {
-
-  const [completeCard] = useCompleteCardMutation()
+  const [completeCard] = useCompleteCardMutation();
   const [isFlipped, setIsFlipped] = useState(false);
   const toggleIsFlipped = () => {
     setIsFlipped((current) => !current);
-    toggleDeleteModal();
+    !isFlipped && toggleDeleteModal();
   };
 
   const questDatetime = new Date(`${date}T${time}`).getTime();
@@ -35,39 +34,56 @@ const Card = ({ _id: id, title, difficulty, category, date, time, type }) => {
   const convertedDate = convertDayDisplay(date, type);
 
   const isChallenge = (type) => type === "Challenge";
-  const TypeIcon = isChallenge(type) ? <TrophyIcon /> : <StarIcon onClick={toggleIsFlipped} />;
+  const typeIcon = isChallenge(type) ? (
+    <TrophyIcon onClick={toggleIsFlipped} />
+  ) : (
+    <StarIcon onClick={toggleIsFlipped} />
+  );
+  const awardIcon = isChallenge(type) ? (
+    <ChallengeAwardIcon />
+  ) : (
+    <QuestAwardIcon />
+  );
 
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
-
   const toggleDeleteModal = () =>
     setIsDeleteModalOpen((isDeleteModalOpen) => !isDeleteModalOpen);
-  
+
+  const shortenTitle = (() => {
+    if (title.length > 18) {
+      return `${title.slice(0, 17)}...`;
+    }
+
+    return title;
+  })();
 
   return (
     <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
-    <CardItem data-id={id} cardType={type} onClick={toggleDeleteModal}>
-      <DifficultyBar difficulty={difficulty}>
-        <p>{difficulty}</p>
-        {TypeIcon}
-      </DifficultyBar>
-      {isChallenge(type) && <CardType>{type}</CardType>}
-      <h3>{title}</h3>
-      <DatetimeBar>
-        <p>
-          <span>{convertedDate}</span>, <span>{time}</span>
-        </p>
-          {isTimeout && <FireIcon/>}
-      </DatetimeBar>
-      <Category category={category}>{category}</Category>
-      <CardDelete cardType={type} cardId={id} isOpen={isDeleteModalOpen} />
+      <CardItem cardType={type} onClick={toggleDeleteModal}>
+        <DifficultyBar cardType={type} difficulty={difficulty}>
+          <p>{difficulty}</p>
+          {typeIcon}
+        </DifficultyBar>
+        {isChallenge(type) && <CardType>{type}</CardType>}
+        <h3>{title}</h3>
+        <DatetimeBar>
+          <p>
+            <span>{convertedDate}</span>, <span>{time}</span>
+          </p>
+          {isTimeout && <FireIcon />}
+        </DatetimeBar>
+        <Category category={category}>{category}</Category>
+        <CardDelete cardType={type} cardId={id} isOpen={isDeleteModalOpen} />
       </CardItem>
-      <FlippedCard >
-        <p>COMPLETED: <span> {title}...</span></p>
-          <AwardIcon />
+      <FlippedCard>
+        <p>
+          COMPLETED: <span onClick={toggleIsFlipped}>{shortenTitle}</span>
+        </p>
+        {awardIcon}
         <ContinueBox onClick={() => completeCard(id)}>
           <p>Continue</p>
-          <ArrowIcon/>
+          <ArrowIcon />
         </ContinueBox>
       </FlippedCard>
     </ReactCardFlip>

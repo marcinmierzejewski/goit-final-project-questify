@@ -17,23 +17,23 @@ const container = document.getElementById("root");
 const root = createRoot(container);
 
 root.render(
-	<React.StrictMode>
-		<Provider store={store}>
-			<PersistGate loading={null} persistor={persistor}>
-				<BrowserRouter>
-					<Routes>
-						<Route path="/" element={<App />}>
-							<Route element={<PrivateRoute />}>
-								<Route index element={<Dashboard />} />
-							</Route>
-							<Route element={<PublicRoute />}>
-								<Route path="landing" element={<LandingPage />} />
-							</Route>
-							<Route path="*" element={<NotFound />} />
-						</Route>
-					</Routes>
-				</BrowserRouter>
-			</PersistGate>
-		</Provider>
-	</React.StrictMode>
+  <React.StrictMode>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<App />}>
+              <Route element={<PrivateRoute />}>
+                <Route index element={<Dashboard />} />
+              </Route>
+              <Route element={<PublicRoute />}>
+                <Route path="landing" element={<LandingPage />} />
+              </Route>
+              <Route path="*" element={<NotFound />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </PersistGate>
+    </Provider>
+  </React.StrictMode>
 );
