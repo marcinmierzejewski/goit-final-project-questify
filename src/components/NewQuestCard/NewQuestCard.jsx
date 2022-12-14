@@ -5,7 +5,6 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { ReactComponent as StarIcon } from "./images/star.svg";
 import { ReactComponent as ArrowIcon } from "./images/arrow.svg";
-import { ReactComponent as ClearIcon } from "./images/clear.svg";
 import { ReactComponent as LineIcon } from "./images/Line.svg";
 import DateRangeIcon from "@mui/icons-material/DateRange";
 import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
@@ -22,11 +21,13 @@ import {
   FooterCardBar,
   StartWrapper,
   StartSpan,
+  ClearIconWrapper,
 } from "./NewQuestCard.styled";
 import { nanoid } from "@reduxjs/toolkit";
 import { useCreateCardMutation } from "../../redux/slices/questifyAPI";
 import { separateDate, separateTime } from "../../utils/dateSepareteFunctions";
 import { capitalizeFirstLetter } from "../../utils/expressionFunction";
+import ConfirmCancelModal from "../ConfirmCancelModal/ConfirmCancelModal";
 
 const NewQuestCard = ({ onCancel }) => {
   const [dateTimePickerValue, setDateTimePickerValue] = useState(dayjs());
@@ -36,6 +37,7 @@ const NewQuestCard = ({ onCancel }) => {
   const [category, setCategory] = useState("Stuff");
   const [title, setTitle] = useState("");
   const [error, setError] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [createCard] = useCreateCardMutation();
 
   const openDifficultiesMenu = Boolean(anchorDifficulty);
@@ -68,6 +70,7 @@ const NewQuestCard = ({ onCancel }) => {
 
     setAnchorCategory(null);
   };
+  const toggleModal = () => setIsModalOpen((isModalOpen) => !isModalOpen);
 
   const handlePostNewQuest = () => {
     const time = separateTime(dateTimePickerValue);
@@ -181,7 +184,7 @@ const NewQuestCard = ({ onCancel }) => {
           <ArrowIcon />
         </CategorySelect>
         <StartWrapper>
-          <ClearIcon />
+          <ClearIconWrapper onClick={toggleModal} />
           <LineIcon />
           <StartSpan onClick={handlePostNewQuest}>START</StartSpan>
         </StartWrapper>
@@ -213,6 +216,13 @@ const NewQuestCard = ({ onCancel }) => {
         </MenuStyled>
       </FooterCardBar>
       {error && <p>{error}</p>}
+      <ConfirmCancelModal
+        isOpen={isModalOpen}
+        modalContent="Are you sure you want to abort creating a new card?"
+        nameOfConfirm="Yes"
+        cancelingModalAction={toggleModal}
+        confirmingModalAction={onCancel}
+      />
     </Card>
   );
 };
