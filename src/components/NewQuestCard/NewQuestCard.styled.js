@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Menu from "@mui/material/Menu";
+import { ReactComponent as ClearIcon } from "./images/clear.svg";
 
 const difficultyColor = (difficulty) => {
   switch (difficulty.toLowerCase()) {
@@ -77,6 +78,7 @@ export const InputWrapper = styled.div`
 `;
 
 export const Card = styled.li`
+  position: relative;
   padding: 18px 21px 33px 0;
   border-radius: 10px;
   line-height: 1;
@@ -225,7 +227,8 @@ export const MenuItem = styled.li`
   align-items: center;
   font-size: 14px;
   line-height: 14px;
-  color: ${(props) => selectedColorText(props.itemDifficulty, props.selectedDifficulty)};
+  color: ${(props) =>
+    selectedColorText(props.itemDifficulty, props.selectedDifficulty)};
   cursor: pointer;
   &::before {
     display: block;
@@ -270,15 +273,16 @@ export const StartWrapper = styled.div`
   & svg {
     margin-right: 7px;
   }
-  & span {
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 1;
-    letter-spacing: 0.02em;
-    color: #00d7ff;
-  }
 `;
 
 export const StartSpan = styled.div`
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  color: #00d7ff;
+  cursor: pointer;
+`;
+export const ClearIconWrapper = styled(ClearIcon)`
   cursor: pointer;
 `;
