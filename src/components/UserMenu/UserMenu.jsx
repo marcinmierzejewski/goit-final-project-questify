@@ -11,7 +11,7 @@ import { useState } from "react";
 
 export const UserMenu = () => {
   const [isActive, setIsActive] = useState(false);
-  const toggle = () => setIsActive(isActive => !isActive);
+  const toggle = () => setIsActive((isActive) => !isActive);
 
   const user = useSelector((state) => state.user);
   const [logout] = useLogoutMutation();

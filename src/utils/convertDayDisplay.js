@@ -1,4 +1,9 @@
-import { todayDate, tomorrowDate, todayDateInMs, weekAheadDateInMs } from "./datetime";
+import {
+  todayDate,
+  tomorrowDate,
+  todayDateInMs,
+  weekAheadDateInMs,
+} from "./datetime";
 
 const isTask = (type) => type === "Task";
 
