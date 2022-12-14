@@ -3,8 +3,8 @@ import { CardModalWrapper, Modal } from "./ConfirmCancelModal.styled";
 const ConfirmCancelModal = ({
   isOpen,
   modalContent,
-  buttonConfirmAction,
-  buttonCancelAction,
+  cancelingModalAction,
+  confirmingModalAction,
   nameOfConfirm
 }) => {
   return (
@@ -12,11 +12,11 @@ const ConfirmCancelModal = ({
       <Modal>
         <p>{modalContent}</p>
         <div>
-          <button onClick={buttonCancelAction} type="button">
+          <button onClick={cancelingModalAction} type="button">
             cancel
           </button>
           |
-          <button onClick={buttonConfirmAction} type="button">
+          <button onClick={confirmingModalAction} type="button">
             {nameOfConfirm}
           </button>
         </div>

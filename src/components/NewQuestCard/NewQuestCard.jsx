@@ -220,8 +220,8 @@ const NewQuestCard = ({ onCancel }) => {
         isOpen={isModalOpen}
         modalContent="Are you sure you want to abort creating a new card?"
         nameOfConfirm="Yes"
-        buttonCancelAction={toggleModal}
-        buttonConfirmAction={onCancel}
+        cancelingModalAction={toggleModal}
+        confirmingModalAction={onCancel}
       />
     </Card>
   );
