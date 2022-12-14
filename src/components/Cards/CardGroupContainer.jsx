@@ -6,7 +6,6 @@ import NewTaskBtn from "../NewTaskBtn/NewTaskBtn";
 import CardGroup from "./CardGroup";
 import { useCardPreparing } from "../../hooks/useCardPreparing";
 
-
 const CardGroupContainer = () => {
   const {
     data: { cards } = [],
@@ -16,7 +15,6 @@ const CardGroupContainer = () => {
     error,
   } = useGetAllUserCardQuery();
 
- 
   const {
     isCardInPreparation,
     preparingCardToCreate,

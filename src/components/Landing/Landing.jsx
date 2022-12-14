@@ -5,18 +5,18 @@ import { Container, Wrapper } from "./Landing.styled";
 import { useEffect } from "react";
 
 const Landing = () => {
-	useEffect(() => {
-		document.body.style.backgroundColor = "white";
-	}, []);
-	return (
-		<Wrapper>
-			<Container>
-				<LandingWelcome />
-				<LandingForm />
-			</Container>
-			<LandingBg />
-		</Wrapper>
-	);
+  useEffect(() => {
+    document.body.style.backgroundColor = "white";
+  }, []);
+  return (
+    <Wrapper>
+      <Container>
+        <LandingWelcome />
+        <LandingForm />
+      </Container>
+      <LandingBg />
+    </Wrapper>
+  );
 };
 
 export default Landing;

@@ -10,7 +10,7 @@ const CardGroup = ({ cards, groupName, cardPreparation }) => {
   const isComplete = (status) => status === "Complete";
 
   const assignGroup = (cardData) => {
-    const {date, status} = cardData;
+    const { date, status } = cardData;
     const checkedDate = new Date(date).getTime();
 
     if (isComplete(status)) {

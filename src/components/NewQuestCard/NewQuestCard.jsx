@@ -21,7 +21,7 @@ import {
   DatetimeBar,
   FooterCardBar,
   StartWrapper,
-  StartSpan
+  StartSpan,
 } from "./NewQuestCard.styled";
 import { nanoid } from "@reduxjs/toolkit";
 import { useCreateCardMutation } from "../../redux/slices/questifyAPI";
@@ -183,7 +183,7 @@ const NewQuestCard = ({ onCancel }) => {
         <StartWrapper>
           <ClearIcon />
           <LineIcon />
-          < StartSpan onClick={handlePostNewQuest}>START</StartSpan>
+          <StartSpan onClick={handlePostNewQuest}>START</StartSpan>
         </StartWrapper>
         <MenuStyled
           id="demo-positioned-menu"

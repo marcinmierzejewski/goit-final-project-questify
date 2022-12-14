@@ -5,5 +5,9 @@ export const useCardPreparing = (initialValue = false) => {
   const preparingCardToCreate = () => setIsCardInPreparation(true);
   const cancelingCardToPreparing = () => setIsCardInPreparation(false);
 
-  return { isCardInPreparation, preparingCardToCreate, cancelingCardToPreparing };
+  return {
+    isCardInPreparation,
+    preparingCardToCreate,
+    cancelingCardToPreparing,
+  };
 };
