@@ -25,12 +25,23 @@ import {
   StartWrapper,
 } from "./EditCard.styled";
 import { nanoid } from "@reduxjs/toolkit";
-import { useEditCardMutation, useDeleteCardMutation } from "../../redux/slices/questifyAPI";
+import {
+  useEditCardMutation,
+  useDeleteCardMutation,
+} from "../../redux/slices/questifyAPI";
 import { separateDate, separateTime } from "../../utils/dateSepareteFunctions";
 import { capitalizeFirstLetter } from "../../utils/expressionFunction";
 import ConfirmCancelModal from "../ConfirmCancelModal/ConfirmCancelModal";
 
-const EditCard = ({ cardTitle, cardDifficulty, cardCategory, isEdit, onCancel, cardId, cardType}) => {
+const EditCard = ({
+  cardTitle,
+  cardDifficulty,
+  cardCategory,
+  isEdit,
+  onCancel,
+  cardId,
+  cardType,
+}) => {
   const [dateTimePickerValue, setDateTimePickerValue] = useState(dayjs());
   const [anchorDifficulty, setAnchorDifficulty] = useState(null);
   const [anchorCategory, setAnchorCategory] = useState(null);
@@ -42,11 +53,8 @@ const EditCard = ({ cardTitle, cardDifficulty, cardCategory, isEdit, onCancel, c
   const [deleteCart] = useDeleteCardMutation();
 
   const [isDeleteModalOpen, setIsDeleteModalOpen] = React.useState(false);
-  const openDeleteModal = () =>
-    setIsDeleteModalOpen(true);
-    
-  const closeModal = () =>
-    setIsDeleteModalOpen(false);
+  const openDeleteModal = () => setIsDeleteModalOpen(true);
+  const closeModal = () => setIsDeleteModalOpen(false);
 
   const openDifficultiesMenu = Boolean(anchorDifficulty);
   const openCategoriesMenu = Boolean(anchorCategory);
@@ -97,8 +105,8 @@ const EditCard = ({ cardTitle, cardDifficulty, cardCategory, isEdit, onCancel, c
       editCard(cardId, body);
       setTitle("");
       console.log("patch");
-      console.log(cardId)
-      console.log(body)
+      console.log(cardId);
+      console.log(body);
       onCancel();
     };
 
@@ -157,7 +165,9 @@ const EditCard = ({ cardTitle, cardDifficulty, cardCategory, isEdit, onCancel, c
         <StarIcon />
       </DifficultyBar>
       <InputWrapper>
-        <label htmlFor="create-new-quest" onClick={onCancel}>EDIT {cardType === "Task" ? "Quest" : cardType}</label>
+        <label htmlFor="create-new-quest" onClick={onCancel}>
+          EDIT {cardType === "Task" ? "Quest" : cardType}
+        </label>
         <input
           value={title}
           id="create-new-quest"
@@ -198,7 +208,7 @@ const EditCard = ({ cardTitle, cardDifficulty, cardCategory, isEdit, onCancel, c
           <LineIcon />
           <ClearIcon onClick={openDeleteModal} />
           <LineIcon />
-          <DoneIcon onClick={handlePostNewQuest}/>
+          <DoneIcon onClick={handlePostNewQuest} />
         </StartWrapper>
         <MenuStyled
           id="demo-positioned-menu"
