@@ -19,14 +19,20 @@ import {
 } from "./Card.styled";
 import { useCompleteCardMutation } from "../../redux/slices/questifyAPI";
 import CardDelete from "../CardDelete/CardDelete";
+import ConfirmCancelModal from "../ConfirmCancelModal/ConfirmCancelModal";
+
 
 const Card = ({ _id: id, title, difficulty, category, date, time, type }) => {
+
   const [completeCard] = useCompleteCardMutation();
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [isFlipped, setIsFlipped] = useState(false);
+
   const toggleIsFlipped = () => {
     setIsFlipped((current) => !current);
     !isFlipped && toggleDeleteModal();
   };
+  const toggleModal = () => setIsModalOpen((isModalOpen) => !isModalOpen);
 
   const questDatetime = new Date(`${date}T${time}`).getTime();
   const isTimeout = useTimeout(questDatetime);
@@ -81,10 +87,17 @@ const Card = ({ _id: id, title, difficulty, category, date, time, type }) => {
           COMPLETED: <span onClick={toggleIsFlipped}>{shortenTitle}</span>
         </p>
         {awardIcon}
-        <ContinueBox onClick={() => completeCard(id)}>
+        <ContinueBox onClick={toggleModal}>
           <p>Continue</p>
           <ArrowIcon />
         </ContinueBox>
+        <ConfirmCancelModal
+          isOpen={isModalOpen}
+          modalContent="Are you sure you want to check this card as done?"
+          nameOfConfirm="Yes"
+          cancelingModalAction={toggleModal}
+          confirmingModalAction={() => completeCard(id)}
+        />
       </FlippedCard>
     </ReactCardFlip>
   );
