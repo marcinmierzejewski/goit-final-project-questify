@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const TimeTitle = styled.div`
+position: relative;
   & p {
     margin-bottom: 25px;
     margin-top: 30px;
@@ -17,6 +18,8 @@ export const TimeTitle = styled.div`
   }
 
   & span {
+    position: absolute;
+    top: 5px;
     display: block;
     border-top: 3px dashed #b9c3c8;
     width: 100%;
