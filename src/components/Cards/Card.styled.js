@@ -58,6 +58,7 @@ export const CardItem = styled.li`
   }
 
   & > h3 {
+   
     margin-top: ${(props) => (props.cardType === "Task" ? "69px" : "10px")};
     padding-left: 21px;
     font-size: 20px;
