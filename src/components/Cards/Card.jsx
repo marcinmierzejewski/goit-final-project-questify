@@ -19,7 +19,6 @@ import {
   CardContainer,
 } from "./Card.styled";
 import { useCompleteCardMutation } from "../../redux/slices/questifyAPI";
-import CardDelete from "../CardDelete/CardDelete";
 import EditCard from "../EditCard/EditCard";
 
 const Card = ({ _id: id, title, difficulty, category, date, time, type }) => {
@@ -69,13 +68,13 @@ const Card = ({ _id: id, title, difficulty, category, date, time, type }) => {
   return (
     <CardContainer>
     <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
-      <CardItem cardType={type} onClick={editOpen}>
+      <CardItem cardType={type}>
         <DifficultyBar cardType={type} difficulty={difficulty}>
           <p>{difficulty}</p>
           {typeIcon}
         </DifficultyBar>
         {isChallenge(type) && <CardType>{type}</CardType>}
-        <h3>{title}</h3>
+        <h3 onClick={editOpen}>{title}</h3>
         <DatetimeBar>
           <p>
             <span>{convertedDate}</span>, <span>{time}</span>
@@ -104,6 +103,8 @@ const Card = ({ _id: id, title, difficulty, category, date, time, type }) => {
         dif={difficulty}
         cat={category}
         dat={convertedDate}
+        id= {id}
+        cardType={type}
         />
       }
 

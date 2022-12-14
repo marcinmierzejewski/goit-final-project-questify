@@ -7,6 +7,8 @@ import { ReactComponent as StarIcon } from "./images/star.svg";
 import { ReactComponent as ArrowIcon } from "./images/arrow.svg";
 import { ReactComponent as ClearIcon } from "./images/clear.svg";
 import { ReactComponent as LineIcon } from "./images/Line.svg";
+import { ReactComponent as DoneIcon } from "./images/done.svg";
+import { ReactComponent as SaveIcon } from "./images/save.svg";
 import DateRangeIcon from "@mui/icons-material/DateRange";
 import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
 import {
@@ -23,12 +25,12 @@ import {
   StartWrapper,
 } from "./EditCard.styled";
 import { nanoid } from "@reduxjs/toolkit";
-import { useCreateCardMutation } from "../../redux/slices/questifyAPI";
+import { useEditCardMutation } from "../../redux/slices/questifyAPI";
 import { separateDate, separateTime } from "../../utils/dateSepareteFunctions";
 import { capitalizeFirstLetter } from "../../utils/expressionFunction";
 import CardDelete from "../CardDelete/CardDelete";
 
-const EditCard = ({ tytu, dif, cat, dat, isEdit, func, onCancel }) => {
+const EditCard = ({ tytu, dif, cat, dat, isEdit, func, onCancel, id, cardType}) => {
   const [dateTimePickerValue, setDateTimePickerValue] = useState(dayjs());
   const [anchorDifficulty, setAnchorDifficulty] = useState(null);
   const [anchorCategory, setAnchorCategory] = useState(null);
@@ -36,7 +38,7 @@ const EditCard = ({ tytu, dif, cat, dat, isEdit, func, onCancel }) => {
   const [category, setCategory] = useState(cat);
   const [title, setTitle] = useState(tytu);
   const [error, setError] = useState("");
-  // const [createCard] = useCreateCardMutation();
+  const [editCard] = useEditCardMutation();
 
   const [isDeleteModalOpen, setIsDeleteModalOpen] = React.useState(false);
   const open = () =>
@@ -92,9 +94,12 @@ const EditCard = ({ tytu, dif, cat, dat, isEdit, func, onCancel }) => {
     };
 
     const validPost = (body) => {
-      // createCard(body);
+      editCard(id, body);
       setTitle("");
-      onCancel();
+      console.log("patch");
+      console.log(id)
+      console.log(body)
+      // onCancel();
     };
 
     title ? validPost(body) : setError("Titile missing");
@@ -189,9 +194,11 @@ const EditCard = ({ tytu, dif, cat, dat, isEdit, func, onCancel }) => {
           <ArrowIcon />
         </CategorySelect>
         <StartWrapper>
+          <SaveIcon />
+          <LineIcon />
           <ClearIcon onClick={open} />
           <LineIcon />
-          <span onClick={handlePostNewQuest}>START</span>
+          <DoneIcon onClick={handlePostNewQuest}/>
         </StartWrapper>
         <MenuStyled
           id="demo-positioned-menu"
@@ -221,7 +228,7 @@ const EditCard = ({ tytu, dif, cat, dat, isEdit, func, onCancel }) => {
         </MenuStyled>
       </FooterCardBar>
       {error && <p>{error}</p>}
-      <CardDelete isOpen={isDeleteModalOpen} func={closeModal}/>
+      <CardDelete isOpen={isDeleteModalOpen} func={closeModal} cardId={id} cardType={cardType}/>
     </Card>
   );
 };
