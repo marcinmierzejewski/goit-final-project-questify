@@ -60,6 +60,7 @@ export const InputWrapper = styled.div`
     letter-spacing: 0.02em;
     text-transform: uppercase;
     color: #b9c3c8;
+    cursor: pointer;
   }
   & input {
     margin: 0;
@@ -276,6 +277,11 @@ export const StartWrapper = styled.div`
   & svg {
     margin-right: 7px;
   }
+  
+  & svg:not(:first-child) {    
+    cursor: pointer;
+  }
+
   & span {
     font-weight: 400;
     font-size: 14px;

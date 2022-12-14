@@ -25,20 +25,22 @@ import {
   StartWrapper,
 } from "./EditCard.styled";
 import { nanoid } from "@reduxjs/toolkit";
-import { useEditCardMutation } from "../../redux/slices/questifyAPI";
+import { useEditCardMutation, useDeleteCardMutation } from "../../redux/slices/questifyAPI";
 import { separateDate, separateTime } from "../../utils/dateSepareteFunctions";
 import { capitalizeFirstLetter } from "../../utils/expressionFunction";
 import CardDelete from "../CardDelete/CardDelete";
+import ConfirmCancelModal from "../ConfirmCancelModal/ConfirmCancelModal";
 
-const EditCard = ({ tytu, dif, cat, dat, isEdit, func, onCancel, id, cardType}) => {
+const EditCard = ({ cardTitle, cardDifficulty, cardCategory, isEdit, onCancel, cardId, cardType}) => {
   const [dateTimePickerValue, setDateTimePickerValue] = useState(dayjs());
   const [anchorDifficulty, setAnchorDifficulty] = useState(null);
   const [anchorCategory, setAnchorCategory] = useState(null);
-  const [difficult, setDifficult] = useState(dif);
-  const [category, setCategory] = useState(cat);
-  const [title, setTitle] = useState(tytu);
+  const [difficult, setDifficult] = useState(cardDifficulty);
+  const [category, setCategory] = useState(cardCategory);
+  const [title, setTitle] = useState(cardTitle);
   const [error, setError] = useState("");
   const [editCard] = useEditCardMutation();
+  const [deleteCart] = useDeleteCardMutation();
 
   const [isDeleteModalOpen, setIsDeleteModalOpen] = React.useState(false);
   const open = () =>
@@ -94,10 +96,10 @@ const EditCard = ({ tytu, dif, cat, dat, isEdit, func, onCancel, id, cardType}) 
     };
 
     const validPost = (body) => {
-      editCard(id, body);
+      editCard(cardId, body);
       setTitle("");
       console.log("patch");
-      console.log(id)
+      console.log(cardId)
       console.log(body)
       onCancel();
     };
@@ -157,7 +159,7 @@ const EditCard = ({ tytu, dif, cat, dat, isEdit, func, onCancel, id, cardType}) 
         <StarIcon />
       </DifficultyBar>
       <InputWrapper>
-        <label htmlFor="create-new-quest">EDIT QUEST</label>
+        <label htmlFor="create-new-quest" onClick={onCancel}>EDIT {cardType === "Task" ? "Quest" : cardType}</label>
         <input
           value={title}
           id="create-new-quest"
@@ -228,7 +230,14 @@ const EditCard = ({ tytu, dif, cat, dat, isEdit, func, onCancel, id, cardType}) 
         </MenuStyled>
       </FooterCardBar>
       {error && <p>{error}</p>}
-      <CardDelete isOpen={isDeleteModalOpen} func={closeModal} cardId={id} cardType={cardType}/>
+      {/* <CardDelete isOpen={isDeleteModalOpen} func={closeModal} cardId={cardId} cardType={cardType}/> */}
+      <ConfirmCancelModal
+        isOpen={isDeleteModalOpen}
+        modalContent={`Delete this ${cardType === "Task" ? "Quest" : cardType}`}
+        nameOfConfirm="Yes"
+        cancelingModalAction={closeModal}
+        confirmingModalAction={() => deleteCart(cardId)}
+      />
     </Card>
   );
 };

@@ -74,7 +74,7 @@ const Card = ({ _id: id, title, difficulty, category, date, time, type }) => {
           {typeIcon}
         </DifficultyBar>
         {isChallenge(type) && <CardType>{type}</CardType>}
-        <h3 onClick={editOpen}>{title}</h3>
+        <h3 onClick={editOpen} >{title}</h3>
         <DatetimeBar>
           <p>
             <span>{convertedDate}</span>, <span>{time}</span>
@@ -97,13 +97,11 @@ const Card = ({ _id: id, title, difficulty, category, date, time, type }) => {
     </ReactCardFlip>
     {isEditModalOpen && 
         <EditCard 
-        isEdit={isEditModalOpen} 
-        func={editClose}
-        tytu={title} 
-        dif={difficulty}
-        cat={category}
-        dat={convertedDate}
-        id= {id}
+        isEdit={isEditModalOpen}
+        cardTitle={title} 
+        cardDifficulty={difficulty}
+        cardCategory={category}
+        cardId= {id}
         cardType={type}
         onCancel={editClose}
         />
