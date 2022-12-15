@@ -40,7 +40,7 @@ export const StartWrapper = styled.div`
 export const CategorySelect = styled.div`
   display: flex;
   align-items: center;
-  max-width: ${(props) => (props.category === "LEARNING" ? "130px" : "120px")};
+  max-width: ${(props) => (props.category === "Learning" ? "130px" : "120px")};
   width: 100%;
   padding: 10px 0 11px 21px;
   border-radius: 0px 25px 25px 0px;
@@ -56,7 +56,7 @@ export const CategorySelect = styled.div`
   }
 
   @media screen and (min-width: 768px) {
-    max-width: ${(props) => (props.category === "LEARNING" ? "100px" : "88px")};
+    max-width: ${(props) => (props.category === "Learning" ? "100px" : "88px")};
     padding: 8px 0 6px 21px;
     border-radius: 0px 15px 15px 0px;
     font-size: 11px;
