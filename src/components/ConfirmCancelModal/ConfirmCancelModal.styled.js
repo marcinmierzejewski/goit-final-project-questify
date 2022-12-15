@@ -17,7 +17,8 @@ export const CardModalWrapper = styled.div`
 
 export const Modal = styled.div`
   background: #ffffff;
-  padding: 30px 10px 21px 10px;
+  padding-top: 30px;
+  padding-bottom: 21px;
   box-shadow: -3px -4px 4px rgba(21, 57, 90, 0.03),
     3px 4px 4px rgba(21, 57, 90, 0.03);
   border-radius: 10px;
@@ -29,7 +30,8 @@ export const Modal = styled.div`
   @media screen and (min-width: 768px) {
     font-size: 12px;
     line-height: 12px;
-    padding: 25px 10px 16px 10px;
+    padding-top: 25px;
+    padding-bottom: 16px;
   }
 
   & p {

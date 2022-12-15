@@ -40,7 +40,7 @@ const categoryBgColor = (category) => {
 
 export const CardItem = styled.li`
   height: 201px;
-  cursor: pointer;
+  /* cursor: pointer; */
   display: flex;
   flex-direction: column;
   padding: 19px 21px 33px 0;
@@ -67,7 +67,12 @@ export const CardItem = styled.li`
     font-size: 20px;
     font-weight: 700;
     text-align: center;
+    cursor: pointer;
     color: ${(props) => props.cardType === "Challenge" && "#FFF"};
+  }
+
+  & svg {
+    cursor: pointer;
   }
 
   @media screen and (min-width: 768px) {
@@ -239,3 +244,7 @@ export const ContinueBox = styled.div`
     left: 65px;
   }
 `;
+
+export const CardContainer = styled.div`
+position:relative
+`

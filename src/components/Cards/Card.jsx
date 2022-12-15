@@ -16,9 +16,10 @@ import {
   DifficultyBar,
   FlippedCard,
   ContinueBox,
+  CardContainer,
 } from "./Card.styled";
 import { useCompleteCardMutation } from "../../redux/slices/questifyAPI";
-import CardDelete from "../CardDelete/CardDelete";
+import EditCard from "../EditCard/EditCard";
 import ConfirmCancelModal from "../ConfirmCancelModal/ConfirmCancelModal";
 
 
@@ -53,8 +54,10 @@ const Card = ({ _id: id, title, difficulty, category, date, time, type }) => {
 
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
-  const toggleDeleteModal = () =>
+  const toggleDeleteModal = () => {
+    console.log(isDeleteModalOpen)
     setIsDeleteModalOpen((isDeleteModalOpen) => !isDeleteModalOpen);
+  }   
 
   const shortenTitle = (() => {
     if (title.length > 18) {
@@ -64,15 +67,21 @@ const Card = ({ _id: id, title, difficulty, category, date, time, type }) => {
     return title;
   })();
 
+  const [isEditModalOpen, setIsEditModalOpen] = React.useState(false);
+  const editOpen = () =>
+  setIsEditModalOpen(true);
+  const editClose = ()=> setIsEditModalOpen(false);
+
   return (
+    <CardContainer>
     <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
-      <CardItem cardType={type} onClick={toggleDeleteModal}>
+      <CardItem cardType={type}>
         <DifficultyBar cardType={type} difficulty={difficulty}>
           <p>{difficulty}</p>
           {typeIcon}
         </DifficultyBar>
         {isChallenge(type) && <CardType>{type}</CardType>}
-        <h3>{title}</h3>
+        <h3 onClick={editOpen} >{title}</h3>
         <DatetimeBar>
           <p>
             <span>{convertedDate}</span>, <span>{time}</span>
@@ -80,7 +89,7 @@ const Card = ({ _id: id, title, difficulty, category, date, time, type }) => {
           {isTimeout && <FireIcon />}
         </DatetimeBar>
         <Category category={category}>{category}</Category>
-        <CardDelete cardType={type} cardId={id} isOpen={isDeleteModalOpen} />
+        {/* <CardDelete cardType={type} cardId={id} isOpen={isDeleteModalOpen} /> */}
       </CardItem>
       <FlippedCard>
         <p>
@@ -100,6 +109,19 @@ const Card = ({ _id: id, title, difficulty, category, date, time, type }) => {
         />
       </FlippedCard>
     </ReactCardFlip>
+    {isEditModalOpen && 
+        <EditCard 
+        isEdit={isEditModalOpen}
+        cardTitle={title} 
+        cardDifficulty={difficulty}
+        cardCategory={category}
+        cardId= {id}
+        cardType={type}
+        onCancel={editClose}
+        />
+      }
+
+    </CardContainer>
   );
 };
 
