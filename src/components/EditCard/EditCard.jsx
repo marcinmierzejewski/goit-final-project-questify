@@ -1,100 +1,51 @@
 import React, { useState } from "react";
-import TextField from "@mui/material/TextField";
 import dayjs from "dayjs";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { ReactComponent as StarIcon } from "./images/star.svg";
-import { ReactComponent as ArrowIcon } from "./images/arrow.svg";
-import { ReactComponent as ClearIcon } from "./images/clear.svg";
-import { ReactComponent as LineIcon } from "./images/Line.svg";
-import { ReactComponent as DoneIcon } from "./images/done.svg";
-import { ReactComponent as SaveIcon } from "./images/save.svg";
-import DateRangeIcon from "@mui/icons-material/DateRange";
-import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
-import {
-  Card,
-  DifficultyBar,
-  DifficultySelect,
-  InputWrapper,
-  MenuItem,
-  MenuStyled,
-  MenuCategoryItem,
-  CategorySelect,
-  DatetimeBar,
-  FooterCardBar,
-  StartWrapper,
-} from "./EditCard.styled";
-import { nanoid } from "@reduxjs/toolkit";
-import {
-  useEditCardMutation,
-  useDeleteCardMutation,
-} from "../../redux/slices/questifyAPI";
+import { useMenuOperations } from "../../hooks/useMenuOperations";
+import { Card } from "./EditCard.styled";
+import { useCreateCardMutation } from "../../redux/slices/questifyAPI";
 import { separateDate, separateTime } from "../../utils/dateSepareteFunctions";
 import { capitalizeFirstLetter } from "../../utils/expressionFunction";
+import { difficulties, categories } from "../../utils/appData";
 import ConfirmCancelModal from "../ConfirmCancelModal/ConfirmCancelModal";
+import SelectMenu from "../selectMenu/selectMenu";
+import EditCardHeader from "./EditCardHeader";
+import EditCardFooter from "./EditCardFooter";
+import EditCardInputs from "./EditCardInputs";
 
-const EditCard = ({
-  cardTitle,
-  cardDifficulty,
-  cardCategory,
-  isEdit,
-  onCancel,
-  cardId,
-  cardType,
-}) => {
+const EditQuestCard = ({ onCancel }) => {
   const [dateTimePickerValue, setDateTimePickerValue] = useState(dayjs());
-  const [anchorDifficulty, setAnchorDifficulty] = useState(null);
-  const [anchorCategory, setAnchorCategory] = useState(null);
-  const [difficult, setDifficult] = useState(cardDifficulty);
-  const [category, setCategory] = useState(cardCategory);
-  const [title, setTitle] = useState(cardTitle);
+  const [title, setTitle] = useState("");
   const [error, setError] = useState("");
-  const [editCard] = useEditCardMutation();
-  const [deleteCart] = useDeleteCardMutation();
-
-  const [isDeleteModalOpen, setIsDeleteModalOpen] = React.useState(false);
-  const openDeleteModal = () => setIsDeleteModalOpen(true);
-  const closeModal = () => setIsDeleteModalOpen(false);
-
-  const openDifficultiesMenu = Boolean(anchorDifficulty);
-  const openCategoriesMenu = Boolean(anchorCategory);
-
-  const handleOpenDifficultyMenu = (event) => {
-    setAnchorDifficulty(event.currentTarget);
-  };
-
-  const handleOpenCategoryMenu = (event) => {
-    setAnchorCategory(event.currentTarget);
-  };
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [createCard] = useCreateCardMutation();
 
   const handleOnChange = (event) => {
     setTitle(event.currentTarget.value);
   };
 
-  const handleSelectedDifficulty = (e) => {
-    e.currentTarget.innerText === ""
-      ? setDifficult(difficult)
-      : setDifficult(e.currentTarget.innerText);
+  const {
+    anchorDifficulty,
+    anchorCategory,
+    selectDifficulty,
+    selectCategory,
+    isOpenCategoriesMenu,
+    isOpenDifficultiesMenu,
+    openDifficultyMenu,
+    openCategoryMenu,
+    selectedCategory,
+    selectedDifficulty,
+  } = useMenuOperations();
 
-    setAnchorDifficulty(null);
-  };
+  const toggleModal = () => setIsModalOpen((isModalOpen) => !isModalOpen);
 
-  const handleSelectedCategory = (e) => {
-    e.currentTarget.innerText === ""
-      ? setCategory(category)
-      : setCategory(e.currentTarget.innerText);
-
-    setAnchorCategory(null);
-  };
-
-  const handlePostNewQuest = () => {
+  const handlePostEditQuest = () => {
     const time = separateTime(dateTimePickerValue);
     const date = separateDate(dateTimePickerValue);
-    const cardCategory = capitalizeFirstLetter(category.toLowerCase());
+    const cardCategory = capitalizeFirstLetter(selectedCategory.toLowerCase());
     const cardTitle = capitalizeFirstLetter(title);
     const body = {
       title: cardTitle,
-      difficulty: difficult,
+      difficulty: selectedDifficulty,
       category: cardCategory,
       date: date,
       time: time,
@@ -102,152 +53,58 @@ const EditCard = ({
     };
 
     const validPost = (body) => {
-      editCard(cardId, body);
+      createCard(body);
       setTitle("");
-      console.log("patch");
-      console.log(cardId);
-      console.log(body);
       onCancel();
     };
 
     title ? validPost(body) : setError("Titile missing");
   };
 
-  const difficulties = ["Easy", "Normal", "Hard"];
-  const categories = [
-    "Stuff",
-    "Family",
-    "Health",
-    "Learning",
-    "Leisure",
-    "Work",
-  ];
   return (
-    <Card isEdit={isEdit}>
-      <DifficultyBar>
-        <DifficultySelect
-          onClick={handleOpenDifficultyMenu}
-          difficulty={difficult}
-        >
-          <p>{difficult}</p>
-          <ArrowIcon />
-        </DifficultySelect>
-
-        <MenuStyled
-          id="basic-menu"
-          anchorEl={anchorDifficulty}
-          open={openDifficultiesMenu}
-          onClose={handleSelectedDifficulty}
-          MenuListProps={{
-            "aria-labelledby": "basic-button",
-          }}
-          anchorOrigin={{
-            vertical: "top",
-            horizontal: "left",
-          }}
-          transformOrigin={{
-            vertical: "center",
-            horizontal: "left",
-          }}
-        >
-          {difficulties.map((d) => (
-            <MenuItem
-              key={nanoid()}
-              onClick={handleSelectedDifficulty}
-              selectedDifficulty={difficult}
-              itemDifficulty={d}
-            >
-              {d}
-            </MenuItem>
-          ))}
-        </MenuStyled>
-
-        <StarIcon />
-      </DifficultyBar>
-      <InputWrapper>
-        <label htmlFor="create-new-quest" onClick={onCancel}>
-          EDIT {cardType === "Task" ? "Quest" : cardType}
-        </label>
-        <input
-          value={title}
-          id="create-new-quest"
-          type="text"
-          autoFocus
-          required
-          onChange={handleOnChange}
-        ></input>
-      </InputWrapper>
-      <DatetimeBar>
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <DateTimePicker
-            value={dateTimePickerValue}
-            onChange={(newValue) => {
-              setDateTimePickerValue(newValue);
-            }}
-            onError={console.log}
-            ampm={false}
-            minDateTime={dayjs()}
-            inputFormat="YYYY-MM-DD HH:mm"
-            mask="____-__-__ __:__"
-            components={{
-              OpenPickerIcon: DateRangeIcon,
-            }}
-            renderInput={(params) => (
-              <TextField {...params} placeholder="Today" />
-            )}
-          />
-        </LocalizationProvider>
-      </DatetimeBar>
-      <FooterCardBar>
-        <CategorySelect category={category} onClick={handleOpenCategoryMenu}>
-          <p>{category}</p>
-          <ArrowIcon />
-        </CategorySelect>
-        <StartWrapper>
-          <SaveIcon />
-          <LineIcon />
-          <ClearIcon onClick={openDeleteModal} />
-          <LineIcon />
-          <DoneIcon onClick={handlePostNewQuest} />
-        </StartWrapper>
-        <MenuStyled
-          id="demo-positioned-menu"
-          anchorEl={anchorCategory}
-          open={openCategoriesMenu}
-          onClose={handleSelectedCategory}
-          aria-labelledby="demo-positioned-button"
-          anchorOrigin={{
-            vertical: "top",
-            horizontal: "left",
-          }}
-          transformOrigin={{
-            vertical: "center",
-            horizontal: "left",
-          }}
-        >
-          {categories.map((c) => (
-            <MenuCategoryItem
-              key={nanoid()}
-              onClick={handleSelectedCategory}
-              category={category}
-              selectedCategory={c}
-            >
-              {c.toUpperCase()}
-            </MenuCategoryItem>
-          ))}
-        </MenuStyled>
-      </FooterCardBar>
-      {error && <p>{error}</p>}
-      {/* <CardDelete isOpen={isDeleteModalOpen} func={closeModal} cardId={cardId} cardType={cardType}/> */}
+    <Card>
+      <EditCardHeader
+        onClick={openDifficultyMenu}
+        difficulty={selectedDifficulty}
+      />
+      <SelectMenu
+        dataType={"difficulty"}
+        anchorEl={anchorDifficulty}
+        isOpen={isOpenDifficultiesMenu}
+        menuItemData={difficulties}
+        onClose={selectDifficulty}
+        selectedData={selectedDifficulty}
+      />
+      <EditCardInputs
+        titleValue={title}
+        onTitleChange={handleOnChange}
+        dateTimeValue={dateTimePickerValue}
+        onDateTimeChange={setDateTimePickerValue}
+        placeholder={error && error}
+      />
+      <EditCardFooter
+        category={selectedCategory}
+        onClick={openCategoryMenu}
+        onClearClick={toggleModal}
+        onStartClick={handlePostEditQuest}
+      />
+      <SelectMenu
+        dataType={"category"}
+        anchorEl={anchorCategory}
+        isOpen={isOpenCategoriesMenu}
+        menuItemData={categories}
+        onClose={selectCategory}
+        selectedData={selectedCategory}
+      />
       <ConfirmCancelModal
-        isOpen={isDeleteModalOpen}
-        modalContent={`Delete this ${cardType === "Task" ? "Quest" : cardType}`}
-        nameOfConfirm="Delete"
-        cancelingModalAction={closeModal}
-        confirmingModalAction={() => deleteCart(cardId)}
+        isOpen={isModalOpen}
+        modalContent="Are you sure you want to abort creating a new card?"
+        nameOfConfirm="Yes"
+        cancelingModalAction={toggleModal}
+        confirmingModalAction={onCancel}
       />
     </Card>
   );
 };
 
-export default EditCard;
+export default EditQuestCard;
