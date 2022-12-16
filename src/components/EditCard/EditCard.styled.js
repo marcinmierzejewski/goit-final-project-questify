@@ -1,12 +1,17 @@
 import styled from "styled-components";
 
 export const Card = styled.li`
-  position: relative;
+  display: ${(props) =>
+    props.isEdit ? "inline-block" : "none"};//
+  /* position: relative; */
   padding: 18px 21px 33px 0;
   border-radius: 10px;
   line-height: 1;
   color: #282828;
   background-color: #fff;
+  position: absolute; //
+  top: 0;  //
+  left:0; //
   box-shadow: -3px -4px 4px rgba(21, 57, 90, 0.03),
     3px 4px 4px rgba(21, 57, 90, 0.03);
 

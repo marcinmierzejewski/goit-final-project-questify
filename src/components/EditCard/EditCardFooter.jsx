@@ -1,11 +1,13 @@
 import React from "react";
 import { ReactComponent as ArrowIcon } from "./images/arrow.svg";
 import { ReactComponent as LineIcon } from "./images/Line.svg";
+import { ReactComponent as DoneIcon } from "./images/done.svg";
+import { ReactComponent as SaveIcon } from "./images/save.svg";
 import {
   FooterCardBar,
   CategorySelect,
   StartWrapper,
-  StartSpan,
+  // StartSpan,
   ClearIconWrapper,
 } from "./EditCardFooter.styled";
 
@@ -17,9 +19,11 @@ const EditCardFooter = ({ category, onClick, onClearClick, onStartClick }) => {
         <ArrowIcon />
       </CategorySelect>
       <StartWrapper>
+        <SaveIcon />
+        <LineIcon />
         <ClearIconWrapper onClick={onClearClick} />
         <LineIcon />
-        <StartSpan onClick={onStartClick}>START</StartSpan>
+        <DoneIcon onClick={onStartClick} />
       </StartWrapper>
     </FooterCardBar>
   );

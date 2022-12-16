@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import dayjs from "dayjs";
 import { useMenuOperations } from "../../hooks/useMenuOperations";
 import { Card } from "./EditCard.styled";
-import { useCreateCardMutation } from "../../redux/slices/questifyAPI";
+import { useEditCardMutation, useDeleteCardMutation } from "../../redux/slices/questifyAPI";
 import { separateDate, separateTime } from "../../utils/dateSepareteFunctions";
 import { capitalizeFirstLetter } from "../../utils/expressionFunction";
 import { difficulties, categories } from "../../utils/appData";
@@ -12,12 +12,22 @@ import EditCardHeader from "./EditCardHeader";
 import EditCardFooter from "./EditCardFooter";
 import EditCardInputs from "./EditCardInputs";
 
-const EditQuestCard = ({ onCancel }) => {
+const EditCard = ({ 
+  cardTitle,
+  cardDifficulty,
+  cardCategory,
+  isEdit,
+  onCancel,
+  cardId,
+  cardType,
+}) => {
+  
   const [dateTimePickerValue, setDateTimePickerValue] = useState(dayjs());
-  const [title, setTitle] = useState("");
+  const [title, setTitle] = useState(cardTitle);
   const [error, setError] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [createCard] = useCreateCardMutation();
+  const [editCard] = useEditCardMutation();
+  const [deleteCart] = useDeleteCardMutation();
 
   const handleOnChange = (event) => {
     setTitle(event.currentTarget.value);
@@ -34,7 +44,7 @@ const EditQuestCard = ({ onCancel }) => {
     openCategoryMenu,
     selectedCategory,
     selectedDifficulty,
-  } = useMenuOperations();
+  } = useMenuOperations(cardDifficulty, cardCategory);
 
   const toggleModal = () => setIsModalOpen((isModalOpen) => !isModalOpen);
 
@@ -53,7 +63,7 @@ const EditQuestCard = ({ onCancel }) => {
     };
 
     const validPost = (body) => {
-      createCard(body);
+      editCard(cardId, body);
       setTitle("");
       onCancel();
     };
@@ -62,7 +72,7 @@ const EditQuestCard = ({ onCancel }) => {
   };
 
   return (
-    <Card>
+    <Card isEdit={isEdit}>
       <EditCardHeader
         onClick={openDifficultyMenu}
         difficulty={selectedDifficulty}
@@ -77,6 +87,8 @@ const EditQuestCard = ({ onCancel }) => {
       />
       <EditCardInputs
         titleValue={title}
+        onCancel={onCancel} //
+        cardType={cardType} //
         onTitleChange={handleOnChange}
         dateTimeValue={dateTimePickerValue}
         onDateTimeChange={setDateTimePickerValue}
@@ -98,13 +110,13 @@ const EditQuestCard = ({ onCancel }) => {
       />
       <ConfirmCancelModal
         isOpen={isModalOpen}
-        modalContent="Are you sure you want to abort creating a new card?"
-        nameOfConfirm="Yes"
+        modalContent={`Delete this ${cardType === "Task" ? "Quest" : cardType}`}
+        nameOfConfirm="Delete"
         cancelingModalAction={toggleModal}
-        confirmingModalAction={onCancel}
+        confirmingModalAction={() => deleteCart(cardId)}
       />
     </Card>
   );
 };
 
-export default EditQuestCard;
+export default EditCard;

@@ -1,10 +1,13 @@
 import { useState } from "react";
 
-export const useMenuOperations = () => {
+export const useMenuOperations = (
+  cardDifficulty = "Normal",
+  cardCategory = "Stuff"
+) => {
   const [anchorDifficulty, setAnchorDifficulty] = useState(null);
   const [anchorCategory, setAnchorCategory] = useState(null);
-  const [selectedDifficulty, setSelectedDifficulty] = useState("Normal");
-  const [selectedCategory, setSelectedCategory] = useState("Stuff");
+  const [selectedDifficulty, setSelectedDifficulty] = useState(cardDifficulty);
+  const [selectedCategory, setSelectedCategory] = useState(cardCategory);
 
   const isOpenDifficultiesMenu = Boolean(anchorDifficulty);
   const isOpenCategoriesMenu = Boolean(anchorCategory);

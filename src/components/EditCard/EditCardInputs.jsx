@@ -9,15 +9,19 @@ import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
 
 const EditCardInputs = ({
   titleValue,
+  onCancel,
+  cardType,
   onTitleChange,
   dateTimeValue,
-     onDateTimeChange,
+  onDateTimeChange,
   placeholder
 }) => {
   return (
     <>
       <InputWrapper>
-        <label htmlFor="create-new-quest">CREATE NEW QUEST</label>
+        <label htmlFor="create-new-quest" onClick={onCancel}> 
+          EDIT {cardType === "Task" ? "Quest" : cardType}
+        </label>
         <input
           value={titleValue}
           id="create-new-quest"
