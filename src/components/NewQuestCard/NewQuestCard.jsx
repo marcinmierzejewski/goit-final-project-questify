@@ -8,9 +8,9 @@ import { capitalizeFirstLetter } from "../../utils/expressionFunction";
 import { difficulties, categories } from "../../utils/appData";
 import ConfirmCancelModal from "../ConfirmCancelModal/ConfirmCancelModal";
 import SelectMenu from "../selectMenu/selectMenu";
-import NewCardHeader from "./NewCardHeader";
-import NewCardFooter from "./NewCardFooter";
-import NewCardInputs from "./NewCardInputs";
+import CardHeader from "../CardTemplate/CardHeader";
+import CardFooter from "../CardTemplate/CardFooter";
+import CardInputs from "../CardTemplate/CardInputs";
 
 const NewQuestCard = ({ onCancel }) => {
   const [dateTimePickerValue, setDateTimePickerValue] = useState(dayjs());
@@ -63,7 +63,7 @@ const NewQuestCard = ({ onCancel }) => {
 
   return (
     <Card>
-      <NewCardHeader
+      <CardHeader
         onClick={openDifficultyMenu}
         difficulty={selectedDifficulty}
       />
@@ -75,14 +75,16 @@ const NewQuestCard = ({ onCancel }) => {
         onClose={selectDifficulty}
         selectedData={selectedDifficulty}
       />
-      <NewCardInputs
+      <CardInputs
+        action={"Create new Quest"}
         titleValue={title}
         onTitleChange={handleOnChange}
         dateTimeValue={dateTimePickerValue}
         onDateTimeChange={setDateTimePickerValue}
         placeholder={error && error}
       />
-      <NewCardFooter
+      <CardFooter
+        action={"Create new Quest"}
         category={selectedCategory}
         onClick={openCategoryMenu}
         onClearClick={toggleModal}

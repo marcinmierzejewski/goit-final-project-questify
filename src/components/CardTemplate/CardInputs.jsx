@@ -1,5 +1,5 @@
 import React from "react";
-import { InputWrapper, DatetimeBar } from "./NewCardInputs.styled";
+import { InputWrapper, DatetimeBar } from "./CardInputs.styled";
 import TextField from "@mui/material/TextField";
 import dayjs from "dayjs";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
@@ -7,8 +7,11 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import DateRangeIcon from "@mui/icons-material/DateRange";
 import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
 
-const NewCardInputs = ({
+const CardInputs = ({  
+  action,
   titleValue,
+  onCancel = "",
+  cardType = "",
   onTitleChange,
   dateTimeValue,
   onDateTimeChange,
@@ -17,7 +20,9 @@ const NewCardInputs = ({
   return (
     <>
       <InputWrapper>
-        <label htmlFor="create-new-quest">CREATE NEW QUEST</label>
+        <label htmlFor="create-new-quest" onClick={onCancel}> 
+          {action} {cardType === "Task" ? "Quest" : cardType}
+        </label>
         <input
           value={titleValue}
           id="create-new-quest"
@@ -53,4 +58,4 @@ const NewCardInputs = ({
   );
 };
 
-export default NewCardInputs;
+export default CardInputs;

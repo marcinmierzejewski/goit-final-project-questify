@@ -9,8 +9,8 @@ import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
 
 const EditCardInputs = ({
   titleValue,
-  onCancel,
-  cardType,
+  onCancel = "",
+  cardType = "",
   onTitleChange,
   dateTimeValue,
   onDateTimeChange,

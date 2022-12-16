@@ -8,9 +8,9 @@ import { capitalizeFirstLetter } from "../../utils/expressionFunction";
 import { difficulties, categories } from "../../utils/appData";
 import ConfirmCancelModal from "../ConfirmCancelModal/ConfirmCancelModal";
 import SelectMenu from "../selectMenu/selectMenu";
-import EditCardHeader from "./EditCardHeader";
-import EditCardFooter from "./EditCardFooter";
-import EditCardInputs from "./EditCardInputs";
+import CardHeader from "../CardTemplate/CardHeader";
+import CardFooter from "../CardTemplate/CardFooter";
+import CardInputs from "../CardTemplate/CardInputs";
 
 const EditCard = ({ 
   cardTitle,
@@ -73,7 +73,7 @@ const EditCard = ({
 
   return (
     <Card isEdit={isEdit}>
-      <EditCardHeader
+      <CardHeader
         onClick={openDifficultyMenu}
         difficulty={selectedDifficulty}
       />
@@ -85,7 +85,8 @@ const EditCard = ({
         onClose={selectDifficulty}
         selectedData={selectedDifficulty}
       />
-      <EditCardInputs
+      <CardInputs
+        action={"Edit"}
         titleValue={title}
         onCancel={onCancel} //
         cardType={cardType} //
@@ -94,7 +95,8 @@ const EditCard = ({
         onDateTimeChange={setDateTimePickerValue}
         placeholder={error && error}
       />
-      <EditCardFooter
+      <CardFooter
+        action={"Edit"}
         category={selectedCategory}
         onClick={openCategoryMenu}
         onClearClick={toggleModal}
