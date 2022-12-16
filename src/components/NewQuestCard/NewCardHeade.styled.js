@@ -73,3 +73,28 @@ export const DifficultySelect = styled.div`
     }
   }
 `;
+
+
+export const IconConteiner = styled.div`
+display: flex;
+  & svg {
+    margin-left: 13px;
+    cursor: pointer;
+  }
+  & svg path {
+    
+  }
+`;
+
+export const StarContainer = styled.div`
+  & svg path {
+    fill: ${(props) => (props.cardtype === "Task" ? "#00D7FF" : "#C0C0C0")};
+  }
+`;
+
+export const TrophyContainer = styled.div`
+  & svg path {
+    fill: ${(props) =>
+      props.cardtypes === "Challenge" ? "#00D7FF" : "#C0C0C0"};
+  }
+`;

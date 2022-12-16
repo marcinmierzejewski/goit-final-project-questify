@@ -246,5 +246,6 @@ export const ContinueBox = styled.div`
 `;
 
 export const CardContainer = styled.div`
-position:relative
+position:relative;
+
 `

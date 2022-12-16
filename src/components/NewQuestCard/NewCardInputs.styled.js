@@ -15,9 +15,10 @@ export const InputWrapper = styled.div`
   }
   & input {
     text-align: center;
-    margin: 0;
+    margin-top: 5px;
     width: 100%;
     border: none;
+    border-radius: 20px;
     border-bottom: 2px solid #00d7ff;
     outline: transparent;
     padding: 2px 4px;
@@ -36,7 +37,7 @@ export const DatetimeBar = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0 auto 36px;
+  margin: 0 auto 25px;
   padding-left: 21px;
 
   & input {

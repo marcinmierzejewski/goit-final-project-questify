@@ -19,7 +19,7 @@ const NewCardFooter = ({ category, onClick, onClearClick, onStartClick }) => {
       <StartWrapper>
         <ClearIconWrapper onClick={onClearClick} />
         <LineIcon />
-        <StartSpan onClick={onStartClick}>START</StartSpan>
+        <StartSpan onClick={onStartClick}>CREATE</StartSpan>
       </StartWrapper>
     </FooterCardBar>
   );
