@@ -25,7 +25,7 @@ const CardFooter = ({
         <ArrowIcon />
       </CategorySelect>
       <StartWrapper>
-        {(action === "Edit") && <SaveIcon />}
+        {action === "Edit" && <SaveIcon />}
         <LineIcon />
         <ClearIconWrapper onClick={onClearClick} />
         <LineIcon />

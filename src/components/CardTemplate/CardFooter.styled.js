@@ -33,9 +33,15 @@ export const FooterCardBar = styled.div`
 export const StartWrapper = styled.div`
   display: flex;
   align-items: center;
+
   & svg {
     margin-right: 7px;
   }
+
+  & svg:not(:first-child) {    
+    cursor: pointer;
+  }
+  
 `;
 export const CategorySelect = styled.div`
   display: flex;

@@ -12,6 +12,7 @@ export const InputWrapper = styled.div`
     letter-spacing: 0.02em;
     text-transform: uppercase;
     color: #b9c3c8;
+    cursor: pointer;
   }
   & input {
     text-align: center;
