@@ -81,8 +81,7 @@ const NewQuestCard = ({ onCancel }) => {
     title ? validPost(body) : setError("Titile missing");
   };
 
-  const gg = checkType()
-
+  const checkTypes = checkType()
   return (
     <>
    {isNormalTaskClicked ?
@@ -91,7 +90,7 @@ const NewQuestCard = ({ onCancel }) => {
         onClickDif={openDifficultyMenu}
           difficulty={selectedDifficulty}
             onClickChallenge={toggleChallenge}
-            cardStateNormal={gg}
+            cardStateNormal={checkTypes}
       />
       <SelectMenu
         dataType={"difficulty"}
@@ -136,7 +135,7 @@ const NewQuestCard = ({ onCancel }) => {
             onClick={openDifficultyMenu}
             difficulty={selectedDifficulty}
             onClickNormal={toggleNormal}
-            cardStateNormal={gg}
+            cardStateNormal={checkTypes}
           />
           <SelectMenu
             dataType={"difficulty"}

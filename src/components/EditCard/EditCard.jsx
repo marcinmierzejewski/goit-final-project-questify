@@ -99,15 +99,12 @@ const EditCard = ({
       category: cardCategory,
       date: date,
       time: time,
-      type: "Task",
+      type: "Task"
     };
-
+   
     const validPost = (body) => {
       editCard(cardId, body);
       setTitle("");
-      console.log("patch");
-      console.log(cardId);
-      console.log(body);
       onCancel();
     };
 
