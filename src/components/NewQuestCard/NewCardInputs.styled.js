@@ -7,18 +7,18 @@ export const InputWrapper = styled.div`
   & label {
     width: 128px;
     font-weight: 700;
-    font-size: 12px;
+    font-size: 14px;
     line-height: 12px;
     letter-spacing: 0.02em;
     text-transform: uppercase;
     color: #b9c3c8;
   }
   & input {
+    background: transparent;
     text-align: center;
     margin-top: 5px;
     width: 100%;
     border: none;
-    border-radius: 20px;
     border-bottom: 2px solid #00d7ff;
     outline: transparent;
     padding: 2px 4px;
@@ -26,10 +26,16 @@ export const InputWrapper = styled.div`
     font-weight: 700;
     font-size: 16px;
     line-height: 16px;
-    color: #282828;
+    color: ${(props) => (props.cardType === true ? "#282828" : "#ffffff")};
     &::placeholder {
       font-weight: 400;
       color: red;
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    & label {
+      font-size: 12px;
     }
   }
 `;
@@ -37,16 +43,16 @@ export const DatetimeBar = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0 auto 25px;
+  margin: 0 auto 43px;
   padding-left: 21px;
-
   & input {
-    width: 120px;
+    width: 150px;
+    height: 18px;
     border: none;
     outline: none;
     padding: 0;
-    font-size: 14px;
-    color: #282828;
+    font-size: 18px;
+    color: #b9c3c8;
     text-align: center;
     &::placeholder {
       color: #282828;
@@ -58,10 +64,23 @@ export const DatetimeBar = styled.div`
   }
   & button {
     padding: 0;
+    align-self: center;
   }
   & svg {
-    width: 12px;
-    height: 14px;
+    width: 18px;
+    height: 18px;
     fill: #00d7ff;
+  }
+
+  @media screen and (min-width: 768px) {
+    margin: 0 auto 30px;
+    & input {
+      width: 120px;
+      font-size: 14px;
+    }
+    & svg {
+      width: 12px;
+      height: 14px;
+    }
   }
 `;

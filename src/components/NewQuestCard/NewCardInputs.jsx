@@ -31,6 +31,7 @@ const NewCardInputs = ({
           required
           onChange={onTitleChange}
           placeholder={placeholder}
+          cardType={cardTypes}
         ></input>
       </InputWrapper>
       <DatetimeBar>
