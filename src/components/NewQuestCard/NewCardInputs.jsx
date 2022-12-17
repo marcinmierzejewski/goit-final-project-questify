@@ -12,12 +12,17 @@ const NewCardInputs = ({
   onTitleChange,
   dateTimeValue,
      onDateTimeChange,
-  placeholder
+  placeholder,
+  cardTypes
 }) => {
   return (
     <>
       <InputWrapper>
-        <label htmlFor="create-new-quest">CREATE NEW QUEST</label>
+        {cardTypes ?
+           <label htmlFor="create-new-quest">CREATE NEW QUEST</label>
+           :
+          <label htmlFor="create-new-quest">CHALLENGE</label>
+      }  
         <input
           value={titleValue}
           id="create-new-quest"
@@ -26,6 +31,7 @@ const NewCardInputs = ({
           required
           onChange={onTitleChange}
           placeholder={placeholder}
+          cardType={cardTypes}
         ></input>
       </InputWrapper>
       <DatetimeBar>
@@ -44,7 +50,7 @@ const NewCardInputs = ({
               OpenPickerIcon: DateRangeIcon,
             }}
             renderInput={(params) => (
-              <TextField {...params} placeholder="Today" />
+              <TextField  {...params} placeholder="Today" />
             )}
           />
         </LocalizationProvider>

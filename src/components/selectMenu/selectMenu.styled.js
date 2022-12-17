@@ -2,7 +2,6 @@ import styled from "styled-components";
 import Menu from "@mui/material/Menu";
 
 const difficultyColor = (difficulty) => {
-  console.log(difficulty);
   switch (difficulty.toLowerCase()) {
     case "easy":
       return "#00D7FF";

@@ -41,6 +41,7 @@ const EditCard = ({
   onCancel,
   cardId,
   cardType,
+  cardChallenge
 }) => {
   const [dateTimePickerValue, setDateTimePickerValue] = useState(dayjs());
   const [anchorDifficulty, setAnchorDifficulty] = useState(null);
@@ -98,15 +99,12 @@ const EditCard = ({
       category: cardCategory,
       date: date,
       time: time,
-      type: "Task",
+      type: "Task"
     };
-
+   
     const validPost = (body) => {
       editCard(cardId, body);
       setTitle("");
-      console.log("patch");
-      console.log(cardId);
-      console.log(body);
       onCancel();
     };
 
@@ -123,7 +121,7 @@ const EditCard = ({
     "Work",
   ];
   return (
-    <Card isEdit={isEdit}>
+    <Card isEdit={isEdit} cardType={cardChallenge}>
       <DifficultyBar>
         <DifficultySelect
           onClick={handleOpenDifficultyMenu}
@@ -164,7 +162,7 @@ const EditCard = ({
 
         <StarIcon />
       </DifficultyBar>
-      <InputWrapper>
+      <InputWrapper cardType={cardChallenge}>
         <label htmlFor="create-new-quest" onClick={onCancel}>
           EDIT {cardType === "Task" ? "Quest" : cardType}
         </label>

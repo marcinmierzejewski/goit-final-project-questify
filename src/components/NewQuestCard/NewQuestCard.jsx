@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import dayjs from "dayjs";
+
 import { useMenuOperations } from "../../hooks/useMenuOperations";
 import { Card } from "./NewQuestCard.styled";
 import { useCreateCardMutation } from "../../redux/slices/questifyAPI";
@@ -18,6 +19,24 @@ const NewQuestCard = ({ onCancel }) => {
   const [error, setError] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [createCard] = useCreateCardMutation();
+  const [isChallangeClicked, setIsChallangeClicked] = useState(false);
+  const [isNormalTaskClicked, setIsNormalTaskClicked] = useState(true);
+
+  const checkType = () => {
+    if (isNormalTaskClicked) {
+      return "Task";
+    } else {
+      return "Challenge";
+    }
+  };
+  const toggleChallenge = () => {
+    setIsChallangeClicked(true);
+    setIsNormalTaskClicked(false);
+  };
+  const toggleNormal = () => {
+    setIsNormalTaskClicked(true);
+    setIsChallangeClicked(false);
+  };
 
   const handleOnChange = (event) => {
     setTitle(event.currentTarget.value);
@@ -49,7 +68,7 @@ const NewQuestCard = ({ onCancel }) => {
       category: cardCategory,
       date: date,
       time: time,
-      type: "Task",
+      type: checkType(),
     };
 
     const validPost = (body) => {
@@ -61,49 +80,103 @@ const NewQuestCard = ({ onCancel }) => {
     title ? validPost(body) : setError("Titile missing");
   };
 
+  const checkTypes = checkType();
   return (
-    <Card>
-      <NewCardHeader
-        onClick={openDifficultyMenu}
-        difficulty={selectedDifficulty}
-      />
-      <SelectMenu
-        dataType={"difficulty"}
-        anchorEl={anchorDifficulty}
-        isOpen={isOpenDifficultiesMenu}
-        menuItemData={difficulties}
-        onClose={selectDifficulty}
-        selectedData={selectedDifficulty}
-      />
-      <NewCardInputs
-        titleValue={title}
-        onTitleChange={handleOnChange}
-        dateTimeValue={dateTimePickerValue}
-        onDateTimeChange={setDateTimePickerValue}
-        placeholder={error && error}
-      />
-      <NewCardFooter
-        category={selectedCategory}
-        onClick={openCategoryMenu}
-        onClearClick={toggleModal}
-        onStartClick={handlePostNewQuest}
-      />
-      <SelectMenu
-        dataType={"category"}
-        anchorEl={anchorCategory}
-        isOpen={isOpenCategoriesMenu}
-        menuItemData={categories}
-        onClose={selectCategory}
-        selectedData={selectedCategory}
-      />
-      <ConfirmCancelModal
-        isOpen={isModalOpen}
-        modalContent="Are you sure you want to abort creating a new card?"
-        nameOfConfirm="Yes"
-        cancelingModalAction={toggleModal}
-        confirmingModalAction={onCancel}
-      />
-    </Card>
+    <>
+      {isNormalTaskClicked ? (
+        <Card cardType={isNormalTaskClicked}>
+          <NewCardHeader
+            onClickDif={openDifficultyMenu}
+            difficulty={selectedDifficulty}
+            onClickChallenge={toggleChallenge}
+            cardStateNormal={checkTypes}
+          />
+          <SelectMenu
+            dataType={"difficulty"}
+            anchorEl={anchorDifficulty}
+            isOpen={isOpenDifficultiesMenu}
+            menuItemData={difficulties}
+            onClose={selectDifficulty}
+            selectedData={selectedDifficulty}
+          />
+          <NewCardInputs
+            titleValue={title}
+            onTitleChange={handleOnChange}
+            dateTimeValue={dateTimePickerValue}
+            onDateTimeChange={setDateTimePickerValue}
+            placeholder={error && error}
+            cardTypes={isNormalTaskClicked}
+          />
+          <NewCardFooter
+            category={selectedCategory}
+            onClick={openCategoryMenu}
+            onClearClick={toggleModal}
+            onStartClick={handlePostNewQuest}
+          />
+          <SelectMenu
+            dataType={"category"}
+            anchorEl={anchorCategory}
+            isOpen={isOpenCategoriesMenu}
+            menuItemData={categories}
+            onClose={selectCategory}
+            selectedData={selectedCategory}
+          />
+          <ConfirmCancelModal
+            isOpen={isModalOpen}
+            modalContent="Are you sure you want to abort creating a new card?"
+            nameOfConfirm="Yes"
+            cancelingModalAction={toggleModal}
+            confirmingModalAction={onCancel}
+          />
+        </Card>
+      ) : (
+        <Card>
+          <NewCardHeader
+            onClickDif={openDifficultyMenu}
+            difficulty={selectedDifficulty}
+            onClickNormal={toggleNormal}
+            cardStateNormal={checkTypes}
+          />
+          <SelectMenu
+            dataType={"difficulty"}
+            anchorEl={anchorDifficulty}
+            isOpen={isOpenDifficultiesMenu}
+            menuItemData={difficulties}
+            onClose={selectDifficulty}
+            selectedData={selectedDifficulty}
+          />
+          <NewCardInputs
+            titleValue={title}
+            onTitleChange={handleOnChange}
+            dateTimeValue={dateTimePickerValue}
+            onDateTimeChange={setDateTimePickerValue}
+            placeholder={error && error}
+            cardTypes={isChallangeClicked}
+          />
+          <NewCardFooter
+            category={selectedCategory}
+            onClick={openCategoryMenu}
+            onClearClick={toggleModal}
+            onStartClick={handlePostNewQuest}
+          />
+          <SelectMenu
+            dataType={"category"}
+            anchorEl={anchorCategory}
+            isOpen={isOpenCategoriesMenu}
+            menuItemData={categories}
+            onClose={selectCategory}
+            selectedData={selectedCategory}
+          />
+          <ConfirmCancelModal
+            isOpen={isModalOpen}
+            modalContent="Are you sure you want to abort creating a new card?"
+            nameOfConfirm="Yes"
+            cancelingModalAction={toggleModal}
+            confirmingModalAction={onCancel}
+          />
+        </Card>
+      )}
+    </>
   );
 };
 

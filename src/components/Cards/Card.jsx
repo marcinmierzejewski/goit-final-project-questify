@@ -118,6 +118,7 @@ const Card = ({ _id: id, title, difficulty, category, date, time, type }) => {
         cardId= {id}
         cardType={type}
         onCancel={editClose}
+        cardChallenge={type}
         />
       }
 

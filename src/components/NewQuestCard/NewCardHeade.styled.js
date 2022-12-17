@@ -25,13 +25,14 @@ export const DifficultyBar = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 21px;
+  margin-bottom: 25px;
   & svg {
     width: 19px;
     height: 19px;
   }
 
   @media screen and (min-width: 768px) {
+    margin-bottom: 21px;
     & svg {
       width: 15px;
       height: 15px;
@@ -71,5 +72,30 @@ export const DifficultySelect = styled.div`
     & > p {
       font-size: 14px;
     }
+  }
+`;
+
+
+export const IconConteiner = styled.div`
+display: flex;
+  & svg {
+    margin-left: 13px;
+    cursor: pointer;
+  }
+  & svg path {
+    
+  }
+`;
+
+export const StarContainer = styled.div`
+  & svg path {
+    fill: ${(props) => (props.cardtype === "Task" ? "#00D7FF" : "#C0C0C0")};
+  }
+`;
+
+export const TrophyContainer = styled.div`
+  & svg path {
+    fill: ${(props) =>
+      props.cardtypes === "Challenge" ? "#00D7FF" : "#C0C0C0"};
   }
 `;
