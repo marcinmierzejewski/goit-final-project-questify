@@ -2,39 +2,37 @@ import styled from "styled-components";
 
 export const ImgUp = styled.img`
 	position: absolute;
-	right: 20px;
-	bottom: -520px;
+	bottom: 0;
 	z-index: -1;
 
-	@media screen and (min-width: 768px) and (max-width: 1020px) and (orientation: portrait) {
-		top: -200px;
-		right: -470px;
+	@media screen and (min-width: 768px) and (max-width: 1020px) {
+		top: 0;
+		right: 0;
 	}
-	@media screen and (min-width: 1020px) and (max-width: 1280px) and (orientation: landscape) {
-		top: -260px;
-		right: -360px;
+	@media screen and (min-width: 1020px) and (max-width: 1280px) {
+		top: 0;
+		right: 0;
 	}
 	@media screen and (min-width: 1280px) {
-		right: -350px;
-		bottom: 430px;
+		top: 0;
+		right: 0;
 	}
 `;
 
 export const ImgDown = styled.img`
 	position: absolute;
-	right: -48px;
-	bottom: -320px;
+	bottom: 0;
 	z-index: -1;
-	@media screen and (min-width: 768px) and (max-width: 1020px) and (orientation: portrait) {
-		bottom: -535px;
-		right: -725px;
+	@media screen and (min-width: 768px) and (max-width: 1019px) {
+		bottom: 0;
+		right: 0;
 	}
-	@media screen and (min-width: 1020px) and (max-width: 1280px) and (orientation: landscape) {
-		top: 230px;
-		right: -550px;
+	@media screen and (min-width: 1020px) and (max-width: 1279px) {
+		bottom: 0;
+		right: 0;
 	}
 	@media screen and (min-width: 1280px) {
-		right: -550px;
-		bottom: -490px;
+		bottom: 0;
+		right: 0;
 	}
 `;

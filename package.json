@@ -22,7 +22,6 @@
     "react-card-flip": "^1.2.0",
     "react-datepicker": "^4.8.0",
     "react-dom": "^18.2.0",
-    "react-hook-screen-orientation": "^1.0.4",
     "react-icons": "^4.7.1",
     "react-loader-spinner": "^5.3.4",
     "react-redux": "^8.0.5",
