@@ -66,7 +66,6 @@ export const InputWrapper = styled.div`
     margin-top: 5px;
     width: 100%;
     border: none;
-    border-radius: ${(props) => (props.cardType === "Challenge" && "20px")};
     border-bottom: 2px solid #00d7ff;
     outline: transparent;
     padding: 2px 4px;
@@ -74,6 +73,7 @@ export const InputWrapper = styled.div`
     font-weight: 700;
     font-size: 16px;
     line-height: 16px;
+    background-color: ${(props) => (props.cardType === "Task" ? "#B9C3C8" : "#15395A")};
     color: #282828;
   }
 `;
