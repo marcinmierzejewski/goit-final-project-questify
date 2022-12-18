@@ -26,7 +26,8 @@ export const InputWrapper = styled.div`
     font-weight: 700;
     font-size: 16px;
     line-height: 16px;
-    color: ${(props) => (props.cardType === true ? "#282828" : "#ffffff")};
+    color: ${(props) => props.cardType === true ? "#282828" : "#ffffff"};
+
     &::placeholder {
       font-weight: 400;
       color: red;

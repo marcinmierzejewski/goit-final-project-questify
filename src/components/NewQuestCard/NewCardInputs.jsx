@@ -17,7 +17,7 @@ const NewCardInputs = ({
 }) => {
   return (
     <>
-      <InputWrapper>
+      <InputWrapper cardType={cardTypes}>
         {cardTypes ?
            <label htmlFor="create-new-quest">CREATE NEW QUEST</label>
            :
@@ -31,7 +31,6 @@ const NewCardInputs = ({
           required
           onChange={onTitleChange}
           placeholder={placeholder}
-          cardType={cardTypes}
         ></input>
       </InputWrapper>
       <DatetimeBar>
@@ -41,7 +40,6 @@ const NewCardInputs = ({
             onChange={(newValue) => {
               onDateTimeChange(newValue);
             }}
-            onError={console.log}
             ampm={false}
             minDateTime={dayjs()}
             inputFormat="YYYY-MM-DD, HH:mm"
