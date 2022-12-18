@@ -19,7 +19,6 @@ const NewQuestCard = ({ onCancel }) => {
   const [error, setError] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [createCard] = useCreateCardMutation();
-  const [isChallangeClicked, setIsChallangeClicked] = useState(false);
   const [isNormalTaskClicked, setIsNormalTaskClicked] = useState(true);
 
   const checkType = () => {
@@ -29,13 +28,13 @@ const NewQuestCard = ({ onCancel }) => {
       return "Challenge";
     }
   };
+
   const toggleChallenge = () => {
-    setIsChallangeClicked(true);
     setIsNormalTaskClicked(false);
   };
+
   const toggleNormal = () => {
     setIsNormalTaskClicked(true);
-    setIsChallangeClicked(false);
   };
 
   const handleOnChange = (event) => {
@@ -151,7 +150,7 @@ const NewQuestCard = ({ onCancel }) => {
             dateTimeValue={dateTimePickerValue}
             onDateTimeChange={setDateTimePickerValue}
             placeholder={error && error}
-            cardTypes={isChallangeClicked}
+            cardTypes={isNormalTaskClicked}
           />
           <NewCardFooter
             category={selectedCategory}

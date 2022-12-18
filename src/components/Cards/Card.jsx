@@ -31,7 +31,6 @@ const Card = ({ _id: id, title, difficulty, category, date, time, type }) => {
 
   const toggleIsFlipped = () => {
     setIsFlipped((current) => !current);
-    !isFlipped && toggleDeleteModal();
   };
   const toggleModal = () => setIsModalOpen((isModalOpen) => !isModalOpen);
 
@@ -51,13 +50,6 @@ const Card = ({ _id: id, title, difficulty, category, date, time, type }) => {
   ) : (
     <QuestAwardIcon />
   );
-
-  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-
-  const toggleDeleteModal = () => {
-    console.log(isDeleteModalOpen)
-    setIsDeleteModalOpen((isDeleteModalOpen) => !isDeleteModalOpen);
-  }   
 
   const shortenTitle = (() => {
     if (title.length > 18) {

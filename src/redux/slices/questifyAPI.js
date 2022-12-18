@@ -54,18 +54,17 @@ export const questifyApi = createApi({
       invalidatesTags: ["Auth", "Card"],
     }),
     editCard: builder.mutation({
-      query: (id, cardData) => ({
-        url: `/card/${id}`,
+      query: (cardData) => ({
+        url: `/card/${cardData.id}`,
         method: "PATCH",
-        body: cardData,
+        body: cardData.body,
       }),
-      invalidatesTags: ["Card"],
+      invalidatesTags: ["Auth", "Card"],
     }),
     deleteCard: builder.mutation({
-      query: (id, cardData) => ({
+      query: (id) => ({
         url: `/card/${id}`,
         method: "DELETE",
-        body: cardData,
       }),
       invalidatesTags: ["Card"],
     }),
@@ -74,10 +73,9 @@ export const questifyApi = createApi({
       providesTags: ["Auth", "Card"],
     }),
     completeCard: builder.mutation({
-      query: (id, cardData) => ({
+      query: (id) => ({
         url: `/card/complete/${id}`,
         method: "PATCH",
-        body: cardData,
       }),
       invalidatesTags: ["Auth", "Card"],
     }),

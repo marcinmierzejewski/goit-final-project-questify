@@ -49,6 +49,7 @@ const EditCard = ({
   const [difficult, setDifficult] = useState(cardDifficulty);
   const [category, setCategory] = useState(cardCategory);
   const [title, setTitle] = useState(cardTitle);
+  const [type] = useState(cardType);
   const [error, setError] = useState("");
   const [editCard] = useEditCardMutation();
   const [deleteCart] = useDeleteCardMutation();
@@ -93,22 +94,26 @@ const EditCard = ({
     const date = separateDate(dateTimePickerValue);
     const cardCategory = capitalizeFirstLetter(category.toLowerCase());
     const cardTitle = capitalizeFirstLetter(title);
-    const body = {
-      title: cardTitle,
-      difficulty: difficult,
-      category: cardCategory,
-      date: date,
-      time: time,
-      type: "Task"
+    const cardType = capitalizeFirstLetter(type);
+    const payload = {
+      body: {
+        title: cardTitle,
+        difficulty: difficult,
+        category: cardCategory,
+        date: date,
+        time: time,
+        type: cardType,
+      },
+      id: cardId,
     };
    
-    const validPost = (body) => {
-      editCard(cardId, body);
+    const validPost = (payload) => {
+      editCard(payload);
       setTitle("");
       onCancel();
     };
 
-    title ? validPost(body) : setError("Titile missing");
+    title ? validPost(payload) : setError("Titile missing");
   };
 
   const difficulties = ["Easy", "Normal", "Hard"];
@@ -182,7 +187,6 @@ const EditCard = ({
             onChange={(newValue) => {
               setDateTimePickerValue(newValue);
             }}
-            onError={console.log}
             ampm={false}
             minDateTime={dayjs()}
             inputFormat="YYYY-MM-DD HH:mm"
