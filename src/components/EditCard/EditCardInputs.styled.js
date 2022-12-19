@@ -37,7 +37,7 @@ export const DatetimeBar = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0 auto 36px;
+  margin: 0 auto 37px;
   padding-left: 21px;
 
   & input {

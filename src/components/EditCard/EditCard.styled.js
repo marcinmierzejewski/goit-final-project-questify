@@ -80,7 +80,7 @@ export const InputWrapper = styled.div`
 
 export const Card = styled.li`
   display: ${(props) => (props.isEdit ? "inline-block" : "none")};
-  padding: 18px 21px 33px 0;
+  padding: 19px 21px 33px 0;
   border-radius: 10px;
   line-height: 1;
   color: #282828;

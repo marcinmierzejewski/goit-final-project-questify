@@ -39,7 +39,7 @@ const categoryBgColor = (category) => {
 };
 
 export const CardItem = styled.li`
-  height: 201px;
+  /* height: 201px; */
   /* cursor: pointer; */
   display: flex;
   flex-direction: column;
