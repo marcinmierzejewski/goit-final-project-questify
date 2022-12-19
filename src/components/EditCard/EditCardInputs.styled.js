@@ -57,11 +57,14 @@ export const DatetimeBar = styled.div`
     border: none;
     outline: none;
     padding: 0;
-    font-size: 14px;
-    color: ${(props) => (props.cardType === "Challenge" ? "#fff" : '#282828')};
+    font-size: 18px;
+    color: ${(props) => (props.cardType === "Challenge" ? "#b9c3c8" : "#b9c3c8")};
     text-align: center;
     &::placeholder {
       color: #282828;
+    }
+    @media screen and (min-width: 768px) {
+      font-size: 14px;
     }
   }
   & fieldset {
