@@ -6,7 +6,7 @@ import { DifficultyBar, DifficultySelect } from "./EditCardHeader.styled";
 
 const EditCardHeader = ({ onClick, difficulty, cardType }) => {
   return (
-    <DifficultyBar>
+    <DifficultyBar cardType={cardType}>
       <DifficultySelect onClick={onClick} difficulty={difficulty}>
         <p>{difficulty}</p>
         <ArrowIcon />

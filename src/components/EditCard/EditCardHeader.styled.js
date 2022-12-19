@@ -21,14 +21,14 @@ export const DifficultyBar = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 25px;
+  margin-bottom: ${(props) => (props.cardType === "Challenge" ? "21px" : "36px")};
   & svg {
     width: 19px;
     height: 19px;
   }
 
   @media screen and (min-width: 768px) {
-    margin-bottom: 21px;
+    margin-bottom: ${(props) => (props.cardType === "Challenge" ? "21px" : "16px")};
     & svg {
       width: 14px;
       height: 14px;

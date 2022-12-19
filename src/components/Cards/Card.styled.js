@@ -111,7 +111,7 @@ export const DifficultyBar = styled.div`
   & svg {
     width: 19px;
     height: ${(props) => (props.cardType === "Task" ? "18px" : "19px")};
-    margin-right: ${(props) => props.cardType === "Challenge" && "3px"};
+    margin-right: ${(props) => props.cardType === "Challenge" && "0px"};
 
     &:hover {
       filter: ${(props) =>
@@ -137,12 +137,15 @@ export const CardType = styled.p`
   margin-top: 25px;
   padding-left: 21px;
   font-size: 14px;
+  line-height: 18px;
   text-align: center;
   text-transform: uppercase;
+  font-size: 700;
   color: #b9c3c8;
 
   @media screen and (min-width: 768px) {
     margin-top: 20px;
+    font-size: 12px;
   }
 `;
 
