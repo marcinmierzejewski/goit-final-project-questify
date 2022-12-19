@@ -36,6 +36,12 @@ export const StartWrapper = styled.div`
   & svg {
     margin-right: 7px;
   }
+
+  & svg:nth-child(3),   
+    svg:nth-child(5) {
+    cursor: pointer;
+  }
+
 `;
 export const CategorySelect = styled.div`
   display: flex;

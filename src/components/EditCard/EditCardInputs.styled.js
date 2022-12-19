@@ -27,6 +27,7 @@ export const InputWrapper = styled.div`
     font-size: 16px;
     line-height: 16px;
     color: #282828;
+    text-align: center;
     color: ${(props) => (props.cardType === "Challenge" && "#fff")};
     background: ${(props) => (props.cardType === "Challenge" && "#15395A;")};
   }
