@@ -30,8 +30,8 @@ export const DifficultyBar = styled.div`
   @media screen and (min-width: 768px) {
     margin-bottom: 21px;
     & svg {
-      width: 15px;
-      height: 15px;
+      width: 14px;
+      height: 14px;
     }
   }
 `;

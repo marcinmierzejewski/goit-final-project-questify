@@ -81,6 +81,7 @@ const EditCard = ({
       <EditCardHeader
         onClick={openDifficultyMenu}
         difficulty={selectedDifficulty}
+        cardType={cardChallenge}
       />
       <SelectMenu
         dataType={"difficulty"}
@@ -88,7 +89,7 @@ const EditCard = ({
         isOpen={isOpenDifficultiesMenu}
         menuItemData={difficulties}
         onClose={selectDifficulty}
-        selectedData={selectedDifficulty}
+        selectedData={selectedDifficulty}        
       />
       <EditCardInputs
         action={"Edit"}
