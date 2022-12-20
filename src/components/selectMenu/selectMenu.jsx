@@ -1,6 +1,6 @@
 import React from "react";
 import { nanoid } from "@reduxjs/toolkit";
-import { MenuWrapper, MenuItem } from "./selectMenu.styled";
+import { MenuWrapper, MenuItem } from "./SelectMenu.styled";
 
 const SelectMenu = ({
   anchorEl,
