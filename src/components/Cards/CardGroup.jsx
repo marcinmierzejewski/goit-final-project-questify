@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { ReactComponent as ListBtnIconUp } from "./images/listBtnUp.svg";
 import { ReactComponent as ListBtnIconDown } from "./images/listBtnDown.svg";
 import { todayDateInMs, tomorrowDateInMs } from "../../utils/datetime";
@@ -7,6 +8,7 @@ import CardList from "./CardList";
 
 const CardGroup = ({ cards, groupName, cardPreparation }) => {
 
+  const challengeState = useSelector((state) => state.user.challengeFIlter)
   const [isDoneClicked, setIsDoneClicked] = React.useState(false);
 
   const toggleisDoneClicked = () => {
@@ -28,19 +30,19 @@ const CardGroup = ({ cards, groupName, cardPreparation }) => {
       return "done";
     }
 
-    if (checkedDate < todayDateInMs && isTask(type)) {
+    if (checkedDate < todayDateInMs ) {
       return "previous";
     }
 
-    if (isToday(checkedDate) && isTask(type)) {
+    if (isToday(checkedDate) ) {
       return "today";
     }
 
-    if (isTomorrow(checkedDate) && isTask(type)) {
+    if (isTomorrow(checkedDate) ) {
       return "tomorrow";
     }
 
-    if (isIncomplete(status) && isChallenge(type)) {
+    if (isChallenge(type)) {
       return "challenge"
     }
 
@@ -50,7 +52,12 @@ const CardGroup = ({ cards, groupName, cardPreparation }) => {
   const filterCardsByGroup = (groupName) => {
     if (isDoneClicked) {
       return cards.filter((c) => assignGroup(c) !== "done");
-    } else {
+    } else if (challengeState) {
+      const gg = cards.filter((c) => c.type === "Challenge");
+      console.log(gg)
+      return gg
+    }
+    else {
     return  cards.filter((c) => assignGroup(c) === groupName);
    }
   }
@@ -77,7 +84,7 @@ const CardGroup = ({ cards, groupName, cardPreparation }) => {
   
         <CardList
           groupName={groupName}
-          filterCardsByGroup={filterDone}
+        filterCardsByGroup={filterCardsByGroup}
           cardPreparation={cardPreparation}
         /> 
    
