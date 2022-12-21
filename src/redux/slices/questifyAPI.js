@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const questifyApi = createApi({
   reducerPath: "questifyApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://questify-backend.goit.global",
+    baseUrl: "https://questify-api.onrender.com",
     prepareHeaders: (headers, { getState }) => {
       const token = getState().token;
       if (token) {
