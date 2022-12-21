@@ -2,12 +2,15 @@ import React, { useState } from "react";
 import dayjs from "dayjs";
 import { useMenuOperations } from "../../hooks/useMenuOperations";
 import { Card } from "./EditCard.styled";
-import { useEditCardMutation, useDeleteCardMutation } from "../../redux/slices/questifyAPI";
+import {
+  useEditCardMutation,
+  useDeleteCardMutation,
+} from "../../redux/slices/questifyAPI";
 import { separateDate, separateTime } from "../../utils/dateSepareteFunctions";
 import { capitalizeFirstLetter } from "../../utils/expressionFunction";
 import { difficulties, categories } from "../../utils/appData";
 import ConfirmCancelModal from "../ConfirmCancelModal/ConfirmCancelModal";
-import SelectMenu from "../SelectMenu/SelectMenu";
+import SelectMenu from "../SelectMenu/selectMenu";
 import EditCardHeader from "./EditCardHeader";
 import EditCardFooter from "./EditCardFooter";
 import EditCardInputs from "./EditCardInputs";
@@ -20,7 +23,7 @@ const EditCard = ({
   onCancel,
   cardId,
   cardType,
-  cardChallenge
+  cardChallenge,
 }) => {
   const [dateTimePickerValue, setDateTimePickerValue] = useState(dayjs());
   const [title, setTitle] = useState(cardTitle);
@@ -66,7 +69,7 @@ const EditCard = ({
       },
       id: cardId,
     };
-   
+
     const validPost = (payload) => {
       editCard(payload);
       setTitle("");
@@ -89,7 +92,7 @@ const EditCard = ({
         isOpen={isOpenDifficultiesMenu}
         menuItemData={difficulties}
         onClose={selectDifficulty}
-        selectedData={selectedDifficulty}        
+        selectedData={selectedDifficulty}
       />
       <EditCardInputs
         action={"Edit"}
@@ -123,7 +126,6 @@ const EditCard = ({
         cancelingModalAction={toggleModal}
         confirmingModalAction={() => deleteCart(cardId)}
       />
-
     </Card>
   );
 };

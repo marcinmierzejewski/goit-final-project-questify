@@ -74,3 +74,4 @@ export const MenuItem = styled.li`
     ${(props) => beforeContent(props.type)}
   }
 `;
+
