@@ -10,7 +10,7 @@ import { separateDate, separateTime } from "../../utils/dateSepareteFunctions";
 import { capitalizeFirstLetter } from "../../utils/expressionFunction";
 import { difficulties, categories } from "../../utils/appData";
 import ConfirmCancelModal from "../ConfirmCancelModal/ConfirmCancelModal";
-import SelectMenu from "../SelectMenu/selectMenu";
+import SelectMenu from "../selectMenu/selectMenu";
 import EditCardHeader from "./EditCardHeader";
 import EditCardFooter from "./EditCardFooter";
 import EditCardInputs from "./EditCardInputs";
