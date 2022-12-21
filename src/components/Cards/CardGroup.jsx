@@ -27,7 +27,7 @@ const CardGroup = ({ cards, groupName, cardPreparation }) => {
   const assignGroup = (cardData) => {
     const { date, status, type } = cardData;
     const checkedDate = new Date(date).getTime();
-    if (isComplete(status) ) {
+    if (isComplete(status) && !isDoneClicked) {
       return "done";
     }
 
@@ -43,10 +43,14 @@ const CardGroup = ({ cards, groupName, cardPreparation }) => {
       return "tomorrow";
     }
 
-    if (isChallenge(type) && isDone(status)) {
+    if (isChallenge(type) ) {
       return "challenge"
     }
-    return "next";
+
+    if (checkedDate > tomorrowDateInMs) {
+      return "next";
+    }
+    
   };
 
 
@@ -72,6 +76,9 @@ const CardGroup = ({ cards, groupName, cardPreparation }) => {
 
 
   const filterDone = () => {
+    if (challengeState) {
+      return cards.filter((c) => c.type === "Challenge" && c.status !== "Complete");
+    }
     return cards.filter((c) => assignGroup(c) === groupName);
   }
 
@@ -92,7 +99,7 @@ const CardGroup = ({ cards, groupName, cardPreparation }) => {
   
         <CardList
           groupName={groupName}
-        filterCardsByGroup={filterCardsByGroup}
+        filterCardsByGroup={filterDone}
           cardPreparation={cardPreparation}
         /> 
    
