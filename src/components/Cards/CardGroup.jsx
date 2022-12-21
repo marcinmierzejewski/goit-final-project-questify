@@ -19,9 +19,9 @@ const CardGroup = ({ cards, groupName, cardPreparation }) => {
   const isTomorrow = (date) => date === tomorrowDateInMs;
 
   const isComplete = (status) => status === "Complete";
-  const isIncomplete = (status) => status === "Incomplete";
+
   const isChallenge = (status) => status === "Challenge";
-  const isTask = (status) => status === "Task";
+
 
   const assignGroup = (cardData) => {
     const { date, status, type } = cardData;
@@ -61,11 +61,6 @@ const CardGroup = ({ cards, groupName, cardPreparation }) => {
     return  cards.filter((c) => assignGroup(c) === groupName);
    }
   }
-    
-  
-  const filterDone = () => {
-    return cards.filter((c) => assignGroup(c) === groupName);
- }
 
   return (
     <div>
