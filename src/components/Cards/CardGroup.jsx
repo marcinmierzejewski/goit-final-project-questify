@@ -24,20 +24,19 @@ const CardGroup = ({ cards, groupName, cardPreparation }) => {
   const assignGroup = (cardData) => {
     const { date, status, type } = cardData;
     const checkedDate = new Date(date).getTime();
-
     if (isComplete(status) && !isDoneClicked) {
       return "done";
     }
 
-    if (checkedDate < todayDateInMs && isTask(status)) {
+    if (checkedDate < todayDateInMs && isTask(type)) {
       return "previous";
     }
 
-    if (isToday(checkedDate && isTask(status))) {
+    if (isToday(checkedDate) && isTask(type)) {
       return "today";
     }
 
-    if (isTomorrow(checkedDate && isTask(status))) {
+    if (isTomorrow(checkedDate) && isTask(type)) {
       return "tomorrow";
     }
 
