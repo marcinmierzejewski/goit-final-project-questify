@@ -17,25 +17,31 @@ const CardGroup = ({ cards, groupName, cardPreparation }) => {
   const isTomorrow = (date) => date === tomorrowDateInMs;
 
   const isComplete = (status) => status === "Complete";
+  const isIncomplete = (status) => status === "Incomplete";
+  const isChallenge = (status) => status === "Challenge";
+  const isTask = (status) => status === "Task";
 
   const assignGroup = (cardData) => {
-    const { date, status } = cardData;
+    const { date, status, type } = cardData;
     const checkedDate = new Date(date).getTime();
-
     if (isComplete(status) && !isDoneClicked) {
       return "done";
     }
 
-    if (checkedDate < todayDateInMs) {
+    if (checkedDate < todayDateInMs && isTask(type)) {
       return "previous";
     }
 
-    if (isToday(checkedDate)) {
+    if (isToday(checkedDate) && isTask(type)) {
       return "today";
     }
 
-    if (isTomorrow(checkedDate)) {
+    if (isTomorrow(checkedDate) && isTask(type)) {
       return "tomorrow";
+    }
+
+    if (isIncomplete(status) && isChallenge(type)) {
+      return "challenge"
     }
 
     return "next";

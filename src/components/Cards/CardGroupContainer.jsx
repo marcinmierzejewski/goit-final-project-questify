@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { useGetAllUserCardQuery } from "../../redux/slices/questifyAPI";
 import PageLoader from "../PageLoader/PageLoader";
 import NewQuestCard from "../NewQuestCard/NewQuestCard";
@@ -8,6 +9,8 @@ import { useCardPreparing } from "../../hooks/useCardPreparing";
 
 
 const CardGroupContainer = () => {
+  const challengeState = useSelector((state) => state.user.challengeFIlter)
+
   const {
     data: { cards } = [],
     isLoading,
@@ -15,6 +18,7 @@ const CardGroupContainer = () => {
     isError,
     error,
   } = useGetAllUserCardQuery();
+
 
   const {
     isCardInPreparation,
@@ -32,17 +36,22 @@ const CardGroupContainer = () => {
     } else if (isSuccess) {
       return (
         <>
-          <CardGroup cards={cards} groupName="previous" />
-          <CardGroup
-            cards={cards}
-            groupName="today"
-            cardPreparation={cardPreparation}
-          />
-          <CardGroup cards={cards} groupName="tomorrow" />
-          <CardGroup cards={cards} groupName="next" />
-          
-          <CardGroup cards={cards} groupName="done" />
+          {!challengeState ?
+            <>
+              <CardGroup cards={cards} groupName="previous" />
+              <CardGroup
+                cards={cards}
+                groupName="today"
+                cardPreparation={cardPreparation}
+              />
+              <CardGroup cards={cards} groupName="tomorrow" />
+              <CardGroup cards={cards} groupName="next" />
 
+              <CardGroup cards={cards} groupName="done" />
+            </>
+            :
+            <CardGroup cards={cards} groupName="challenge" />
+          }
           <NewTaskBtn onClick={preparingCardToCreate} />
         </>
       );
