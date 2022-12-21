@@ -8,7 +8,7 @@ import { separateDate, separateTime } from "../../utils/dateSepareteFunctions";
 import { capitalizeFirstLetter } from "../../utils/expressionFunction";
 import { difficulties, categories } from "../../utils/appData";
 import ConfirmCancelModal from "../ConfirmCancelModal/ConfirmCancelModal";
-import SelectMenu from "../SelectMenu/SelectMenu";
+import SelectMenu from "../selectMenu/selectMenu";
 import NewCardHeader from "./NewCardHeader";
 import NewCardFooter from "./NewCardFooter";
 import NewCardInputs from "./NewCardInputs";
