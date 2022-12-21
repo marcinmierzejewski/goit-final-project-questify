@@ -1,9 +1,11 @@
 import React from "react";
 import { Div } from "./NewTaskBtn.styled";
+import { useSelector } from "react-redux";
 
 const NewTaskBtn = ({ onClick }) => {
+  const isActiveChallenge = useSelector(state => state.user.challengeFIlter)
   return (
-    <Div>
+    <Div isActiveChallenge={isActiveChallenge}>
       <button onClick={onClick}>
         <svg
           width="16"

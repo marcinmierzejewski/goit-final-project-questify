@@ -5,7 +5,7 @@ export const Div = styled.div`
     position: fixed;
     bottom: 10px;
     right: 10px;
-    display: flex;
+    display: ${(props) => (props.isActiveChallenge ? "none" : "flex")};
     justify-content: center;
     align-items: center;
     width: 52px;
