@@ -3,8 +3,8 @@ import styled from "styled-components";
 export const Div = styled.div`
   button {
     position: fixed;
-    bottom: 30px;
-    right: 30px;
+    bottom: 10px;
+    right: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -18,6 +18,10 @@ export const Div = styled.div`
     border-style: solid;
     z-index: 100;
     box-shadow: 0px 0px 3px rgba(255, 0, 0);
+    @media screen and (min-width: 768px) {
+      bottom: 10px;
+      right: 10px;
+    }
 
     &:before {
       z-index: 99;
