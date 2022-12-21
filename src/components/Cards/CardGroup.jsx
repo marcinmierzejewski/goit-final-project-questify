@@ -49,7 +49,7 @@ const CardGroup = ({ cards, groupName, cardPreparation }) => {
     return "next";
   };
 
-console.log(cards)
+
   const filterCardsByGroup = (groupName) => {
       if (challengeState ) {
       return cards.filter((c) => c.type === "Challenge" && c.status !== "Complete");
@@ -61,6 +61,19 @@ console.log(cards)
    }
   }
 
+
+  // const filterCardsByGroup = (groupName) => {
+  //   if (isDoneClicked) {
+  //     return cards.filter((c) => assignGroup(c) !== "done");
+  //   } else {
+  //     return cards.filter((c) => assignGroup(c) === groupName);
+  //   }
+  // }
+
+
+  const filterDone = () => {
+    return cards.filter((c) => assignGroup(c) === groupName);
+  }
 
   return (
     <div>
