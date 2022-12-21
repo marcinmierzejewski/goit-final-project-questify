@@ -54,6 +54,8 @@ const Card = ({ _id: id, title, difficulty, category, date, time, type }) => {
   const shortenTitle = (() => {
     if (title.length > 18) {
       return `${title.slice(0, 17)}...`;
+    } else if (undefined) {
+      return console.log("ERROR")
     }
 
     return title;

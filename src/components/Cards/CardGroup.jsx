@@ -21,12 +21,13 @@ const CardGroup = ({ cards, groupName, cardPreparation }) => {
   const isComplete = (status) => status === "Complete";
 
   const isChallenge = (status) => status === "Challenge";
+  const isDone = (status) => status === "Complete";
 
 
   const assignGroup = (cardData) => {
     const { date, status, type } = cardData;
     const checkedDate = new Date(date).getTime();
-    if (isComplete(status) && !isDoneClicked) {
+    if (isComplete(status) ) {
       return "done";
     }
 
@@ -42,30 +43,29 @@ const CardGroup = ({ cards, groupName, cardPreparation }) => {
       return "tomorrow";
     }
 
-    if (isChallenge(type)) {
+    if (isChallenge(type) && isDone(status)) {
       return "challenge"
     }
-
     return "next";
   };
 
+console.log(cards)
   const filterCardsByGroup = (groupName) => {
-    if (isDoneClicked) {
-      return cards.filter((c) => assignGroup(c) !== "done");
-    } else if (challengeState) {
-      const gg = cards.filter((c) => c.type === "Challenge");
-      console.log(gg)
-      return gg
+      if (challengeState ) {
+      return cards.filter((c) => c.type === "Challenge" && c.status !== "Complete");
+      } else if (isDoneClicked) {
+        return cards.filter((c) => assignGroup(c) !== "done");
     }
     else {
     return  cards.filter((c) => assignGroup(c) === groupName);
    }
   }
 
+
   return (
     <div>
       <TimeTitle onClick={toggleisDoneClicked}>
-      {filterCardsByGroup(groupName).length > 0 && (
+      {(filterCardsByGroup(groupName).length > 0)  && (
           <p>{groupName}
             {groupName === "done" &&
               <>
