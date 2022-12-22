@@ -23,13 +23,16 @@ import EditCard from "../EditCard/EditCard";
 import ConfirmCancelModal from "../ConfirmCancelModal/ConfirmCancelModal";
 
 
-const Card = ({ _id: id, title, difficulty, category, date, time, type }) => {
+const Card = ({ _id: id, title, difficulty, category, date, time, type, status }) => {
 
   const [completeCard] = useCompleteCardMutation();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isFlipped, setIsFlipped] = useState(false);
 
   const toggleIsFlipped = () => {
+    if(status === "Complete") {
+      return
+    }
     setIsFlipped((current) => !current);
   };
   const toggleModal = () => setIsModalOpen((isModalOpen) => !isModalOpen);
@@ -111,6 +114,7 @@ const Card = ({ _id: id, title, difficulty, category, date, time, type }) => {
         cardType={type}
         onCancel={editClose}
         cardChallenge={type}
+        cardTime={questDatetime}
         />
       }
 

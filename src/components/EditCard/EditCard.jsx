@@ -24,8 +24,9 @@ const EditCard = ({
   cardId,
   cardType,
   cardChallenge,
+  cardTime
 }) => {
-  const [dateTimePickerValue, setDateTimePickerValue] = useState(dayjs());
+  const [dateTimePickerValue, setDateTimePickerValue] = useState(dayjs(cardTime));
   const [title, setTitle] = useState(cardTitle);
   const [type] = useState(cardType);
   const [error, setError] = useState("");
