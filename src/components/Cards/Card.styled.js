@@ -38,50 +38,43 @@ const categoryBgColor = (category) => {
   }
 };
 
-export const CardItem = styled.li`
-  /* height: 201px; */
-  /* cursor: pointer; */
+export const CardContainer = styled.li`
+  position: relative;
+  height: 260px;
+  width: 290px;
+  @media screen and (min-width: 768px) {
+    height: 199px;
+    width: 205px;
+  }
+`;
+
+export const CardItem = styled.div`
+  box-shadow: -3px -4px 4px rgba(21, 57, 90, 0.03),
+    3px 4px 4px rgba(21, 57, 90, 0.03);
+  border-radius: 10px;
+  background-color: ${(props) =>
+    props.cardType === "Task" ? "#FFF" : "#15395A"};
+  height: 260px;
+  width: 100%;
+  padding: 19px 21px 33px 0;
   display: flex;
   flex-direction: column;
-  padding: 19px 21px 33px 0;
-  border-radius: 10px;
+  justify-content: space-between;
   line-height: 1;
   color: #282828;
   position: relative;
-  background-color: ${(props) =>
-    props.cardType === "Task" ? "#FFF" : "#15395A"};
-  box-shadow: -3px -4px 4px rgba(21, 57, 90, 0.03),
-    3px 4px 4px rgba(21, 57, 90, 0.03);
 
-  @media screen and (max-width: 768px) {
-    box-sizing: unset;
+  @media screen and (min-width: 768px) {
+    height: 199px;
+    padding-bottom: 21px;
   }
 
   & p {
     letter-spacing: 0.02em;
   }
 
-  & > h3 {
-    margin-top: ${(props) => (props.cardType === "Task" ? "69px" : "10px")};
-    padding-left: 21px;
-    font-size: 20px;
-    font-weight: 700;
-    text-align: center;
-    cursor: pointer;
-    color: ${(props) => props.cardType === "Challenge" && "#FFF"};
-  }
-
   & svg {
     cursor: pointer;
-  }
-
-  @media screen and (min-width: 768px) {
-    padding-bottom: 21px;
-
-    & > h3 {
-      margin-top: ${(props) => (props.cardType === "Task" ? "42px" : "10px")};
-      font-size: 16px;
-    }
   }
 `;
 
@@ -133,8 +126,27 @@ export const DifficultyBar = styled.div`
   }
 `;
 
+export const TitleDataWrapper = styled.div`
+  & h3 {
+    padding-left: 21px;
+    font-size: 20px;
+    font-weight: 700;
+    text-align: center;
+    cursor: pointer;
+    margin-bottom: ${(props) =>
+      props.cardType === "Challenge" ? "10px" : "12px"};
+    color: ${(props) => props.cardType === "Challenge" && "#FFF"};
+  }
+
+  @media screen and (min-width: 768px) {
+    & > h3 {
+      font-size: 16px;
+    }
+  }
+`;
+
 export const CardType = styled.p`
-  margin-top: 25px;
+  margin-bottom: 10px;
   padding-left: 21px;
   font-size: 14px;
   line-height: 18px;
@@ -144,7 +156,6 @@ export const CardType = styled.p`
   color: #b9c3c8;
 
   @media screen and (min-width: 768px) {
-    margin-top: 20px;
     font-size: 12px;
   }
 `;
@@ -153,7 +164,6 @@ export const DatetimeBar = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 8px;
   padding-left: 21px;
 
   & > p {
@@ -174,7 +184,7 @@ export const DatetimeBar = styled.div`
 export const Category = styled.p`
   max-width: 120px;
   width: 100%;
-  margin-top: 47px;
+  /* margin-top: 47px; */
   padding: 10px 0 11px 21px;
   border-radius: 0px 25px 25px 0px;
   font-size: 14px;
@@ -192,63 +202,71 @@ export const Category = styled.p`
 //FLIPED CARD CSS
 
 export const FlippedCard = styled.div`
-  height: 201px;
+  width: 100%;
+  height: 260px;
+  padding: 20px 17px 0;
   background-color: white;
   text-align: center;
   box-shadow: -3px -4px 4px rgba(21, 57, 90, 0.03),
     3px 4px 4px rgba(21, 57, 90, 0.03);
   border-radius: 10px;
 
-  @media screen and (max-width: 768px) {
-    height: 251px;
-  }
-
   & p {
-    padding-top: 18px;
-    padding-bottom: 10px;
+    margin-bottom: 10px;
     font-style: normal;
-    font-weight: 400;
-    font-size: 11px;
-    line-height: 11px;
+    font-size: 16px;
     text-transform: uppercase;
     color: #000000;
   }
-
+  & svg {
+    margin-bottom: 7px;
+    width: 200px;
+    height: 165px;
+  }
   & span {
     font-style: normal;
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 12px;
+
+    font-size: 16px;
     text-decoration-line: underline;
     text-transform: none;
     color: #00d7ff;
     cursor: pointer;
   }
+  @media screen and (min-width: 768px) {
+    height: 199px;
+    & p {
+      font-size: 11px;
+    }
+    & span {
+      font-size: 12px;
+    }
+    & svg {
+      width: 144px;
+      height: 124px;
+    }
+  }
 `;
 
 export const ContinueBox = styled.div`
   cursor: pointer;
-  width: 70px;
+  margin: 0 auto;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  left: 74px;
-  bottom: 3px;
-  position: absolute;
-
-  @media screen and (max-width: 768px) {
-    bottom: 22px;
-    left: 111px;
+  justify-content: center;
+  & p {
+    margin-bottom: 0;
+    margin-right: 7px;
+    color: #b9c3c8;
   }
-
   & svg {
-    position: absolute;
-    bottom: 14px;
-    left: 65px;
+    margin-bottom: 0;
+    width: 10px;
+    height: 10px;
+  }
+  @media screen and (min-width: 768px) {
+    & svg {
+      width: 7px;
+      height: 5px;
+    }
   }
 `;
-
-export const CardContainer = styled.div`
-position:relative;
-
-`

@@ -17,21 +17,29 @@ import {
   FlippedCard,
   ContinueBox,
   CardContainer,
+  TitleDataWrapper
 } from "./Card.styled";
 import { useCompleteCardMutation } from "../../redux/slices/questifyAPI";
 import EditCard from "../EditCard/EditCard";
 import ConfirmCancelModal from "../ConfirmCancelModal/ConfirmCancelModal";
 
-
-const Card = ({ _id: id, title, difficulty, category, date, time, type, status }) => {
-
+const Card = ({
+  _id: id,
+  title,
+  difficulty,
+  category,
+  date,
+  time,
+  type,
+  status,
+}) => {
   const [completeCard] = useCompleteCardMutation();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isFlipped, setIsFlipped] = useState(false);
 
   const toggleIsFlipped = () => {
-    if(status === "Complete") {
-      return
+    if (status === "Complete") {
+      return;
     }
     setIsFlipped((current) => !current);
   };
@@ -63,61 +71,61 @@ const Card = ({ _id: id, title, difficulty, category, date, time, type, status }
   })();
 
   const [isEditModalOpen, setIsEditModalOpen] = React.useState(false);
-  const editOpen = () =>
-  setIsEditModalOpen(true);
-  const editClose = ()=> setIsEditModalOpen(false);
+  const editOpen = () => setIsEditModalOpen(true);
+  const editClose = () => setIsEditModalOpen(false);
 
   return (
-    <CardContainer>
-    <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
-      <CardItem cardType={type}>
-        <DifficultyBar cardType={type} difficulty={difficulty}>
-          <p>{difficulty}</p>
-          {typeIcon}
-        </DifficultyBar>
-        {isChallenge(type) && <CardType>{type}</CardType>}
-        <h3 onClick={editOpen} >{title}</h3>
-        <DatetimeBar>
+    <CardContainer cardType={type}>
+      <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
+        <CardItem cardType={type}>
+          <DifficultyBar cardType={type} difficulty={difficulty}>
+            <p>{difficulty}</p>
+            {typeIcon}
+          </DifficultyBar>
+          <TitleDataWrapper cardType={type}>
+            {isChallenge(type) && <CardType>{type}</CardType>}
+            <h3 onClick={editOpen}>{title}</h3>
+            <DatetimeBar>
+              <p>
+                <span>{convertedDate}</span>, <span>{time}</span>
+              </p>
+              {isTimeout && <FireIcon />}
+            </DatetimeBar>
+          </TitleDataWrapper>
+          <Category category={category}>{category}</Category>
+          {/* <CardDelete cardType={type} cardId={id} isOpen={isDeleteModalOpen} /> */}
+        </CardItem>
+        <FlippedCard>
           <p>
-            <span>{convertedDate}</span>, <span>{time}</span>
+            COMPLETED: <span onClick={toggleIsFlipped}>{shortenTitle}</span>
           </p>
-          {isTimeout && <FireIcon />}
-        </DatetimeBar>
-        <Category category={category}>{category}</Category>
-        {/* <CardDelete cardType={type} cardId={id} isOpen={isDeleteModalOpen} /> */}
-      </CardItem>
-      <FlippedCard>
-        <p>
-          COMPLETED: <span onClick={toggleIsFlipped}>{shortenTitle}</span>
-        </p>
-        {awardIcon}
-        <ContinueBox onClick={toggleModal}>
-          <p>Continue</p>
-          <ArrowIcon />
-        </ContinueBox>
-        <ConfirmCancelModal
-          isOpen={isModalOpen}
-          modalContent="Are you sure you want to check this card as done?"
-          nameOfConfirm="Yes"
-          cancelingModalAction={toggleModal}
-          confirmingModalAction={() => completeCard(id)}
+          {awardIcon}
+          <ContinueBox onClick={toggleModal}>
+            <p>Continue</p>
+            <ArrowIcon />
+          </ContinueBox>
+          <ConfirmCancelModal
+            isOpen={isModalOpen}
+            modalContent="Are you sure you want to check this card as done?"
+            nameOfConfirm="Yes"
+            cancelingModalAction={toggleModal}
+            confirmingModalAction={() => completeCard(id)}
+          />
+        </FlippedCard>
+      </ReactCardFlip>
+      {isEditModalOpen && (
+        <EditCard
+          isEdit={isEditModalOpen}
+          cardTitle={title}
+          cardDifficulty={difficulty}
+          cardCategory={category}
+          cardId={id}
+          cardType={type}
+          onCancel={editClose}
+          cardChallenge={type}
+          cardTime={questDatetime}
         />
-      </FlippedCard>
-    </ReactCardFlip>
-    {isEditModalOpen && 
-        <EditCard 
-        isEdit={isEditModalOpen}
-        cardTitle={title} 
-        cardDifficulty={difficulty}
-        cardCategory={category}
-        cardId= {id}
-        cardType={type}
-        onCancel={editClose}
-        cardChallenge={type}
-        cardTime={questDatetime}
-        />
-      }
-
+      )}
     </CardContainer>
   );
 };

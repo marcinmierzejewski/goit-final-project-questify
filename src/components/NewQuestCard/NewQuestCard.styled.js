@@ -1,6 +1,11 @@
 import styled from "styled-components";
 
 export const Card = styled.li`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 260px;
+  width: 290px;
   position: relative;
   padding: 19px 21px 31px 0;
   border-radius: 10px;
@@ -25,6 +30,8 @@ export const Card = styled.li`
 
   @media screen and (min-width: 768px) {
     padding-bottom: 21px;
+    height: 199px;
+    width: 205px;
 
     & > h3 {
       margin-top: 42px;
