@@ -7,20 +7,17 @@ import { TimeTitle, OverflowDiv } from "./CardGroup.styled";
 import CardList from "./CardList";
 
 const CardGroup = ({ cards, groupName, cardPreparation }) => {
-
-  const challengeState = useSelector((state) => state.user.challengeFIlter)
+  const challengeState = useSelector((state) => state.user.challengeFIlter);
   const [isDoneClicked, setIsDoneClicked] = React.useState(false);
 
   const toggleisDoneClicked = () => {
     setIsDoneClicked((current) => !current);
-  }
+  };
 
   const isToday = (date) => date === todayDateInMs;
   const isTomorrow = (date) => date === tomorrowDateInMs;
 
   const isComplete = (status) => status === "Complete";
-
- 
 
   const assignGroup = (cardData) => {
     const { date, status } = cardData;
@@ -29,68 +26,66 @@ const CardGroup = ({ cards, groupName, cardPreparation }) => {
       return "done";
     }
 
-    if (checkedDate < todayDateInMs ) {
+    if (checkedDate < todayDateInMs) {
       return "previous";
     }
 
-    if (isToday(checkedDate) ) {
+    if (isToday(checkedDate)) {
       return "today";
     }
 
-    if (isTomorrow(checkedDate) ) {
+    if (isTomorrow(checkedDate)) {
       return "tomorrow";
     }
-
 
     if (checkedDate > tomorrowDateInMs) {
       return "next";
     }
-    
   };
 
-
   const filterCardsByGroup = (groupName) => {
-      if (challengeState ) {
-      return cards.filter((c) => c.type === "Challenge" && c.status !== "Complete");
-      } else if (isDoneClicked) {
-        return cards.filter((c) => assignGroup(c) !== "done");
+    if (challengeState) {
+      return cards.filter(
+        (c) => c.type === "Challenge" && c.status !== "Complete"
+      );
+    } else if (isDoneClicked) {
+      return cards.filter((c) => assignGroup(c) !== "done");
+    } else {
+      return cards.filter((c) => assignGroup(c) === groupName);
     }
-    else {
-    return  cards.filter((c) => assignGroup(c) === groupName);
-   }
-  }
-
-
+  };
 
   const filterDone = () => {
     if (challengeState) {
-      return cards.filter((c) => c.type === "Challenge" && c.status !== "Complete");
+      return cards.filter(
+        (c) => c.type === "Challenge" && c.status !== "Complete"
+      );
     }
     return cards.filter((c) => assignGroup(c) === groupName);
-  }
+  };
 
   return (
     <OverflowDiv>
       <TimeTitle onClick={toggleisDoneClicked}>
-      {(filterCardsByGroup(groupName).length > 0)  && (
-          <p>{groupName}
-            {groupName === "done" &&
+        {cardPreparation && <p>{groupName}</p>}
+        {filterCardsByGroup(groupName).length > 0 && (
+          <p>
+            {groupName}
+            {groupName === "done" && (
               <>
-              {isDoneClicked ? <ListBtnIconUp /> : <ListBtnIconDown/>}
-              <span></span>
-            </>
-            }
+                {isDoneClicked ? <ListBtnIconUp /> : <ListBtnIconDown />}
+                <span></span>
+              </>
+            )}
           </p>
         )}
       </TimeTitle>
-  
-        <CardList
-          groupName={groupName}
+
+      <CardList
+        groupName={groupName}
         filterCardsByGroup={filterDone}
-          cardPreparation={cardPreparation}
-        /> 
-   
-      
+        cardPreparation={cardPreparation}
+      />
     </OverflowDiv>
   );
 };

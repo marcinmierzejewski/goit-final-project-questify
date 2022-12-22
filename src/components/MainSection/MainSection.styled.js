@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Main = styled.main`
-  padding: 0 15px;
+  padding: 30px 15px;
   overflow: hidden;
 
   @media screen and (min-width: 768px) {
