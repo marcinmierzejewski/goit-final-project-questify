@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+export const OverflowDiv = styled.div`
+  overflow: hidden;
+`
+
 export const TimeTitle = styled.div`
   position: relative;
   cursor: pointer;

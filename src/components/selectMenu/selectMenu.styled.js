@@ -51,7 +51,7 @@ const beforeContent = (type) => {
 };
 
 export const MenuWrapper = styled(Menu)`
-  & .css-6hp17o-MuiList-root-MuiMenu-list {
+  & ul {
     display: grid;
     padding: 9px 21px 10px 12px;
     background: #ffffff;
@@ -74,3 +74,4 @@ export const MenuItem = styled.li`
     ${(props) => beforeContent(props.type)}
   }
 `;
+

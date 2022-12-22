@@ -2,7 +2,7 @@ import React from "react";
 import { ReactComponent as ListBtnIconUp } from "./images/listBtnUp.svg";
 import { ReactComponent as ListBtnIconDown } from "./images/listBtnDown.svg";
 import { todayDateInMs, tomorrowDateInMs } from "../../utils/datetime";
-import { TimeTitle } from "./CardGroup.styled";
+import { TimeTitle, OverflowDiv } from "./CardGroup.styled";
 import CardList from "./CardList";
 
 const CardGroup = ({ cards, groupName, cardPreparation }) => {
@@ -17,25 +17,31 @@ const CardGroup = ({ cards, groupName, cardPreparation }) => {
   const isTomorrow = (date) => date === tomorrowDateInMs;
 
   const isComplete = (status) => status === "Complete";
+  const isIncomplete = (status) => status === "Incomplete";
+  const isChallenge = (status) => status === "Challenge";
+  const isTask = (status) => status === "Task";
 
   const assignGroup = (cardData) => {
-    const { date, status } = cardData;
+    const { date, status, type } = cardData;
     const checkedDate = new Date(date).getTime();
-
     if (isComplete(status) && !isDoneClicked) {
       return "done";
     }
 
-    if (checkedDate < todayDateInMs) {
+    if (checkedDate < todayDateInMs && isTask(type)) {
       return "previous";
     }
 
-    if (isToday(checkedDate)) {
+    if (isToday(checkedDate) && isTask(type)) {
       return "today";
     }
 
-    if (isTomorrow(checkedDate)) {
+    if (isTomorrow(checkedDate) && isTask(type)) {
       return "tomorrow";
+    }
+
+    if (isIncomplete(status) && isChallenge(type)) {
+      return "challenge"
     }
 
     return "next";
@@ -55,7 +61,7 @@ const CardGroup = ({ cards, groupName, cardPreparation }) => {
  }
 
   return (
-    <div>
+    <OverflowDiv>
       <TimeTitle onClick={toggleisDoneClicked}>
       {filterCardsByGroup(groupName).length > 0 && (
           <p>{groupName}
@@ -76,7 +82,7 @@ const CardGroup = ({ cards, groupName, cardPreparation }) => {
         /> 
    
       
-    </div>
+    </OverflowDiv>
   );
 };
 
