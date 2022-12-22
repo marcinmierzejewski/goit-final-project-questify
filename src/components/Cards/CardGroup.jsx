@@ -21,7 +21,7 @@ const CardGroup = ({ cards, groupName, cardPreparation }) => {
   const isComplete = (status) => status === "Complete";
 
   const isChallenge = (status) => status === "Challenge";
-  const isDone = (status) => status === "Complete";
+  // const isDone = (status) => status === "Complete";
 
 
   const assignGroup = (cardData) => {
