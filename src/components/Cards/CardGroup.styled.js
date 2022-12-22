@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const OverflowDiv = styled.div`
   overflow: hidden;
-  padding-bottom: 30px;
 `;
 
 export const TimeTitle = styled.div`

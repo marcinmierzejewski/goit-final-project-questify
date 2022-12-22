@@ -36,22 +36,23 @@ const CardGroupContainer = () => {
     } else if (isSuccess) {
       return (
         <>
-          {!challengeState ?
+          {!challengeState ? (
             <>
-              <CardGroup cards={cards} groupName="previous" />
               <CardGroup
                 cards={cards}
-                groupName="today"
+                groupName="create new card"
                 cardPreparation={cardPreparation}
               />
+              <CardGroup cards={cards} groupName="previous" />
+              <CardGroup cards={cards} groupName="today" />
               <CardGroup cards={cards} groupName="tomorrow" />
               <CardGroup cards={cards} groupName="next" />
 
               <CardGroup cards={cards} groupName="done" />
             </>
-            :
+          ) : (
             <CardGroup cards={cards} groupName="challenge" />
-          }
+          )}
           <NewTaskBtn onClick={preparingCardToCreate} />
         </>
       );
