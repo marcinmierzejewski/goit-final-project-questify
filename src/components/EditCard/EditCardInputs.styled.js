@@ -24,7 +24,7 @@ export const InputWrapper = styled.div`
     margin-top: 5px;
     width: 100%;
     border: none;
-    /* border-radius: ${(props) => (props.cardType === "Challenge" && "20px")}; */
+    /* border-radius: ${(props) => props.cardType === "Challenge" && "20px"}; */
     border-bottom: 2px solid #00d7ff;
     outline: transparent;
     padding: 2px 4px;
@@ -34,9 +34,9 @@ export const InputWrapper = styled.div`
     line-height: 20px;
     color: #282828;
     text-align: center;
-    color: ${(props) => (props.cardType === "Challenge" && "#fff")};
-    background: ${(props) => (props.cardType === "Challenge" && "#15395A;")};
-    
+    color: ${(props) => props.cardType === "Challenge" && "#fff"};
+    background: ${(props) => props.cardType === "Challenge" && "#15395A;"};
+
     @media screen and (min-width: 768px) {
       font-size: 16px;
       line-height: 16px;
@@ -53,18 +53,16 @@ export const DatetimeBar = styled.div`
   padding-left: 21px;
 
   & input {
-    width: 120px;
+    width: 150px;
     border: none;
     outline: none;
     padding: 0;
     font-size: 18px;
-    color: ${(props) => (props.cardType === "Challenge" ? "#b9c3c8" : "#b9c3c8")};
+    color: ${(props) =>
+      props.cardType === "Challenge" ? "#b9c3c8" : "#b9c3c8"};
     text-align: center;
     &::placeholder {
       color: #282828;
-    }
-    @media screen and (min-width: 768px) {
-      font-size: 14px;
     }
   }
   & fieldset {
@@ -75,8 +73,19 @@ export const DatetimeBar = styled.div`
     padding: 0;
   }
   & svg {
-    width: 12px;
-    height: 14px;
+    width: 18px;
+    height: 18px;
     fill: #00d7ff;
+  }
+  @media screen and (min-width: 768px) {
+    font-size: 14px;
+    & input {
+      width: 120px;
+      font-size: 14px;
+    }
+    & svg {
+      width: 12px;
+      height: 14px;
+    }
   }
 `;
