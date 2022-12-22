@@ -83,13 +83,13 @@ export const questifyApi = createApi({
 });
 
 export const {
-  useRegisterMutation,
-  useLoginMutation,
-  useLogoutMutation,
-  useRefreshMutation,
-  useCreateCardMutation,
-  useEditCardMutation,
-  useDeleteCardMutation,
-  useGetAllUserCardQuery,
-  useCompleteCardMutation,
+	useRegisterMutation,
+	useLoginMutation,
+	useLogoutMutation,
+	useRefreshMutation,
+	useCreateCardMutation,
+	useEditCardMutation,
+	useDeleteCardMutation,
+	useGetAllUserCardQuery,
+	useCompleteCardMutation,
 } = questifyApi;

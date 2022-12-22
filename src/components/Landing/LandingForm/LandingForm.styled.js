@@ -3,10 +3,10 @@ import TextField from "@mui/material/TextField";
 
 export const Wrapper = styled.div`
 	text-align: left;
-	@media screen and (min-width: 768px) and (max-width: 1020px) and (orientation: portrait) {
+	@media screen and (min-width: 768px) and (max-width: 1020px) and (min-height: 760px) {
 		margin-bottom: 351px;
 	}
-	@media screen and (min-width: 1020px) and (max-width: 1280px) and (orientation: landscape) {
+	@media screen and (min-width: 1020px) and (max-width: 1280px) and (min-height: 760px) {
 		margin-bottom: 201px;
 	}
 `;
@@ -16,10 +16,10 @@ export const Paragraph = styled.p`
 	margin: 0px;
 	padding-bottom: 14px;
 	color: #b9c3c8;
-	@media screen and (min-width: 768px) and (max-width: 1020px) {
+	@media screen and (min-width: 768px) and (max-width: 1020px) and (min-height: 760px) {
 		font-size: 18px;
 	}
-	@media screen and (min-width: 1020px) and (max-width: 1280px) {
+	@media screen and (min-width: 1020px) and (max-width: 1280px) and (min-height: 760px) {
 		font-size: 24px;
 		padding-bottom: 36px;
 	}
@@ -38,7 +38,7 @@ export const TextFieldStyled = styled(TextField)`
 	& .MuiInput-input {
 		color: #00d7ff;
 	}
-	@media screen and (min-width: 768px) {
+	@media screen and (min-width: 768px) and (min-height: 760px) {
 		& .MuiInputBase-root {
 			width: 193px;
 		}
@@ -75,7 +75,7 @@ export const FormButton = styled.button`
 			rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 	}
 
-	@media screen and (min-width: 768px) {
+	@media screen and (min-width: 768px) and (min-height: 760px) {
 		margin-left: 141px;
 	}
 `;
