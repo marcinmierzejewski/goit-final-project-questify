@@ -73,7 +73,8 @@ export const InputWrapper = styled.div`
     font-weight: 700;
     font-size: 16px;
     line-height: 16px;
-    background-color: ${(props) => (props.cardType === "Task" ? "#B9C3C8" : "#15395A")};
+    background-color: ${(props) =>
+      props.cardType === "Task" ? "#B9C3C8" : "#15395A"};
     color: #282828;
   }
 `;
@@ -87,7 +88,8 @@ export const Card = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  background-color: ${(props) => (props.cardType === "Task" ? "#fff" : "#15395A")};
+  background-color: ${(props) =>
+    props.cardType === "Task" ? "#fff" : "#15395A"};
   box-shadow: -3px -4px 4px rgba(21, 57, 90, 0.03),
     3px 4px 4px rgba(21, 57, 90, 0.03);
 
@@ -175,7 +177,7 @@ export const DatetimeBar = styled.div`
   padding-left: 21px;
 
   & input {
-    width: 120px;
+    width: 150px;
     border: none;
     outline: none;
     padding: 0;
@@ -277,8 +279,8 @@ export const StartWrapper = styled.div`
   & svg {
     margin-right: 7px;
   }
-  
-  & svg:not(:first-child) {    
+
+  & svg:not(:first-child) {
     cursor: pointer;
   }
 
