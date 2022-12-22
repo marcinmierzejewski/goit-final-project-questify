@@ -65,7 +65,7 @@ const LandingForm = () => {
 				<Paragraph>
 					Choose your name to{" "}
 					<RegistrationLInk onClick={() => setIsOpen(true)}>
-						sing up
+						sign up
 					</RegistrationLInk>{" "}
 					or log in
 				</Paragraph>
