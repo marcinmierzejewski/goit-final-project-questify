@@ -20,7 +20,7 @@ function LandingBg(props) {
 	if (windowWidth >= 768 && windowWidth < 1280 && windowHeight >= 1024) {
 		image1 = TabletVerUp;
 		image2 = TabletVerDown;
-	} else if (windowWidth >= 769 && windowWidth < 1280 && windowHeight >= 760) {
+	} else if (windowWidth >= 768 && windowWidth < 1280 && windowHeight >= 760) {
 		image1 = TabletHorUp;
 		image2 = TabletHorDown;
 	} else if (windowWidth >= 1280) {

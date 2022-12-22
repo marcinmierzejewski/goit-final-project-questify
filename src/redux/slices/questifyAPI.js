@@ -1,5 +1,4 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import jwt_decode from "jwt-decode";
 
 export const questifyApi = createApi({
 	reducerPath: "questifyApi",
@@ -7,11 +6,7 @@ export const questifyApi = createApi({
 		baseUrl: "https://questify-backend.goit.global",
 		prepareHeaders: (headers, { getState }) => {
 			const token = getState().token;
-			const refreshToken = getState().user.refreshToken;
-
-			if (token && jwt_decode(token).exp < 1000) {
-				headers.set("Authorization", `Bearer ${refreshToken}`);
-			} else if (token) {
+			if (token) {
 				headers.set("Authorization", `Bearer ${token}`);
 			}
 
