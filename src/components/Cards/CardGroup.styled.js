@@ -2,14 +2,15 @@ import styled from "styled-components";
 
 export const OverflowDiv = styled.div`
   overflow: hidden;
-`
+  padding-bottom: 30px;
+`;
 
 export const TimeTitle = styled.div`
   position: relative;
   cursor: pointer;
   & p {
     margin-bottom: 25px;
-    margin-top: 30px;
+    /* margin-top: 30px; */
     font-weight: 300;
     font-size: 15px;
     line-height: 1;
@@ -33,4 +34,3 @@ export const TimeTitle = styled.div`
     margin-left: 60px;
   }
 `;
-

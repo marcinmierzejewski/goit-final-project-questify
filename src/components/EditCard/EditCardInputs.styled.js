@@ -21,7 +21,7 @@ export const InputWrapper = styled.div`
   }
 
   & input {
-    margin-top: 10px;
+    margin-top: 5px;
     width: 100%;
     border: none;
     /* border-radius: ${(props) => (props.cardType === "Challenge" && "20px")}; */
@@ -40,7 +40,7 @@ export const InputWrapper = styled.div`
     @media screen and (min-width: 768px) {
       font-size: 16px;
       line-height: 16px;
-      margin-top: 5px;
+      margin-top: 3px;
     }
   }
 `;
@@ -49,7 +49,7 @@ export const DatetimeBar = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0 auto 37px;
+  margin: 0 auto 30px;
   padding-left: 21px;
 
   & input {
